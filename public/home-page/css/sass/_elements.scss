@@ -1,0 +1,181 @@
+/* =================================== */
+/*    Preloader
+/* =================================== */
+#preloader {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+  top: 0;
+  bottom: 0;
+  background-color: $colordark;
+  .loader {
+    width: 128px;
+    height: 128px;
+    top: 40%;
+    line-height: 128px;
+    border-radius: 50%;
+    border-top: 5px solid $coloryellow;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+    -webkit-animation: 2s loading1 ease-in-out infinite;
+    animation: 2s loading1 ease-in-out infinite;
+    &:after,
+    &::before {
+      content: "";
+      display: block;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      border-top: 5px solid $coloryellow;
+      position: absolute;
+      top: -5px;
+      left: 0;
+    }
+    &:before {
+      @include transform(rotate(120deg));
+    }
+    &:after {
+      @include transform(rotate(240deg));
+    }
+    .loader-inner {
+      display: block;
+      width: 128px;
+      height: 128px;
+      position: absolute;
+      top: -5px;
+      left: 0;
+      -webkit-animation: 2s loading2 linear infinite;
+      animation: 2s loading2 linear infinite;
+    }
+  }
+}
+
+@-webkit-keyframes loading1 {
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes loading1 {
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loading2 {
+  50% {
+    -webkit-transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+@keyframes loading2 {
+  50% {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+/* =================================== */
+/*    BOOTSTRAP ELEMENTS
+/* =================================== */
+.progress {
+  box-shadow: none;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+.border {
+  border: none !important;
+}
+
+.media .media-body {
+  padding-left: 15px;
+}
+
+/* === Form Control === */
+.form-control {
+  display: block;
+  border-radius: 0;
+  width: 100%;
+  height: 48px;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #fff;
+  background-color: $colordark;
+  background-image: none;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  &:focus {
+    background-color: $colordark;
+    border-color: $coloryellow;
+    color: #fff;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+textarea.form-control {
+  height: 120px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.navbar-collapse {
+  &.show {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-top: 1px solid transparent;
+  }
+}
+.nav-tabs {
+  border: 0;
+}
+
+.nav > li > a {
+  padding: 10px 15px;
+}
+.nav > li > a,
+.nav > li {
+  position: relative;
+  display: block;
+}
+
+
+/* =================================== */
+/*    Owl Slider
+/* =================================== */
+.owl-theme .owl-controls {
+  margin-top: 0;
+}
+.owl-theme .owl-controls .owl-page span {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.owl-theme .owl-controls .owl-page.active span {
+  background-color: $coloryellow;
+}

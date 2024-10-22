@@ -1,0 +1,182 @@
+/*============================================================
+        For Small Desktop
+==============================================================*/
+@media screen and (max-width: 991px) {
+  /* Features */
+  .tab-content,
+  .nav.nav-pills > li > a {
+    width: auto;
+  }
+}
+/*============================================================
+        Tablet (Portrait) Design for a width of 768px
+==============================================================*/
+@media (min-width: 768px) and (max-width: 991px) {
+  /* slider */
+  .hero-area .carousel-inner .carousel-caption h2 {
+    font-size: 55px;
+  }
+  .hero-area .carousel-inner .carousel-caption h3 {
+    font-size: 36px;
+  }
+
+  /* services */
+  .service-item {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .services-area .service-item .service-icon{
+    top: 30px;
+    left: 550px;
+  }
+
+  .our-team {
+    width: 83%;
+    margin: 0 auto;
+  }
+
+  /* works */
+  .works-area .work-item {
+    width: 33.33333333%;
+  }
+
+  /* fatcs */
+  #facts {
+    background-position: center top !important;
+  }
+
+  .counters-item i {
+    margin: 0 0 15px;
+  }
+
+  .counters-item strong {
+    font-size: 45px;
+  }
+
+  .footer-social {
+    margin-top: 45px;
+  }
+}
+/*============================================================
+        Mobile (Portrait) Design for a width of 320px
+==============================================================*/
+@media only screen and (max-width: 767px) {
+  /* slider */
+  .hero-area .carousel-inner .carousel-caption h2 {
+    font-size: 48px;
+  }
+  .hero-area .carousel-inner .carousel-caption h3 {
+    font-size: 35px;
+  }
+  .hero-area .carousel-inner .carousel-caption p {
+    font-size: 14px;
+  }
+
+  .service-item {
+    width: 100%;
+  }
+  .services-area .service-item .service-icon{
+    top: 40px;
+    left: 380px;
+  }
+
+  /* works */
+  .works-area .work-item {
+    left: 5% !important;
+    width: 90%;
+  }
+
+  .our-team {
+    width: 53%;
+    margin: 0 auto;
+  }
+
+  .price_item {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* facts */
+  #facts {
+    background-position: center top !important;
+  }
+
+  /* contact */
+  .contact-address {
+    margin-bottom: 30px;
+  }
+
+  .contact-area .footer-social {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .contact-area .footer-social li {
+    display: inline-block;
+  }
+  .contact-area .footer-social li a {
+    margin: 0 10px;
+  }
+}
+/*============================================================
+        Mobile (Landscape) Design for a width of 480px
+==============================================================*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* works */
+  .works-area .work-item {
+    left: inherit !important;
+    width: 50%;
+  }
+  .services-area .service-item .service-icon{
+    top: 40px;
+    left: 440px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .our-team {
+    width: 65%;
+    margin: 0 auto;
+  }
+  .services-area .service-item .service-icon{
+    top: 50px;
+    left: 300px;
+  }
+
+  /* Blog Section */
+  .post-slide .month {
+    font-size: 14px;
+  }
+
+  .post-slide .date {
+    font-size: 14px;
+  }
+
+  /* Blog & Blog Post */
+  .pagination {
+    display: block;
+    overflow: auto;
+  }
+  .pagination li {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .our-team {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .price_item {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .hero-area .carousel-inner .carousel-caption {
+    top: 35%;
+  }
+
+  .meta-detail {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */
