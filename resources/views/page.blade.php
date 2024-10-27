@@ -33,7 +33,7 @@
                         <div class="clearfix">
 
                         </div>
-                        <div class="description" dir="rtl">
+                        <div class="description" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif>
                             {!! $page->body !!}
                         </div>
                     </div>

@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         <div class="card bg-dark">
-                <div class="card-header">{{ __('استرجاع كلمة السر') }}</div>
+                <div class="card-header">{{ __('sentence.recover_password') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
@@ -13,7 +13,7 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('البريد الإلكتروني') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('sentence.email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('كلمة السر') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('sentence.password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('تأكيد كلمة السر') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('sentence.confirm_password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -51,7 +51,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-red">
-                                    {{ __('استعادة كلمة السر') }}
+                                    {{ __('sentence.recover_password') }}
                                 </button>
                             </div>
                         </div>

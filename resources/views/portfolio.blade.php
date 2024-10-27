@@ -7,7 +7,7 @@
     <section id="works" class="sec-padding works-area clearfix bg-light-black">
         <div class="container">
             <div class="sec-title text-center mb50">
-                <h2>من أعمالنا</h2>
+               <h2>{{ __('sentence.from_our_work') }}</h2>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.png') }}" alt="Heydarah">
                 </div>
             </div>

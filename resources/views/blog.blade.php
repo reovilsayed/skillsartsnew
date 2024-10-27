@@ -10,26 +10,26 @@
 @endsection
 @section('content')
     <div class="blog-header shadow bg-black">
-        <div class="container">
-            <h2 class="h1 mb-3">المدونة</h2>
+        <div class="container" @if (App::getLocale() == 'en') style="text-align: left" @endif>
+            <h2 class="h1 mb-3" @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ __('sentence.blog') }}</h2>
             <ul class="breadcrumb">
                 <li>
                     <a href="{{ route('home') }}" class="transition"> <i class="fa fa-home"></i> </a>
                 </li>
-                <li class="active"> <a href="{{ route('blog') }}" class="transition"> المدونة </a></li>
-                <li> <a href="#" class="transition"> مقال </a></li>
+                <li class="active"> <a href="{{ route('blog') }}" class="transition">{{ __('sentence.blog') }}</a></li>
+                <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
             </ul>
         </div>
     </div>
     <div id="tf-blog" class="blog-page sec-padding">
         <div class="container">
             <div class="sec-title text-center mb50">
-                <h2>أحدث المقالات</h2>
+                <h2>{{ __('sentence.latest_articles') }}</h2>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.png') }}" alt="Heydarah">
                 </div>
             </div>
             <div class="row justify-content-between">
-                <div class="col-lg-8 col-md-12 mb-5 mb-lg-0">
+                <div class="col-lg-8 col-md-12 mb-5 mb-lg-0" >
                     @foreach ($posts as $post)
                         <div class="post-wrap transition shadow bg-black">
                             <div class="media post">
@@ -51,7 +51,7 @@
                                 <ul>
                                     <li>
                                         <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                            <span>أقرأ المزيد</span>
+                                            <span>{{ __('sentence.read_more') }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -65,12 +65,12 @@
                     <div class="widget-wrap shadow bg-black">
                         <div class="single-sidebar-widget search-widget">
                             <form class="search-form">
-                                <input class="form-control" placeholder="البحث عن مقالة" name="search" type="text">
+                                <input class="form-control" placeholder="{{ __('sentence.search_article') }}" name="search" type="text">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                         <div class="single-sidebar-widget popular-post-widget">
-                            <h4 class="title">مقالات مفضلة</h4>
+                            <h4 class="title">{{ __('sentence.favorite_articles') }}</h4>
                             <div class="popular-post-list">
                                 @foreach ($posts->take(4) as $post)
                                     <div class="single-post-list d-flex justify-content-end flex-row align-items-center">
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="single-sidebar-widget post-category-widget">
-                            <h4 class="title">أقسام المقالات</h4>
+                            <h4 class="title">{{ __('sentence.articles_sections') }}</h4>
                             <ul class="cat-list">
                                 @foreach ($categories as $category)
                                     <li>

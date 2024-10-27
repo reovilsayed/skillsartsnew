@@ -36,7 +36,7 @@ class CartController extends Controller
 			$price = $product->price;
 		}
 		Cart::add($product->id, $product->name, $price,1 )->associate('App\Product');
-		//session()->flash('errors', collect(['Please Check Length,Width,Height,Weight again of this product']));
+		
         if(auth()->check()){
             Shop::createAlert(auth()->id(),auth()->user()->name.' أضاف منتج إلى السلة');
         }else{

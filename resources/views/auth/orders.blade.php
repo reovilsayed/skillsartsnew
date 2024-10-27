@@ -15,7 +15,7 @@
             <div dir="rtl" class="row justify-content-center">
                 <div class="col-md-10">
                     <div class="card bg-dark">
-                        <div class="card-header">الطلبات</div>
+                        <div class="card-header">{{ __('sentence.requests') }}</div>
                         <div class="card-body">
                             @if ($orders->count() > 0)
                                 <div class="table-responsive">
@@ -54,7 +54,7 @@
                                 </div>
                                 {{ $orders->links() }}
                             @else
-                                <h3 class="text-center"> لم تقم بأي طلب </h3>
+                                <h3 class="text-center">{{ __('sentence.you_have_not_made_any_request') }}</h3>
                             @endif
 
                         </div>

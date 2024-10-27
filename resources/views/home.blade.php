@@ -40,7 +40,6 @@
             -o-animation-delay: 1.5s;
             -moz-transition: none !important;
         }
-
     </style>
 @stop
 @section('content')
@@ -62,7 +61,8 @@
                                     </h5>
                                     <p class="toggleCaption mb-3" style="font-size:16px">{{ $slider->paragraph }}</p>
                                     <p class="toggleButton">
-                                        <a href="{{ route('shop') }}" class="btn btn-red">تسوق الآن</a>
+                                        <a href="{{ route('shop') }}"
+                                            class="btn btn-red">{{ __('sentence.shop_now') }}</a>
                                     </p>
                                 </div>
                             @endif
@@ -94,16 +94,20 @@
         #homesliderm .carousel-inner .carousel-item:nth-child(even) {
             background: radial-gradient(#2b2c30, #333439, #2b2c30);
         }
-        .on-mobile-font-sec{
-            font-size:20px;
-        }
-        @media(max-width: 540px){
-            .on-mobile-font{font-size: 28px !important}
-            .on-mobile-font-sec{
-            font-size:16px;
-        }
+
+        .on-mobile-font-sec {
+            font-size: 20px;
         }
 
+        @media(max-width: 540px) {
+            .on-mobile-font {
+                font-size: 28px !important
+            }
+
+            .on-mobile-font-sec {
+                font-size: 16px;
+            }
+        }
     </style>
     <section class="slider">
         <div id="homesliderm" class="carousel slide" data-ride="carousel">
@@ -111,7 +115,8 @@
                 @foreach ($sliders_desktop as $slider)
                     @if ($slider->device == 'desktop')
                         <div class="carousel-item {{ $loop->index }} {{ $loop->index == 0 ? 'active' : '' }}">
-                           <img class="d-block w-100" src="{{ Storage::url($slider->image) }}" alt="{{ setting('site.title') }}">
+                            <img class="d-block w-100" src="{{ Storage::url($slider->image) }}"
+                                alt="{{ setting('site.title') }}">
                             @if ($slider->heading)
                                 <div class="carousel-caption">
                                     <h5 class="mb-3 display-4 text-red font-weight-bold on-mobile-font"
@@ -120,7 +125,8 @@
                                     </h5>
                                     <p class="toggleCaption mb-3 on-mobile-font-sec">{{ $slider->paragraph }}</p>
                                     <p class="toggleButton">
-                                        <a href="{{ route('shop') }}" class="btn btn-red">تسوق الآن</a>
+                                        <a href="{{ route('shop') }}"
+                                            class="btn btn-red">{{ __('sentence.shop_now') }}</a>
                                     </p>
                                 </div>
                             @endif
@@ -144,7 +150,7 @@
         <div class="container">
             <!-- section title -->
             <div class="sec-title text-center mb50">
-                <h2>من نحن</h2>
+                <h2>{{ __('sentence.who_we_are') }}</h2>
                 <div class="devider">
                     <img src="{{ asset('home-page/img/skills-icon.webp') }}"
                         alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
@@ -162,31 +168,40 @@
                                     alt="هوية تجارية من تصميم سكيلز آرتس للتصميم">
                             </div>
                             <div class="col-lg-6 col-md-12 pr-5 pr-5  py-4">
-                                <h3 class="mb-3">سكيلز آرتس للدعاية والإعلان <span>؟</span></h3>
-                                <p>للفن مهارات لا يتقنها إلّا أهل الاختصاص ابداعًا واقناعًا، التزامًا وفرادة. من هنا كانت
-                                    فكرة سكيلز آرتس. فنحن فريق يتطلع إلى تنفيذ رؤيتكم، وتحقيق غايتكم، وتصميم أحلامكم في
-                                    مجال الجرافيك من تصميم الهوية التجارية والشعار، تصميم بروفايل الشركات وكتابة المحتوى
-                                    وترجمته، وحلول الويب والملتيميديا، ساهمت فلسفتنا وقيمنا التي نتبعها في العمل في كسب ثقة
-                                    زبائننا، إذ قمنا بتنفيذ العديد من المشاريع في المملكة العربية السعودية والإمارات والكويت
-                                    والبحرين وعمان وقطر ولبنان.. وفي الدول الغربية كفرنسا واستراليا وبريطانيا.. وكل ما نتطلع
-                                    إليه هو المزيد من التقدم والنجاح... </p> <br>
+                                <h3 class="mb-3">{{ __('sentence.skills_arts') }}<span>؟</span></h3>
+                                <p>{{ __('sentence.about_page') }}</p> <br>
 
                                 <ul class="social-links mt-2">
-                                    <li class="mr-2"><a href="https://www.facebook.com/skillsarts1/"
-                                            rel="nofollow"><i class="fa fa-facebook fa-2x"></i></a></li>
-                                    <li class="mr-2"><a href="https://instagram.com/skillsarts_agency/"
-                                            rel="nofollow"><i class="fa fa-instagram fa-2x"></i></a></li>
-                                    <li class="mr-2"><a href="https://twitter.com/skillsarts1/" rel="nofollow"><i
-                                                class="fa fa-twitter fa-2x"></i></a></li>
-                                    <li class="mr-2"><a href="https://www.snapchat.com/add/skillsarts/"
-                                            rel="nofollow"><i class="fa fa-snapchat-ghost fa-2x"></i></a></li>
-                                    <li class="mr-2"><a
-                                            href="https://wa.me/966593031810?text=السلام عليكم سكيلز آرتس"><i
-                                                class="fa fa-whatsapp fa-2x"></i></a></li>
+                                    <li class="mr-2">
+                                        <a href="https://www.facebook.com/skillsarts1/" rel="nofollow">
+                                            <i class="fa fa-facebook fa-2x"></i>
+                                        </a>
+                                    </li>
+                                    <li class="mr-2">
+                                        <a href="https://instagram.com/skillsarts_agency/" rel="nofollow">
+                                            <i class="fa fa-instagram fa-2x"></i>
+                                        </a>
+                                    </li>
+                                    <li class="mr-2">
+                                        <a href="https://twitter.com/skillsarts1/" rel="nofollow">
+                                            <i class="fa fa-twitter fa-2x"></i>
+                                        </a>
+                                    </li>
+                                    <li class="mr-2">
+                                        <a href="https://www.snapchat.com/add/skillsarts/" rel="nofollow">
+                                            <i class="fa fa-snapchat-ghost fa-2x"></i>
+                                        </a>
+                                    </li>
+                                    <li class="mr-2">
+                                        <a href="https://wa.me/966593031810?text=السلام عليكم سكيلز آرتس">
+                                            <i class="fa fa-whatsapp fa-2x"></i>
+                                        </a>
+                                    </li>
 
                                 </ul>
 
-                                <a href="https://skillsarts.com/#contact" class="primary-btn mt-4" data-text="تواصل معنا">
+                                <a href="https://skillsarts.com/#contact" class="primary-btn mt-4"
+                                    data-text="تواصل معنا">
                                     <span>C</span>
                                     <span>o</span>
                                     <span>n</span>
@@ -210,18 +225,11 @@
                                     alt="موقع الكتروني من تصميم سكيلز آرتس لتصميم المواقع">
                             </div>
                             <div class="col-lg-6 col-md-12 pr-5 pl-5  py-4">
-                                <h3 class="mb-3">نسخر جميع حواسنا خدمةً لعملائنا <span></span></h3>
-                                <p>
-                                    أذاننا تصغي بشكل جيد إلى فكرة العميل ورؤيته- <br>
-                                    أعيننا تتخيّل الفكرة وتسخر الفنون البصريّة لخلق العمل الفنيّ- <br>
-                                    أيدينا تبحث وتجري الدراسات، تعالج الملاحظات، تساند العميل- <br>
-                                    نصوصنا تجعلك تتذوق العمل بطريقة ممتعة عنوانها الابتكار- <br>
-                                    وأخيرًا رائحة الابداع تفوح من كلّ عمل يحمل توقيع سكيلز آرتس- <br>
+                                <h3 class="mb-3">{{ __('sentence.our_customers') }}<span></span></h3>
+                                <p>{{ __('sentence.about_page_two') }}</p>
 
-                                </p>
-
-
-                                <a href="https://skillsarts.com/#contact" class="primary-btn mt-4" data-text="تواصل معنا">
+                                <a href="https://skillsarts.com/#contact" class="primary-btn mt-4"
+                                    data-text="تواصل معنا">
                                     <span>C</span>
                                     <span>o</span>
                                     <span>n</span>
@@ -246,15 +254,11 @@
     <!-- End of Section  -->
 
 
-    <!--
-        Services
-        ==================================== -->
-
     <section id="services" class="sec-padding services-area bg-black">
         <div class="container">
             <!-- section title -->
             <div class="sec-title text-center mb50">
-                <h2>خدماتنا</h2>
+                <h2>{{ __('sentence.our_services_one') }}</h2>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
                         alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                     <!-- small image icon between divider -->
@@ -272,10 +276,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/design-commercial-identity-graphic-designs">
-                                <h4>تصميم الجرافيك</h4>
-                                <p>يمتلك فريقنا القدرة والخبرة في التعامل مع جميع أنواع واحجام المشاريع والشركات، ويتمتع
-                                    بالقدرة على ابتكار تصاميم الجرافيك والعلامات والهويات التجارية او إعادة تطويرها بطرق
-                                    فنية مبتكرة.</p>
+                                <h4>{{ __('sentence.graphic_design') }}</h4>
+                                <p>{{ __('sentence.services_cart_one') }}</p>
 
 
                             </a>
@@ -295,10 +297,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/company-profile-design">
-                                <h4>تصميم بروفايل</h4>
-                                <p>نصمم لشركتك البروفايل التعريفي بمحتوى إبداعي يعرف العملاء إلى خدماتك. خبرتنا تجاوزت في
-                                    هذا المجال السنوات العشر في تصميم وتنفيذ بروفايلات الشركات العربيّة والأجنبيّة في مختلف
-                                    المجالات</p>
+                                <h4>{{ __('sentence.profile_design') }}</h4>
+                                <p>{{ __('sentence.services_cart_two') }}</p>
                             </a>
                         </div>
                     </div>
@@ -316,9 +316,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/logo-design">
-                                <h4>تصميم الشعار</h4>
-                                <p>الشعار او اللوجو هو واجهة الشّركة ومفتاح العبور إلى خدماتها وهو أساس علامتها التجاريّة
-                                    ومعنا تستطيع أن تمتلك الشّعار الأقوى في مجالك للمنافسة وجذب العملاء</p>
+                                <h4>{{ __('sentence.logo_design_one') }}</h4>
+                                <p>{{ __('sentence.services_cart_three') }}</p>
                             </a>
                         </div>
 
@@ -334,9 +333,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/Content-writing">
-                                <h4>كتابة المحتوى</h4>
-                                <p>المحتوى هو العامل الأساسي لجذب الزوار والعملاء وزيادة الأرباح، وهو صورة ناطقة بجودة
-                                    المؤسّسة وفريقها، لذا نسعى إلى خدمتكم من خلال</p>
+                                <h4>{{ __('sentence.content_writing_one') }}</h4>
+                                <p>{{ __('sentence.services_cart_four') }}</p>
                             </a>
                         </div>
 
@@ -352,9 +350,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/Motion-video">
-                                <h4>فيديو موشن</h4>
-                                <p>نستخدم الوسائط المتعددة، ونسخر فن الرسم والجرافيك للدمج بين النّص والتعليق الصوتي والصورة
-                                    المتحركة والتطبيقات والألوان، لنقدم ونصمم وننفذ لكم:</p>
+                                <h4>{{ __('sentence.motion_video_one') }}</h4>
+                                <p>{{ __('sentence.services_cart_five') }}</p>
                             </a>
                         </div>
 
@@ -370,29 +367,21 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/web-development">
-                                <h4>المواقع الإلكترونية</h4>
-                                <p>في عالم تغزوه الثورة المعلوماتيّة، نسعى إلى اثبات حضورك الرقمي من خلال موقع الكتروني يضمن
-                                    وصولك للعالم </p>
+                                <h4>{{ __('sentence.websites_one') }}</h4>
+                                <p>{{ __('sentence.services_cart_six') }}</p>
                             </a>
                         </div>
 
                     </div>
                 </div>
-                <!-- end service item -->
-
-
-                <div class="row align-items-center justify-content-center">
-
-
-                </div>
-
-
             </div>
+        </div>
     </section>
+    
     <section id="works" class="sec-padding works-area clearfix bg-light-black">
         <div class="container">
             <div class="sec-title text-center mb50">
-                <h2>أعمالنا</h2>
+                <h2>{{ __('sentence.our_business') }}</h2>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
                         alt="ايقونة شعار سكيلز آرتس">
                 </div>
@@ -433,18 +422,17 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <a href="{{ route('portfolio') }}" class="btn btn-red mt-5">
-                    المزيد
+                    {{ __('sentence.more') }}
                 </a>
             </div>
         </div>
     </section>
 
-
     <section id="team" class="sec-padding team-area bg-black">
         <div class="container">
             <!-- section title -->
             <div class="sec-title text-center mb50">
-                <h2>فريقنا</h2>
+                <h2>{{ __('sentence.our_team') }}</h2>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
                         alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                     <!-- small image icon between divider -->
@@ -495,18 +483,12 @@
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </section>
-    <!--
-        End Team Section
-        ==================================== -->
 
-    <!--
-         Why Us/Features Section
-        ==================================== -->
     <section id="feature" class="sec-padding feature-area bg-light-black">
         <div class="container">
             <!-- section title -->
             <div class="sec-title text-center mb50">
-                <h2>طريقة عملنا</h2>
+                <h2>{{ __('sentence.how_we_work') }}</h2>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
                         alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                     <!-- small image icon between divider -->
@@ -525,35 +507,35 @@
                             <!-- feature tab menu #1 -->
                             <a href="#f1" class="shadow" aria-controls="f1" data-toggle="tab">
                                 <span class="fa fa-volume-up"></span>
-                                نصغي<br><small>نصغي باهتمام إلى عملائنا لنتعرف إلى حاجاتهم</small>
+                                {{ __('sentence.we_listen') }}<br><small>{{ __('sentence.we_section_one') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #2 -->
                             <a href="#f2" class="shadow" aria-controls="f2" role="tab" data-toggle="tab">
                                 <span class="fa fa-search-plus"></span>
-                                نبحث<br><small>نحقق توقعات العميل من خلال أبحاث شاملة لمشروعه</small>
+                                {{ __('sentence.we_research') }}<br><small>{{ __('sentence.we_section_two') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #3 -->
                             <a href="#f3" class="shadow" aria-controls="f3" role="tab" data-toggle="tab">
                                 <span class="fa fa-paper-plane"></span>
-                                نقترح<br><small>نقترح الحلول المناسبة وفق المعايير الفنيّة والعمليّة</small>
+                                {{ __('sentence.we') }}<br><small>{{ __('sentence.we_section_three') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #4 -->
                             <a href="#f4" class="shadow" aria-controls="f4" role="tab" data-toggle="tab">
                                 <span class="fa fa-wrench"></span>
-                                نعالج<br><small>نعالج ونصوب ملاحظات العملاء لنصل للأفضل</small>
+                                {{ __('sentence.we_process') }}<br><small>{{ __('sentence.we_section_four') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #5 -->
                             <a href="#f5" class="shadow" aria-controls="f5" role="tab" data-toggle="tab">
                                 <span class="fa fa-ticket"></span>
-                                ندعم<br><small>نساند وندعم العملاء بسرعة وبكل الوسائل المتاحة 24/24</small>
+                                {{ __('sentence.we_support') }}<br><small>{{ __('sentence.we_section_five') }}</small>
                             </a>
                         </li>
                     </ul>
@@ -567,38 +549,37 @@
                         <!-- tab content wrapper -->
                         <div role="tabpanel" class="tab-pane fade show active" id="f1">
                             <!-- feature #1 content open -->
-                            <p>أذاننا تصغي بشكل جيد إلى فكرة العميل ورؤيته..</p>
+                            <p>{{ __('sentence.we_section_title_one') }}</p>
                             <p class="mb-4"></p>
-                            <img src="images/strategy/logo (2).webp" class="img-fluid"
-                                alt="شعار من تصميم سكيلز آرتس لتصميم الشعارات">
+                            <img src="{{ asset('images/strategy/logo (2).webp') }}" class="img-fluid"
+                                alt="{{ __('sentence.we_section_title_one') }}">
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="f2">
                             <!-- feature #2 content -->
-                            <p>أعيننا تتخيّل الفكرة وتسخر الفنون البصريّة لخلق العمل الفنيّ.</p>
+                            <p>{{ __('sentence.we_section_title_two') }}</p>
                             <p class="mb-4"></p>
-                            <img src="images/strategy/indetity-branding.webp" class="img-fluid"
-                                alt="هوية تجارية من تصميم سكيلز آرتس لتصميم الهوية التجارية">
+                            <img src="{{ asset('images/strategy/indetity-branding.webp') }}" class="img-fluid"
+                                alt="{{ __('sentence.we_section_title_two') }}">
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="f3">
                             <!-- feature #3 content -->
-                            <p>أيدينا تبحث وتجري الدراسات، تعالج الملاحظات، تساند العميل في جميع المجالات.</p>
+                            <p>{{ __('sentence.we_section_title_three') }}</p>
                             <p class="mb-4"></p>
-                            <img src="images/strategy/logo.webp" class="img-fluid"
-                                alt="شعار من تصميم سكيلز آرتس لتصميم الشعارات">
+                            <img src="{{ asset('images/strategy/logo.webp') }}" class="img-fluid"
+                                alt="{{ __('sentence.we_section_title_three') }}">
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="f4">
-                            <!-- feature #4 content -->
-                            <p>-نصوصنا تجعلك تتذوق العمل بطريقة ممتعة عنوانها الابتكار.</p>
+                            <p>{{ __('sentence.we_section_title_four') }}</p>
                             <p class="mb-4"></p>
-                            <img src="images/strategy/profile.webp" class="img-fluid"
-                                alt="بروفايل من تصميم سكيلز آرتس لتصميم بروفايل الشركات">
+                            <img src="{{ asset('images/strategy/profile.webp') }}" class="img-fluid"
+                                alt="{{ __('sentence.we_section_title_four') }}">
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="f5">
                             <!-- feature #5 content -->
-                            <p>-وأخيرًا رائحة الابداع تفوح من كلّ عمل يحمل توقيع سكيلز آرتس.</p>
+                            <p>{{ __('sentence.we_section_title_five') }}</p>
                             <p class="mb-4"></p>
-                            <img src="images/strategy/web2.webp" class="img-fluid"
-                                alt="موقع الكتروني من تصميم سكيلز آرتس لتصميم المواقع">
+                            <img src="{{ asset('images/strategy/web2.webp') }}" class="img-fluid"
+                                alt="{{ __('sentence.we_section_title_five') }}">
                         </div>
                     </div> <!-- end tab content wrapper -->
                 </div><!-- end right content col 6 -->
@@ -607,16 +588,14 @@
         </div> <!-- end container -->
     </section>
 
-    <!--
-                                                                                                                                                                                        Facts Section
-                                                                                                                                                                                        ==================================== -->
+    <!--=============================== -->
 
     <section id="facts" class="facts">
         <div class="parallax-overlay">
             <div class="container">
                 <!-- section title -->
                 <div class="sec-title text-center mb50">
-                    <h2>أرقام وإنجازات</h2>
+                    <h2>{{ __('sentence.achievements') }}</h2>
                     <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
                             alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                         <!-- small image icon between divider -->
@@ -631,7 +610,7 @@
                             <i class="fa fa-hourglass-end fa-3x"></i>
                             <strong data-to="3200">0</strong>
                             <!-- Set Your Number here. i,e. data-to="56" -->
-                            <span>خدمة عملاء</span>
+                            <span>{{ __('sentence.customer_service') }}</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center wow fadeInUp animated counter-box mb-4 mb-lg-0"
@@ -640,7 +619,7 @@
                             <i class="fa fa-users fa-3x"></i>
                             <strong data-to="650">0</strong>
                             <!-- Set Your Number here. i,e. data-to="56" -->
-                            <span>عميل راضي</span>
+                            <span>{{ __('sentence.satisfied_customer') }}</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center wow fadeInUp animated counter-box mb-4 mb-lg-0 mb-md-0"
@@ -649,7 +628,7 @@
                             <i class="fa fa-rocket fa-3x"></i>
                             <strong data-to="750">0</strong>
                             <!-- Set Your Number here. i,e. data-to="56" -->
-                            <span> مشروع </span>
+                            <span>{{ __('sentence.project') }}</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center wow fadeInUp animated counter-box" data-wow-duration="500ms"
@@ -658,7 +637,7 @@
                             <i class="fa fa-trophy fa-3x"></i>
                             <strong data-to="330">0</strong>
                             <!-- Set Your Number here. i,e. data-to="56" -->
-                            <span>شكر وتقدير</span>
+                            <span>{{ __('sentence.appreciation') }}</span>
                         </div>
                     </div>
                     <!-- end first count item -->
@@ -672,7 +651,7 @@
     <section id="pricing" class="sec-padding pricing-area bg-light-black">
         <div class="container">
             <div class="sec-title text-center mb50">
-                <h2>باقات وعروض</h2>
+                <h2>{{ __('sentence.packages') }}</h2>
                 <div class="devider">
                     <img src="{{ asset('home-page/img/skills-icon.webp') }}"
                         alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
@@ -714,7 +693,7 @@
         </div>
     </section>
 
-    <x-contact/>
+    <x-contact />
 @endsection
 @section('javascript')
     <script>

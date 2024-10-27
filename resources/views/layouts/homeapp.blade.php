@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html lang="ar" class="no-js">
-<!--<![endif]-->
 
 <head>
     <!-- meta charec set -->
@@ -12,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta name="description" content="@yield('meta-description',setting('site.description'))">
+    <meta name="description" content="@yield('meta-description', setting('site.description'))">
     <!-- Page Title -->
     <title>@yield('title')</title>
     @yield('social_media')
-    <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <meta name="keywords" content="agency, responsive, parallax, creative, business, html5, css3, css3 animation">
     <meta name="author" content="Karim Ezzat">
     <link rel="canonical" href="{{ url(Request::url()) }}" />
@@ -40,15 +35,29 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('home-page/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('home-page/css/responsive.css') }}">
+
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @livewireStyles
 
     <style>
-        .blog-header {
+        /* .blog-header {
             margin-top: 0px;
+        } */
+
+        body,
+        h2,
+        h1,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        span,
+        i {
+            font-style: normal !important
         }
-        body,h2,h1,h3,h4,h5,h6,p,span,i{
-            font-style: normal!important
-        }
+
         .breadcrumb {
             direction: rtl;
         }
@@ -105,32 +114,67 @@
         .footer {
             padding: 30px 0;
         }
-        del{
+
+        del {
             color: #ff3131
         }
     </style>
+    @if (App::getLocale() == 'en')
+        <style>
+            #footer_logo {
+                text-align: left
+            }
+            #footer_links {
+                text-align: left
+            }
+            #footer_service {
+                text-align: left
+            }
+            #footer_search {
+                text-align: left
+            }
+            #login {
+                text-align: left
+            }
+        </style>
+    @endif
     @yield('css')
-@production
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-223055103-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-223055103-1');
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NK2HP76');</script>
-    <!-- End Google Tag Manager -->
-@endproduction
-{{-- {!! ReCaptcha::htmlScriptTagJsApi() !!} --}}
- <style>
-    {!! setting('code.style') !!}
- </style>
+    @production
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-223055103-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-223055103-1');
+        </script>
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })
+            (window, document, 'script', 'dataLayer', 'GTM-NK2HP76');
+        </script>
+        <!-- End Google Tag Manager -->
+    @endproduction
+    {{-- {!! ReCaptcha::htmlScriptTagJsApi() !!} --}}
+    <style>
+        {!! setting('code.style') !!}
+    </style>
 </head>
 
 <body id="body">
@@ -142,7 +186,7 @@
     @if (session()->has('cart_alert'))
         <div dir="rtl" class="cart-redirect-alert">
             <div class="card bg-light">
-			<button class="ml-auto border-0 shadow" id="side_cart_hide">x</button>
+                <button class="ml-auto border-0 shadow" id="side_cart_hide">x</button>
                 <div class="card-header text-center text-success bg-dark d-flex">
                     <p>تمت الإضافة الى عربة التسوق بنجاح</p>
 
@@ -174,7 +218,7 @@
     @endif
     <div id="app">
         <header id="navigation" class="navbar navbar-expand-lg">
-            <div dir="rtl" class="container-fluid">
+            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{ route('home') }}">
                         <h2 id="logo">
@@ -194,16 +238,16 @@
                     {!! menu('main', 'menus.bootstrap') !!}
                 </nav>
                 <nav class="collapse navbar-collapse">
-                    <ul id="nav" class="nav navbar-nav ml-auto">
+                    <ul id="nav" class="nav navbar-nav ml-auto" id="login">
                         @guest
                             <li>
                                 <a href="{{ route('login') }}">
-                                    دخول
+                                    {{ __('sentence.login') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('register') }}">
-                                    تسجيل جديد
+                                    {{ __('sentence.register') }}
                                 </a>
                             </li>
                         @else
@@ -213,8 +257,8 @@
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="submenu transition">
-                                    <li class="navbar-item"><a href="{{ route('dashboard') }}"
-                                            class="navbar-link">لوحة التحكم</a></li>
+                                    <li class="navbar-item"><a href="{{ route('dashboard') }}" class="navbar-link">لوحة
+                                            التحكم</a></li>
                                     <li class="navbar-item"><a href="{{ route('orders') }}"
                                             class="navbar-link">الطلبات</a></li>
                                     <li class="navbar-item">
@@ -232,20 +276,33 @@
                             </li>
                         @endguest
                         <li>
+                            <a href="#" class="navbar-link dropdown-indicator transition">
+                                {{ Shop::currency() == 'sar' ? 'SAR' : 'USD' }}
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </a>
+                            <ul class="submenu transition">
+                                <li class="navbar-item"><a href="{{ route('currency', ['currency' => 'sar']) }}"
+                                        class="navbar-link">SAR</a></li>
+                                <li class="navbar-item"><a href="{{ route('currency', ['currency' => 'usd']) }}"
+                                        class="navbar-link">USD</a></li>
 
-                                <a href="#" class="navbar-link dropdown-indicator transition">
-                                    {{Shop::currency()=='sar'?'SAR':'USD'}}
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                </a>
-                                <ul class="submenu transition">
-                                    <li class="navbar-item"><a href="{{ route('currency',['currency'=>'sar']) }}"
-                                            class="navbar-link">SAR</a></li>
-                                    <li class="navbar-item"><a href="{{ route('currency',['currency'=>'usd']) }}"
-                                            class="navbar-link">USD</a></li>
+                            </ul>
+                        </li>
 
+                        <li>
 
-                                </ul>
-                            </li>
+                            <a href="#" class="navbar-link dropdown-indicator transition">
+                                Languages
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </a>
+                            <ul class="submenu transition">
+                                <li class="navbar-item"><a href="{{ url('lang/en') }}"
+                                        class="navbar-link">ENGLISH</a></li>
+                                <li class="navbar-item"><a href="{{ url('lang/ar') }}"
+                                        class="navbar-link">ARABIC</a></li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="{{ route('cart') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> السلة
@@ -256,11 +313,12 @@
                 </nav>
             </div>
         </header>
+        {{-- @dd(session()->get('locale')) --}}
         @yield('content')
         <footer id="footer" class="footer bg-black">
-            <div dir="rtl" class="container">
+            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container">
                 <div class="row justify-content-between">
-                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="footer_logo">
                         <div class="footer-single">
                             @if (setting('site.logo'))
                                 <img src="{{ Voyager::image(setting('site.logo')) }}" alt="SKILLSARTS LOGO">
@@ -268,76 +326,91 @@
                                 <h4>{{ setting('site.title') }}</h4>
                             @endif
                             <p>المملكة العربية السعودية</p>
-							<img src="{{asset('images/contact-us.png')}}" alt="">
+                            <img src="{{ asset('images/contact-us.png') }}" alt="">
 
                         </div>
                     </div>
 
 
-                    <div class="col-lg-2 col-md-6 col-sm-6 mb-4 mb-md-0 mb-lg-0  mb-sm-0">
+                    <div class="col-lg-2 col-md-6 col-sm-6 mb-4 mb-md-0 mb-lg-0  mb-sm-0" id="footer_links">
                         <div class="footer-single">
-                            <h4>روابط مفيدة</h4>
+                            <h4>{{ __('sentence.useful_links') }}</h4>
                             <ul>
-                                <li><a href="/"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> الرئيسية</a>
-								 </li>
-                                <li><a href="/posts"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> المدونة </a>
-								</li>
-                                <li><a href="/portfolio"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> سابقة أعمالنا</a>
-								</li>
-                                <li><a href="/page/website-map"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> خريطة الموقع</a>
+                                <li><a href="/"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                        {{ __('sentence.home') }}</a>
                                 </li>
-								<li><a href="/page/Privacy-policy"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> سياسة الخصوصية </a>
+                                <li><a href="/posts"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                        {{ __('sentence.blog') }}</a>
                                 </li>
-                                <li><a href="/page/terms-and-conditions"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> الشروط والأحكام </a>
+                                <li><a href="/portfolio"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                        {{ __('sentence.our_previous_work') }}</a>
+                                </li>
+                                <li><a href="/page/website-map"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i> {{ __('sentence.site_map') }}</a>
+                                </li>
+                                <li><a href="/page/Privacy-policy"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i> {{ __('sentence.privacy_policy') }}</a>
+                                </li>
+                                <li><a href="/page/terms-and-conditions"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i> {{ __('sentence.terms_conditions') }}</a>
                                 </li>
 
                             </ul>
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6" id="footer_service">
                         <div class="footer-single">
-                            <h4>خدماتنا</h4>
+                            <h4>{{ __('sentence.our_services') }}</h4>
                             <ul>
-                                <li><a href="/page/company-profile-design"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> بروفايل الشركات
+                                <li><a href="/page/company-profile-design"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i> {{ __('sentence.company_profile') }}
                                     </a></li>
-                                <li><a href="/page/logo-design"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> تصميم الشعارات
+                                <li><a href="/page/logo-design"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i> {{ __('sentence.logo_design') }}
                                     </a></li>
-                                <li><a href="/page/design-commercial-identity-graphic-designs"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>الهوية التجارية
-                                        </a></li>
-                                <li><a href="/page/web-development"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i> المواقع الإلكترونية
+                                <li><a href="/page/design-commercial-identity-graphic-designs"><i
+                                            class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i>{{ __('sentence.brand_identity') }}
                                     </a></li>
-                                <li><a href="/page/Motion-video"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>فيديو الموشن
+                                <li><a href="/page/web-development"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i> {{ __('sentence.websites') }}
                                     </a></li>
-                                <li><a href="/page/Content-writing"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>كتابة المحتوى
+                                <li><a href="/page/Motion-video"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i>{{ __('sentence.motion_video') }}
+                                    </a></li>
+                                <li><a href="/page/Content-writing"><i class="fa fa-check-circle-o pr-1"
+                                            aria-hidden="true"></i>{{ __('sentence.content_writing') }}
                                     </a></li>
                             </ul>
                         </div>
                     </div>
 
 
-                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0" id="footer_search">
 
                         <div class="footer-single">
-                            <h4>القائمة البريدية </h4>
-                            <p>اشترك في القائمة البريدية لكي يصلك اخر العروض والأخبار</p>
+                            <h4>{{ __('sentence.mailing_list') }}</h4>
+                            <p>{{ __('sentence.subscribe_news') }}</p>
                             <form action="#" class="subscribe mt-2">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control rounded-left" placeholder="ضع إيميلك هنا">
+                                    <input type="text" class="form-control rounded-left"
+                                        placeholder="{{ __('sentence.your_email') }}">
                                     <div class="input-group-append">
-                                        <button class="btn btn-red" type="button">اشترك</button>
+                                        <button class="btn btn-red"
+                                            type="button">{{ __('sentence.subscribe') }}</button>
                                     </div>
                                 </div>
                             </form>
                             <ul class="text-center social-links mt-2">
-                                <li><a href="https://twitter.com/skillsarts1" class="transition bg-black rounded"><i class="fa fa-twitter"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.facebook.com/skillsarts1" class="transition"><i class="fa fa-facebook"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://instagram.com/skillsarts_agency" class="transition"><i class="fa fa-instagram"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.snapchat.com/add/skillsarts" class="transition"><i class="fa fa-snapchat-ghost"
-                                            aria-hidden="true"></i></a></li>
+                                <li><a href="https://twitter.com/skillsarts1" class="transition bg-black rounded"><i
+                                            class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/skillsarts1" class="transition"><i
+                                            class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="https://instagram.com/skillsarts_agency" class="transition"><i
+                                            class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.snapchat.com/add/skillsarts" class="transition"><i
+                                            class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -349,7 +422,8 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-6">
                         <p class="copyright text-center mt-0">
-                            جميع الحقوق محفوظة لموقع <span>سكيلز آرتس</span> 2022 <a href="https://skillsarts.com/" target="_blank"> Skills Arts</a>©</p>
+                            جميع الحقوق محفوظة لموقع <span>سكيلز آرتس</span> 2022 <a href="https://skillsarts.com/"
+                                target="_blank"> Skills Arts</a>©</p>
                     </div>
                     <div class="col-md-6 text-center">
                         <img src="{{ asset('images/payment.webp') }}" class="w-50">
@@ -359,7 +433,7 @@
         </div>
     </div>
     <a href="https://wa.me/966593031810?text=السلام عليكم سكيلز آرتس" target="_blank" class="whatsapp">
-        <img src="{{asset('images/whatsapp.webp')}}" alt="whatsapp">
+        <img src="{{ asset('images/whatsapp.webp') }}" alt="whatsapp">
     </a>
     <a href="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
 
@@ -415,7 +489,7 @@
             Swal.fire({
                 icon: "{{ session()->has('success') ? 'success' : 'error' }}",
                 title: "{{ session()->has('success') ? 'شكرا لك' : 'Oops' }}",
-                text:  "{!! session('success') ?? session('error') !!}",
+                text: "{!! session('success') ?? session('error') !!}",
                 confirmButtonText: 'متابعة',
                 confirmButtonColor: '#ff3131',
             })
@@ -424,11 +498,11 @@
     @yield('javascript')
     @stack('script')
     @livewireScripts
-@production
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK2HP76"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-@endproduction
+    @production
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK2HP76" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe></noscript>
+    @endproduction
 </body>
 
 </html>

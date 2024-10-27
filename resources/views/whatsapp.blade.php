@@ -6,11 +6,11 @@
    <div class="row justify-content-center">
        <div class="col-md-8">
         <div class="card bg-dark">
-            <div class="card-header">
-                شكراً لثقتك بنا وطلبك من متجرنا
+            <div class="card-header" @if (App::getLocale() == 'en') style="text-align: left" @endif>
+                {{ __('sentence.whatsapp_heading') }}
             </div>
-            <div class="card-body">
-                سوف نقوم بالتواصل معك على الرقم  {{auth()->user()->phone}} قريبا.أو يمكنك الإتصال بنا على الرقم 00966593031810 وشكراً مرة أخرى
+            <div class="card-body" @if (App::getLocale() == 'en') style="text-align: left" @endif>
+                {{ __('sentence.whatsapp_title') }} {{auth()->user()->phone}} {{ __('sentence.whatsapp_title_one') }}
             </div>
         </div>
 	   </div>

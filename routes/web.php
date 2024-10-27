@@ -132,3 +132,8 @@ Route::get('/test',function(){
     $message = 'asdaskdasd sdfsd.com';
     return preg_match($pattern, $message);
 });
+
+Route::get('lang/{locale}', function ($locale) {
+    session()->put('locale',$locale);
+    return redirect()->back();
+});

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card bg-dark" style="">
-                <div class="card-header">{{ __('إستعادة كلمة السر') }}</div>
+                <div class="card-header">{{ __('sentence.recover_password') }}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('البريد الإلكتروني') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('sentence.email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -33,7 +33,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-red">
-                                    {{ __('ارسل رابط استعادة كلمة السر') }}
+                                    {{ __('sentence.send_password_recovery_link') }}
                                 </button>
                             </div>
                         </div>

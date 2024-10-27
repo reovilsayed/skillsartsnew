@@ -3,7 +3,7 @@
 @section('content')
 	<div class="search pt-5 bg-white"> 
 		<div class="container">
-			<h3 class="h3 mb-5 heading text-center">نتائج البحث : {{request('search')}} </h3>
+			<h3 class="h3 mb-5 heading text-center">{{ __('sentence.search_results') }} {{request('search')}} </h3>
 			<div class="row">
 			  <x-products :products="$products"/>
 			</div>

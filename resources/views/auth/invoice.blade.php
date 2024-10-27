@@ -1,47 +1,55 @@
 @extends('layouts.app')
 @section('title', 'Invoice')
+@section('css')
+    @if (App::getLocale() == 'en')
+        <style>
+            .invoice_section {
+                text-align: left
+            }
+        </style>
+    @endif
+@endsection
 @section('content')
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card bg-dark">
-                    <div class="card-header">
-                        <button onclick="printDiv('printableArea')" class="btn btn-inline"><i class="fa fa-print"></i>
-                            طباعة</button>
+                    <div class="card-header invoice_section">
+                        <button onclick="printDiv('printableArea')" class="btn btn-inline"><i class="fa fa-print"></i>{{ __('sentence.print') }}</button>
                     </div>
                     <div class="card-body" id="printableArea">
-                        <div dir="rtl" class="row justify-content-between">
+                        <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="row justify-content-between">
                             <div class="col-md-12 text-center mb-4">
                                 <img src="{{ Voyager::image(setting('site.invoice_logo')) }}" alt="">
                             </div>
-                            <div class="col-sm-6 col-md-4 pull-left">
-                                <h4 class="mt-3">فاتورة بيع</h4>
+                            <div class="col-sm-6 col-md-4 pull-left invoice_section">
+                                <h4 class="mt-3">{{ __('sentence.bill_of_sale') }}</h4>
                                 <p>
-                                    رقم الفاتورة: {{ $order->id }} <br>
-                                    تاريخ الفاتورة: {{ $order->created_at->format('d M, Y') }} <br>
+                                    {{ __('sentence.invoice_no') }}: {{ $order->id }} <br>
+                                    {{ __('sentence.invoice_date') }}: {{ $order->created_at->format('d M, Y') }} <br>
                                 </p>
 
                             </div>
-                            <div class="col-sm-6 col-md-4 mb-3">
-                                <h4 class="mt-3">ملخص الطلب</h4>
+                            <div class="col-sm-6 col-md-4 mb-3 invoice_section">
+                                <h4 class="mt-3">{{ __('sentence.application_summary') }}</h4>
                                 <p>
-                                    حالة الطلب: {{ $order->status($order->status) }} <br>
-                                    قيمة الطلب: {{ Shop::price($order->total) }} <br>
+                                    {{ __('sentence.order_status') }}: {{ $order->status($order->status) }} <br>
+                                    {{ __('sentence.order_value') }}: {{ Shop::price($order->total) }} <br>
                                 </p>
-                     
+
                             </div>
-       
-                            <div class="col-sm-6 col-md-4">
-                            <h4 class="mt-3">مصدرة إلى:</h4>
+
+                            <div class="col-sm-6 col-md-4 invoice_section">
+                                <h4 class="mt-3">{{ __('sentence.exported_to') }}:</h4>
                                 <p> {{ $order->first_name . ' ' . $order->last_name }} <br>
                                     {{ $order->phone }}
                                 </p>
                             </div>
                             <div class="col-md-12">
-                                <div dir="rtl" class="card bg-dark">
+                                <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="card bg-dark">
                                     <div class="card-body">
                                         <div class="col-sm-12">
-                                            <h4 class="panel-title">بيانات الخدمة</h4>
+                                            <h4 class="panel-title invoice_section">{{ __('sentence.service_data') }}</h4>
 
                                             <div class="table-responsive">
                                                 @if ($order->type == 1)
@@ -69,7 +77,7 @@
                                                                             @foreach ($details as $name => $value)
                                                                                 <li>
                                                                                     {{ ucfirst($name) }} :
-                                                                                    {{json_encode($value) }}
+                                                                                    {{ json_encode($value) }}
                                                                                 </li>
                                                                             @endforeach
                                                                         </ul>
@@ -83,28 +91,24 @@
                                                         <thead>
                                                             <tr role="row">
 
-                                                                <th class="sorting" colspan="1" rowspan="1"
-                                                                    style="width: 15px;" tabindex="0">
-                                                                    اسم المنتج
+                                                                <th class="sorting invoice_section" colspan="1" rowspan="1"
+                                                                    style="width: 15px;" tabindex="0">{{ __('sentence.product_name') }}
                                                                 </th>
                                                                 <th class="sorting" colspan="1" rowspan="1"
-                                                                    style="width: 15px;" tabindex="0">
-                                                                    الكمية
+                                                                    style="width: 15px;" tabindex="0">{{ __('sentence.quantity') }}
                                                                 </th>
                                                                 <th class="sorting" colspan="1" rowspan="1"
-                                                                    style="width: 15px;" tabindex="0">
-                                                                    السعر
+                                                                    style="width: 15px;" tabindex="0">{{ __('sentence.the_price') }}
                                                                 </th>
                                                                 <th class="sorting" colspan="1" rowspan="1"
-                                                                    style="width: 15px;" tabindex="0">
-                                                                    المجموع
+                                                                    style="width: 15px;" tabindex="0">{{ __('sentence.the_total') }}
                                                                 </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($products as $product)
                                                                 <tr class="even" role="row">
-                                                                    <td>
+                                                                    <td class="invoice_section">
                                                                         <div> {{ $product->name }}</div>
                                                                     </td>
                                                                     <td>
@@ -144,7 +148,7 @@
                                                             القيمة
                                                         </th>
                                                         <th>
-                                                           التاريخ
+                                                            التاريخ
                                                         </th>
                                                     </tr>
                                                     @foreach ($order->charges()->where('status', 1)->get() as $charge)
@@ -178,7 +182,7 @@
                                 @else
                                     <div class="card bg-dark">
                                         <div class="card-body">
-                                            <div dir="rtl" class="row justify-content-end ">
+                                            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="row justify-content-end ">
                                                 <div class="col-sm-12 col-md-4 ">
 
                                                     <p>
@@ -186,11 +190,11 @@
                                                             <b>ضريبة القيمة المضافة: </b>
                                                             {{ Shop::price($order->tax) }}<br>
                                                         @endif
-                                                        <b>إجمالي السلة: </b> {{ Shop::price($order->subtotal) }} <br>
+                                                        <b>{{ __('sentence.cart_total') }}</b> {{ Shop::price($order->subtotal) }} <br>
                                                         @if ($order->discount > 0)
                                                             <b>الخصم: </b> {{ Shop::price($order->discount) }} <br>
                                                         @endif
-                                                        <b>المجموع: </b> {{ Shop::price($order->total) }} <br>
+                                                        <b>{{ __('sentence.the_total') }}</b> {{ Shop::price($order->total) }} <br>
                                                     </p>
                                                 </div>
                                             </div>

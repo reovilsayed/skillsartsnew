@@ -1,3 +1,15 @@
+@if (App::getLocale() == 'en')
+    <style>
+        .contact_title{
+            direction: ltr;
+            text-align: left;
+        }
+        #contact_checkBox{
+           text-align: left;
+        }
+    </style>
+@endif
+
 <div id="contact" class="contact-area bg-light-black pb-5">
     <div class="container">
 
@@ -7,9 +19,9 @@
 
             <div class="col-lg-3 col-md-3 col-sm-12 text-center">
                 <div class="contact-address pt-5">
-                    <h3>تواصل معنا</h3>
-                    <p> المملكة العربية السعودية </p>
-                    <p> الرياض – أبراج العليا </p>
+                    <h3><span>{{ __('sentence.contact_us') }}</span></h3>
+                    <p><span>{{ __('sentence.Kingdom') }}</span> </p>
+                    <p><span>{{ __('sentence.riyadh') }}</span> </p>
                     <p>00966-59-303-1810</p>
                 </div>
 
@@ -22,8 +34,8 @@
                                 class="fa fa-twitter fa-2x"></i></a></li>
                     <li class="mr-2"><a href="https://www.snapchat.com/add/skillsarts/" rel="nofollow"><i
                                 class="fa fa-snapchat-ghost fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="https://wa.me/966593031810?text=السلام عليكم  سكيلز آرتس"
-                            rel="nofollow" target=" _blank"><i class="fa fa-whatsapp fa-2x"></i></a></li>
+                    <li class="mr-2"><a href="https://wa.me/966593031810?text=السلام عليكم  سكيلز آرتس" rel="nofollow"
+                            target=" _blank"><i class="fa fa-whatsapp fa-2x"></i></a></li>
 
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-12">
@@ -35,53 +47,57 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-12">
-                        <!-- section title -->
-        <div class="sec-title text-center mb50">
-            <h2>محتاج مساعدة؟</h2>
-            <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
-                    alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
-                <!-- small image icon between divider -->
-            </div>
-        </div>
-        <!-- / section title -->
-                <div class="contact-form">
-                    <h3>أطلب وتدلل</h3>
+                <!-- section title -->
+                <div class="sec-title text-center mb50">
+                    <h2>{{ __('sentence.need_help') }}</h2>
+                    <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
+                            alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
+                        <!-- small image icon between divider -->
+                    </div>
+                </div>
+                <!-- / section title -->
+                <div class="contact-form" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif >
+                    <h3 class="contact_title">{{ __('sentence.ask_and_pamper_yourself') }}</h3>
                     <form action="{{ route('contact.store') }}" id="" method="POST">
                         @csrf
                         <div class="form-group d-flex justify-content-between">
                             <div class="input-field">
-                                <input dir="rtl" type="text" name="name" id="name" placeholder="الأسم"
-                                    class="form-control" value="{{ old('name') }}" required>
+                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  type="text" name="name" id="name"
+                                    placeholder="{{ __('sentence.name') }}" class="form-control"
+                                    value="{{ old('name') }}" required>
                             </div>
-                            <div dir="rtl" class="input-field">
-                                <input type="email" name="email" id="email" placeholder="بريدك الإلكتروني"
-                                    class="form-control" value="{{ old('email') }}" required>
+                            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  class="input-field">
+                                <input type="email" name="email" id="email"
+                                    placeholder="{{ __('sentence.email') }}" class="form-control"
+                                    value="{{ old('email') }}" required>
 
                             </div>
                         </div>
                         <div class="form-group d-flex justify-content-between">
                             <div class="input-field">
-                                <input dir="rtl" type="text" name="subject" id="subject" placeholder="العنوان"
-                                    class="form-control" value="{{ old('subject') }}" required>
+                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  type="text" name="subject" id="subject"
+                                    placeholder="{{ __('sentence.address') }}" class="form-control"
+                                    value="{{ old('subject') }}" required>
                             </div>
                             <div class="input-field">
-                                <input dir="rtl" type="phone" name="phone" id="phone"
-                                    placeholder="رقم الموبايل" class="form-control" value="{{ old('phone') }}"
-                                    required>
+                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  type="phone" name="phone" id="phone"
+                                    placeholder="{{ __('sentence.number') }}" class="form-control"
+                                    value="{{ old('phone') }}" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea dir="rtl" name="message" id="message" placeholder="الرسالة" class="form-control" required>{{ old('message') }}</textarea>
+                            <textarea @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  name="message" id="message" placeholder="{{ __('sentence.message') }}" class="form-control"
+                                required>{{ old('message') }}</textarea>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-12">
+                            <div class="col-md-12" id="contact_checkBox">
                                 <input class="form-check-input" name="terms" type="checkbox" value=""
                                     id="flexCheckDefault" required>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    يرجى الموافقة على <a href="https://skillsarts.com/page/Privacy-policy"
-                                        class="text-danger">سياسة الخصوصية</a>
-                                    <a href="https://skillsarts.com/page/terms-and-conditions" class="text-danger">و
-                                        الشروط والأحكام</a>
+                                <label class="form-check-label  text-left" for="flexCheckDefault">{{ __('sentence.agree') }}
+                                    <a href="https://skillsarts.com/page/Privacy-policy"
+                                        class="text-danger">{{ __('sentence.the_privacy_policy') }}</a>
+                                    <a href="https://skillsarts.com/page/terms-and-conditions"
+                                        class="text-danger">{{ __('sentence.terms_conditions') }}</a>
 
                                 </label>
                             </div>
@@ -90,7 +106,7 @@
                             <div class="col-md-3">
                                 <div class="form-group mb-0">
                                     <button type="submit" class="btn btn-red" id="form-submit">
-                                        ارسل استفسارك
+                                        {{ __('sentence.send_your_inquiry') }}
                                     </button>
                                     <div class="clear"></div>
                                 </div>

@@ -1,66 +1,76 @@
 @extends('layouts.app')
-@section('title','Dashboard')
+@section('title', 'Dashboard')
 @section('css')
-  <link rel="stylesheet" href="{{asset('css/custom/account.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/custom/account.css') }}">
 @stop
 @section('content')
-<section class="account-part">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @include('auth.navigation')
-                    </div>
+    <section class="account-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @include('auth.navigation')
                 </div>
-                <!-- dashboard content -->
-                <div class="tab-pane active" id="dash">
-					<div class="row justify-content-center">
-						<div class="col-md-10">
-							<div class="card bg-dark">
-								<div class="card-header">لوحة التحكم</div>
-								<div class="card-body">
-									<form method="POST" action="{{ route('user.update') }}">
-									@csrf
-										<div dir="rtl" class="row">
-											<div class="col-md-6">
-											   <div class="form-group">
-												<label for="first_name">الأسم الأول</label>
-												<input dir="rtl" value="{{Auth::user()->name}}" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="الإسم الأول" name="name" >
-												@error('first_name')
-													<span class="invalid-feedback" role="alert">
-														<strong>{{ $message }}</strong>
-													</span>
-												@enderror
-											 </div>
-											</div>
-											<div class="col-md-6">
-											   <div class="form-group">
-												<label for="last_name">الأسم الأخير</label>
-												<input dir="rtl" value="{{Auth::user()->last_name}}" type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" placeholder="الإسم الأخير" name="last_name"  >
-												@error('last_name')
-													<span class="invalid-feedback" role="alert">
-														<strong>{{ $message }}</strong>
-													</span>
-												@enderror
-											  </div>
-											</div>
-											<div class="col-md-12">
-											   <div class="form-group">
-												<label for="email">الإيميل</label>
-												<input dir="rtl" value="{{Auth::user()->email}}"  type="text" class="form-control bg-transparent" id="email" placeholder="الإيميل" readonly>
-											  </div>
-											</div>
-											<div class="col-md-12">
-											   <div class="form-group">
-												<label for="address">العنوان</label>
-												<input dir="rtl" value="{{Auth::user()->address}}" type="text" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="العنوان" name="address" >
-												@error('address')
-													<span class="invalid-feedback" role="alert">
-														<strong>{{ $message }}</strong>
-													</span>
-												@enderror
-											  </div>
-											</div>
-											{{-- <div class="col-md-6">
+            </div>
+            <!-- dashboard content -->
+            <div class="tab-pane active" id="dash">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card bg-dark">
+                            <div class="card-header">{{ __('sentence.control_panel') }}</div>
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('user.update') }}">
+                                    @csrf
+                                    <div dir="rtl" class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="first_name">{{ __('sentence.first_name') }}</label>
+                                                <input dir="rtl" value="{{ Auth::user()->name }}" type="text"
+                                                    class="form-control @error('name') is-invalid @enderror" id="name"
+                                                    placeholder="{{ __('sentence.first_name') }}" name="name">
+                                                @error('first_name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="last_name">{{ __('sentence.last_name') }}</label>
+                                                <input dir="rtl" value="{{ Auth::user()->last_name }}" type="text"
+                                                    class="form-control @error('last_name') is-invalid @enderror"
+                                                    id="last_name" placeholder="{{ __('sentence.last_name') }}"
+                                                    name="last_name">
+                                                @error('last_name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="email">{{ __('sentence.email') }}</label>
+                                                <input dir="rtl" value="{{ Auth::user()->email }}" type="text"
+                                                    class="form-control bg-transparent" id="email"
+                                                    placeholder="{{ __('sentence.email') }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="address">{{ __('sentence.address') }}</label>
+                                                <input dir="rtl" value="{{ Auth::user()->address }}" type="text"
+                                                    class="form-control @error('address') is-invalid @enderror"
+                                                    id="address" placeholder="{{ __('sentence.address') }}"
+                                                    name="address">
+                                                @error('address')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-6">
 											   <div class="form-group">
 												<label for="state">المحافظة</label>
 												<input value="{{Auth::user()->state}}" type="text" class="form-control @error('state') is-invalid @enderror" id="state" placeholder="المحافظة" name="state" >
@@ -71,18 +81,20 @@
 												@enderror
 											  </div>
 											</div>  --}}
-											<div class="col-md-12">
-											   <div class="form-group">
-												<label for="phone">رقم الجوال</label>
-												<input dir="rtl" value="{{Auth::user()->phone}}" type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="موبايل" name="phone" >
-												@error('phone')
-													<span class="invalid-feedback" role="alert">
-														<strong>{{ $message }}</strong>
-													</span>
-												@enderror
-											  </div>
-											</div>
-											 {{-- <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="phone">{{ __('sentence.number') }}</label>
+                                                <input dir="rtl" value="{{ Auth::user()->phone }}" type="text"
+                                                    class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                                    placeholder="{{ __('sentence.number') }}" name="phone">
+                                                @error('phone')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-6">
 											   <div class="form-group">
                                                 <label for="city">المدينة</label>
                                                 <select class="form-control" name="city" id="city">
@@ -231,7 +243,7 @@
 												@enderror
 											 </div>
 											</div>  --}}
-											 {{-- <div class="col-md-12">
+                                        {{-- <div class="col-md-12">
 											   <div class="form-group">
 												<label for="post_code">الرمز البريدي</label>
 												<input value="{{Auth::user()->post_code}}" type="number" step="1" class="form-control @error('post_code') is-invalid @enderror" id="post_code" placeholder="الرمز البريدي" name="post_code" >
@@ -242,24 +254,25 @@
 												@enderror
 											 </div>
 											</div> --}}
-											<div class="col-md-12">
-											   <div class="form-group">
-												<button class="btn btn-inline float-right" type="submit"> حفظ</button>
-											  </div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button class="btn btn-inline float-right" type="submit">
+                                                    {{ __('sentence.save') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 @endsection
 
 @section('javascript')
-<script>
-    $('#city').val("{{Auth::user()->city}}");
-</script>
+    <script>
+        $('#city').val("{{ Auth::user()->city }}");
+    </script>
 @endsection
