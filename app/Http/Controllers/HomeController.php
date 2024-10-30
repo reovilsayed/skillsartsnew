@@ -77,6 +77,7 @@ class HomeController extends Controller
     public function invoice(Order $order)
     {
         $products = $order->products;
+        $products->translate(app()->getLocale());
 	    if($order->user_id != auth()->id()){
 			 return redirect('/');
 		}

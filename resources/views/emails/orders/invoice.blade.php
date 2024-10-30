@@ -1,5 +1,5 @@
 @component('mail::message')
-    <h1 class="title">السلام عليكم هذه فاتورة لطلبكم من موقع سكيلز آرتس #{{ $order->id }}</h1>
+    <h1 class="title">السلام عليكم هذه فاتورة لطلبكم من موقع سكيلز آرتس#{{ $order->id }}</h1>
     <div class="body-section">
         رقم الطلب: {{ $order->id }}<br />
         @if ($order->type == 0)

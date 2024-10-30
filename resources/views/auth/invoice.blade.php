@@ -58,11 +58,11 @@
                                                             <tr role="row">
                                                                 <th class="sorting" colspan="1" rowspan="1"
                                                                     style="width: 15px;" tabindex="0">
-                                                                    الخدمة
+                                                                    {{ __('sentence.Service') }}
                                                                 </th>
                                                                 <th class="sorting" colspan="1" rowspan="1"
                                                                     style="width: 15px;" tabindex="0">
-                                                                    تفاصيل
+                                                                    {{ __('sentence.details') }}
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -109,7 +109,7 @@
                                                             @foreach ($products as $product)
                                                                 <tr class="even" role="row">
                                                                     <td class="invoice_section">
-                                                                        <div> {{ $product->name }}</div>
+                                                                        <div> {{ $product->translate(app()->getLocale())->name }}</div>
                                                                     </td>
                                                                     <td>
                                                                         <div> {{ $product->pivot->quantity }}</div>
@@ -138,17 +138,17 @@
                                     <div class="card bg-dark">
                                         <div class="card-body">
                                             <h4 class="panel-title">
-                                                الدفعات
+                                                {{ __('sentence.Payments') }}
                                             </h4>
                                             <br>
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>
-                                                            القيمة
+                                                            {{ __('sentence.Value') }}
                                                         </th>
                                                         <th>
-                                                            التاريخ
+                                                            {{ __('sentence.the_date') }}
                                                         </th>
                                                     </tr>
                                                     @foreach ($order->charges()->where('status', 1)->get() as $charge)
@@ -171,9 +171,9 @@
                                                 <div class="col-sm-12 col-md-4 ">
 
                                                     <p>
-                                                        <b>تم سداد:</b>{{ Shop::price($order->paid()) }} <br>
-                                                        <b>الباقي:</b>{{ Shop::price($order->due()) }} <br>
-                                                        <b>الإجمالي: </b> {{ Shop::price($order->total) }} <br>
+                                                        <b>{{ __('sentence.Paid') }}</b>{{ Shop::price($order->paid()) }} <br>
+                                                        <b>{{ __('sentence.the_rest') }}</b>{{ Shop::price($order->due()) }} <br>
+                                                        <b>{{ __('sentence.payment_Total') }} </b> {{ Shop::price($order->total) }} <br>
                                                     </p>
                                                 </div>
                                             </div>
@@ -187,12 +187,12 @@
 
                                                     <p>
                                                         @if ($order->tax > 0)
-                                                            <b>ضريبة القيمة المضافة: </b>
+                                                            <b>{{ __('sentence.VAT') }}</b>
                                                             {{ Shop::price($order->tax) }}<br>
                                                         @endif
                                                         <b>{{ __('sentence.cart_total') }}</b> {{ Shop::price($order->subtotal) }} <br>
                                                         @if ($order->discount > 0)
-                                                            <b>الخصم: </b> {{ Shop::price($order->discount) }} <br>
+                                                            <b>{{ __('sentence.opponent') }} </b> {{ Shop::price($order->discount) }} <br>
                                                         @endif
                                                         <b>{{ __('sentence.the_total') }}</b> {{ Shop::price($order->total) }} <br>
                                                     </p>

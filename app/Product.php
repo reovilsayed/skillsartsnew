@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Resizable;
+use TCG\Voyager\Traits\Translatable;
 
 class Product extends Model
 {
   use Resizable;
+  use Translatable;
+  protected $translatable = ['name', 'saleprice', 'details', 'description'];
 	protected $guarded = [];
 
     public function setPriceAttribute($value){

@@ -57,8 +57,13 @@ class ShopController extends Controller
 
 	public function product($slug){
 		$related_products = Product::inRandomOrder()->where('status',1)->limit(4)->whereNull('parent_id')->get();
+		
 		$categories = Prodcat::all();
+		$categories->translate(app()->getLocale());
+
 	    $product = Product::where('slug', '=', $slug)->with('subproductsuser','attributes','ratings')->firstOrFail();
+		$product->translate(app()->getLocale());
+
 		session()->put("product_id",$product->id);
 		$product->increment('view');
 		Session::push('last_viewed', $product->id);

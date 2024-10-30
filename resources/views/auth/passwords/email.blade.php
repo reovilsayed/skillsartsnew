@@ -1,11 +1,19 @@
 @extends('layouts.app')
-
+@section('css')
+    @if (App::getLocale() == 'en')
+        <style>
+            .recover_password {
+                text-align: left
+            }
+        </style>
+    @endif
+@endsection
 @section('content')
-<div dir="rtl" class="container mt-5 mb-5">
+<div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card bg-dark" style="">
-                <div class="card-header">{{ __('sentence.recover_password') }}</div>
+                <div class="card-header recover_password">{{ __('sentence.recover_password') }}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -31,7 +39,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-4 recover_password">
                                 <button type="submit" class="btn btn-red">
                                     {{ __('sentence.send_password_recovery_link') }}
                                 </button>

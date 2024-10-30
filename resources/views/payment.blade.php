@@ -65,15 +65,15 @@
                             <li><span>{{ __('sentence.payment_Total') }}</span><span>{{ Shop::price($order->bill()) }}</span></li>
                         </ul>
                     @else
-                        الدفعات والفوترة السابقة
+                    {{ __('sentence.Past_payments_and_billing') }}
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">الحالة</th>
-                                    <th scope="col">تاريخ الفوترة</th>
-                                    <th scope="col">نسبة السداد</th>
-                                    <th scope="col">المبلغ</th>
-                                    <th scope="col">رقم السداد</th>
+                                    <th scope="col">{{ __('sentence.the_condition') }}</th>
+                                    <th scope="col">{{ __('sentence.Billing_date') }}</th>
+                                    <th scope="col">{{ __('sentence.Repayment_rate') }}</th>
+                                    <th scope="col">{{ __('sentence.Amount') }}</th>
+                                    <th scope="col">{{ __('sentence.Payment_number') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,13 +92,13 @@
                                     <th colspan="3">
                                     </th>
                                     <th>{{ Shop::price($order->charges->sum('amount')) }}</th>
-                                    <th>المجموع</th>
+                                    <th>{{ __('sentence.the_total') }}</th>
                                 </tr>
                                 <tr>
                                     <th colspan="3">
                                     </th>
                                     <th>{{ Shop::price($order->total) }}</th>
-                                    <th>الإجمالي</th>
+                                    <th>{{ __('sentence.payment_Total') }}</th>
                                 </tr>
                             </tbody>
                         </table>

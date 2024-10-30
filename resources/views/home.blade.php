@@ -121,9 +121,11 @@
                                 <div class="carousel-caption">
                                     <h5 class="mb-3 display-4 text-red font-weight-bold on-mobile-font"
                                         style="background-color: rgba(255, 255, 255, 0.678);opacity: .6;">
-                                        {{ $slider->heading }}
+                                        {{ $slider->translate(app()->getLocale())->heading }}
                                     </h5>
-                                    <p class="toggleCaption mb-3 on-mobile-font-sec">{{ $slider->paragraph }}</p>
+                                    <p class="toggleCaption mb-3 on-mobile-font-sec">
+                                        {{ $slider->translate(app()->getLocale())->paragraph }}
+                                    </p>
                                     <p class="toggleButton">
                                         <a href="{{ route('shop') }}"
                                             class="btn btn-red">{{ __('sentence.shop_now') }}</a>
@@ -377,7 +379,7 @@
             </div>
         </div>
     </section>
-    
+
     <section id="works" class="sec-padding works-area clearfix bg-light-black">
         <div class="container">
             <div class="sec-title text-center mb50">
@@ -393,7 +395,7 @@
                         @foreach ($portcats as $portcat)
                             <li>
                                 <a href="javascript:;" data-filter=".{{ $portcat->key }}"
-                                    class="filter">{{ $portcat->name }}</a>
+                                    class="filter">{{ $portcat->translate(app()->getLocale())->name }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -412,8 +414,11 @@
                         <figcaption class="overlay transition">
                             <a class="portfolio-lightbox" title="{{ $portfolio->category->name }}"
                                 href="{{ Voyager::image($portfolio->image) }}"><i class="fa fa-search fa-lg"></i></a>
-                            <h4>{{ $portfolio->title }}</h4>
-                            <p>{{ $portfolio->category->name }}</p>
+                            <h4>{{ $portfolio->translate(app()->getLocale())->title }}
+                            </h4>
+                            <p>
+                                {{ $portfolio->category->translate(app()->getLocale())->name }}
+                            </p>
                         </figcaption>
                     </figure>
                 @endforeach
@@ -449,8 +454,9 @@
                                     alt="صورة فريق عمل سكيلز آرتس لتصميم الهوية التجارية" class="img-fluid">
                             </div>
                             <div class="team-content">
-                                <p>{{ $team->name }}</p>
-                                <span>{{ $team->job_title }}</span>
+                                <p>{{ $team->translate(app()->getLocale())->name }}
+                                </p>
+                                <span>{{ $team->translate(app()->getLocale())->job_title }}</span>
                                 <ul class="social transition scale0">
                                     @if ($team->icon1)
                                         <li><a href="#"><img style="width:25px;height:25px"
@@ -665,7 +671,8 @@
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div class="price_item shadow bg-black">
                             <div class="price_head">
-                                <h3>{{ $price->price_name }}</h3>
+                                <h3>{{$price->translate(app()->getLocale())->price_name }}</h3>
+
                                 <span>{{ Shop::price($price->pricing) }}</span>
                             </div>
                             <ul>

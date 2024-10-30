@@ -45,9 +45,9 @@
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title"><a class="card-link"
-                                        href="{{ $product->path() }}">{{ Str::limit($product->name, $limit = 20, $end = '...') }}</a>
+                                        href="{{ $product->path() }}">{{ Str::limit($product->translate(app()->getLocale())->name, $limit = 20, $end = '...') }}</a>
                                 </h4>
-                                {!! Str::limit(strip_tags($product->description), $limit = 50, $end = '...') !!}
+                                {!! Str::limit(strip_tags($product->translate(app()->getLocale())->description), $limit = 50, $end = '...') !!}
 
                                 @if ($product->saleprice)
                                     <h6><del

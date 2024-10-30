@@ -187,10 +187,11 @@
         <div dir="rtl" class="cart-redirect-alert">
             <div class="card bg-light">
                 <button class="ml-auto border-0 shadow" id="side_cart_hide">x</button>
-                <div class="card-header text-center text-success bg-dark d-flex">
-                    <p>تمت الإضافة الى عربة التسوق بنجاح</p>
 
+                <div class="card-header text-center text-success bg-dark d-flex">
+                    <p>{{ __('sentence.Added to cart successfully') }}</p>
                 </div>
+
                 <div class="card-body p-1">
                     @foreach (Cart::getContent() as $product)
                         <div class="row">
@@ -199,19 +200,19 @@
                                     style="width:100px" />
                             </div>
                             <div class="col-9">
-                                <p class="text-dark">{{ $product->model->name }}</p>
+                                <p class="text-dark">{{ $product->model->translate(app()->getLocale())->name }}</p>
                             </div>
                         </div>
                     @endforeach
                 </div>
                 <div class="card-footer bg-dark border mt-2">
                     <div class="row mb-2">
-                        <div class="col-md-6 text-left text-light font-weight-bold">إجمالي السلة</div>
+                        <div class="col-md-6 text-left text-light font-weight-bold">{{ __('sentence.totle') }}</div>
                         <div class="col-md-6 text-right text-light font-weight-bold">
                             {{ Shop::price(Cart::getSubTotal()) }}</div>
                     </div>
-                    <a href="{{ route('checkout') }}" class="btn btn-success text-light">إتمام الشراء</a>
-                    <a href="" class="btn btn-outline-success text-light">متابعة التسوق</a>
+                    <a href="{{ route('checkout') }}" class="btn btn-success text-light">{{ __('sentence.checkout') }}</a>
+                    <a href="" class="btn btn-outline-success text-light">{{ __('sentence.continue_shoppings') }}</a>
                 </div>
             </div>
         </div>

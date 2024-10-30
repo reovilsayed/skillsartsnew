@@ -33,12 +33,23 @@ class PageController extends Controller
 {
     public function home()
     {
-        $sliders_mobile = Slider::where('device', 'mobile')->get();
-        $sliders_desktop = Slider::where('device', 'desktop')->get();
+        $sliders_mobile = Slider::with('translations')->where('device', 'mobile')->get();
+        $sliders_mobile->translate(app()->getLocale());
+
+        $sliders_desktop = Slider::with('translations')->where('device', 'desktop')->get();
+        $sliders_desktop->translate(app()->getLocale());
+        
         $teams = Team::get();
+        $teams->translate(app()->getLocale());
+
         $portcats = Portcat::get();
+        $portcats->translate(app()->getLocale());
+
         $portfolios = Portfolio::limit(8)->get();
+        $portfolios->translate(app()->getLocale());
+
         $prices = Price::get();
+        $prices->translate(app()->getLocale());
         return view('home', compact('sliders_mobile', 'sliders_desktop', 'teams', 'portcats', 'portfolios', 'prices'));
     }
     public function fetch_user(Request $request)
@@ -52,6 +63,7 @@ class PageController extends Controller
     {
 
         $products = Product::Published()->latest()->limit(24)->whereNull('parent_id')->get();
+        $products->translate(app()->getLocale());
         return view('shop', compact('products'));
     }
     public function currency()
@@ -70,19 +82,30 @@ class PageController extends Controller
     public function blog()
     {
         $posts = Post::where('status', 'PUBLISHED')->latest()->filter(request(['search', 'category']))->paginate(12);
+        $posts->translate(app()->getLocale());
+        
         $categories = Category::withCount('posts')->get();
+        $categories->translate(app()->getLocale());
+
         return view('blog', compact('posts', 'categories'));
     }
     public function post_details($slug)
     {
         $categories = Category::all()->take(5);
+        $categories->translate(app()->getLocale());
+
         $popular_posts = Post::latest()->limit(10)->where('status', 'published')->get();
+        $popular_posts->translate(app()->getLocale());
+
         $post = Post::with('category')->where('slug', $slug)->where('status', 'published')->firstOrFail();
+        $post->translate(app()->getLocale());
+
         return view('post_details', compact('post', 'popular_posts', 'categories'));
     }
     public function cart()
     {
         $products = Product::inRandomOrder()->where('status', 1)->limit(4)->whereNull('parent_id')->get();
+        $products->translate(app()->getLocale());
 
         return view('cart', compact('products'));
     }
@@ -97,6 +120,8 @@ class PageController extends Controller
     public function deactive_products()
     {
         $products = Product::where('status', 0)->latest()->get();
+        $products->translate(app()->getLocale());
+
         return view('deactive_products', compact('products'));
     }
     public function thankyou()
@@ -197,7 +222,10 @@ class PageController extends Controller
     public function search()
     {
         $search = request()->search;
+        
         $products = Product::where('name', 'LIKE', "%{$search}%")->where('status', 1)->limit(24)->whereNull('parent_id')->latest()->get();
+        $products->translate(app()->getLocale());
+
         return view('search', compact('products'));
     }
     public function contact()

@@ -20,7 +20,7 @@
 @section('content')
 
     <div class="blog-header text-left">
-        <div  @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container ">
+        <div  @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container" @if (App::getLocale() == 'en') style="text-align: left" @endif>
             <h2 class="h1 mb-3 ">{{ __('sentence.the_store') }}</h2>
             <ul class="breadcrumb pl-3 pr-3">
             <li class="">
@@ -43,11 +43,11 @@
                                 <img class="card-img" src="{{ Voyager::image($product->thumbnail('small')) }}"
                                     alt="Vans">
                             </a>
-                            <div class="card-body">
+                            <div class="card-body" @if (App::getLocale() == 'en') style="text-align: left" @endif>
                                 <h4 class="card-title"><a class="card-link"
-                                        href="{{ $product->path() }}">{{ Str::limit($product->name, $limit = 20, $end = '...') }}</a>
+                                        href="{{ $product->path() }}">{{ Str::limit($product->translate(app()->getLocale())->name, $limit = 20, $end = '...') }}</a>
                                 </h4>
-                                {!! Str::limit(strip_tags($product->description), $limit = 50, $end = '...') !!}
+                                {!! Str::limit(strip_tags($product->translate(app()->getLocale())->description), $limit = 50, $end = '...') !!}
 
                                 @if ($product->saleprice)
                                     <h6><del

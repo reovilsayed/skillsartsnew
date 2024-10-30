@@ -5,6 +5,9 @@ use Cart;
 use App\Coupon;
 use App\Shipping;
 use App\Models\Alert;
+use Error;
+use Exception;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Location;
 class Shop
@@ -123,16 +126,13 @@ class Shop
         ]);
     }
     public function getUserIpAddress() {
-        $ch = curl_init('https://api.ipify.org?format=json');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-    
-        if ($response) {
-            $data = json_decode($response, true);
-            return $data['ip'];
+
+        try{
+            return Http::get('https://api.ipify.org?format=json')->json()['ip'];
+        }catch(Exception | Error $e){
+            return 'Unable to get IP address';
         }
-    
-        return 'Unable to get IP address';
+        
+      
     }
 }

@@ -65,7 +65,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ $product->model->path() }}"
-                                            class="text-light">{{ $product->model->name }}</a> <br />
+                                            class="text-light">{{ $product->model->translate(app()->getLocale())->name }}</a> <br />
                                         @if ($product->model->variation)
                                             {{ json_encode($product->model->variation) }}
                                         @endif

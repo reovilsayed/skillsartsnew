@@ -9,7 +9,7 @@
 			</div>
 			<div class="product-content">
 				<div class="product-name">
-					<h6 class="m-3"><a href="{{$product->path()}}" class="text-dark">{{ Str::limit($product->name, $limit = 20, $end = '...')}}</a></h6>
+					<h6 class="m-3"><a href="{{$product->path()}}" class="text-dark">{{ Str::limit($product->translate(app()->getLocale())->name, $limit = 20, $end = '...')}}</a></h6>
 				</div>
 				<div class="product-price">
 					@if(!$product->is_variable)
@@ -32,9 +32,9 @@
 						 <input type="hidden" class="form-control qty" value="1" min="1" name="quantity">
 						 <input type="hidden" name="product_id"value="{{$product->id}}" />
 						 @if($product->quantity>0)
-							<button class="btn btn-outline-primary ml-3 mt-2 mb-1"><i class="fa fa-shopping-basket"></i> اضف الى السلة</button>
+							<button class="btn btn-outline-primary ml-3 mt-2 mb-1"><i class="fa fa-shopping-basket"></i> {{ __('sentence.add_to_cart') }}</button>
 						@else
-                        <button class="btn btn-danger text-light ml-3 mt-2 mb-1" disabled>نفذت الكمية</button>
+                        <button class="btn btn-danger text-light ml-3 mt-2 mb-1" disabled>{{ __('sentence.out_of_stock') }}</button>
 						@endif
 					</form>
 				</div>

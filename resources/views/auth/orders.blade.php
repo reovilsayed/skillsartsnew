@@ -2,7 +2,14 @@
 @section('title', 'Orders')
 @section('css')
   <link rel="stylesheet" href="{{asset('css/custom/account.css')}}">
-  
+
+    @if (App::getLocale() == 'en')
+        <style>
+            .requests {
+                text-align: left
+            }
+        </style>
+    @endif
 @stop
 @section('content')
     <section class="account-part">
@@ -12,21 +19,21 @@
                    @include('auth.navigation')
                 </div>
             </div>
-            <div dir="rtl" class="row justify-content-center">
+            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="row justify-content-center">
                 <div class="col-md-10">
                     <div class="card bg-dark">
-                        <div class="card-header">{{ __('sentence.requests') }}</div>
+                        <div class="card-header requests">{{ __('sentence.requests') }}</div>
                         <div class="card-body">
                             @if ($orders->count() > 0)
                                 <div class="table-responsive">
                                     <table class="table table-condensed">
                                         <thead>
                                             <tr>
-                                                <th>تاريخ الطلب</th>
-                                                <th>رقم الفاتورة</th>
-                                                <th>المجموع</th>
-                                                <th>تفاصيل الطلب</th>
-                                                <th>حالة الطلب والدفع</th>
+                                                <th>{{ __('sentence.order_date') }}</th>
+                                                <th>{{ __('sentence.Invoice_number') }}</th>
+                                                <th>{{ __('sentence.the_total') }}</th>
+                                                <th>{{ __('sentence.order_details') }}</th>
+                                                <th>{{ __('sentence.order_and_payment_status') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -37,14 +44,14 @@
                                                     <td>{{ Shop::price($order->total) }}</td>
                                                     <td>
                                                         <a href="{{ route('invoice', ['order' => $order->id]) }}"
-                                                            class="btn btn-info p-1">معاينة الفاتورة</a>
+                                                            class="btn btn-info p-1">{{ __('sentence.Invoice_Preview') }}</a>
                                                     </td>
                                                     <td>
                                                         <a href="#"
                                                             class="btn btn-{{ $order->status == 0 ? 'danger' : 'success' }} p-1">{{ $order->status($order->status) }}</a>
                                                         @if ($order->status == 0)
                                                             <a href="{{ route('payment', $order) }}"
-                                                                class="btn btn-success p-1">ادفع الآن</a>
+                                                                class="btn btn-success p-1">{{ __('sentence.pay_now') }}</a>
                                                         @endif
                                                     </td>
                                                 </tr>

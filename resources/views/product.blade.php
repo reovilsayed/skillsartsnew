@@ -70,7 +70,7 @@
                     @endif
                 </div>
                 <div class="col-md-6 col-lg-6">
-                    <h3 class="" @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ $product->name }}</h3>
+                    <h3 class="" @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ $product->translate(app()->getLocale())->name }}</h3>
                     <div class="product-price text-dark">
                         @if ($product->saleprice)
                             <h6 @if (App::getLocale() == 'en') style="text-align: left" @endif><del
@@ -81,7 +81,7 @@
                         @endif
                     </div>
                     <div class="product-summery py-3">
-                        <p>{!! $product->description !!}</p>
+                        <p>{!! $product->translate(app()->getLocale())->description !!}</p>
                     </div>
                     <div class="product-cart">
                         <form action="{{ route('cart.store') }}" method="post" class="form-inline">

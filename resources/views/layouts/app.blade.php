@@ -202,17 +202,15 @@
                 <button class="ml-auto border-0 shadow" id="side_cart_hide">x</button>
                 <div class="card-header text-center text-success bg-dark d-flex">
                     <p>{{ __('sentence.Added to cart successfully') }}</p>
-
                 </div>
                 <div class="card-body p-1">
                     @foreach (Cart::getContent() as $product)
                         <div class="row">
                             <div class="col-2">
-                                <img src=" {{ Voyager::image($product->model->image) }}" alt=""
-                                    style="width:100px" />
+                                <img src=" {{ Voyager::image($product->model->image) }}" alt="" style="width:100px" />
                             </div>
                             <div class="col-9">
-                                <p class="text-dark">{{ $product->model->name }}</p>
+                                <p class="text-dark">{{ $product->model->translate(app()->getLocale())->name }}</p>
                             </div>
                         </div>
                     @endforeach
