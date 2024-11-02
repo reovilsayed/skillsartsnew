@@ -258,15 +258,14 @@
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="submenu transition">
-                                    <li class="navbar-item"><a href="{{ route('dashboard') }}" class="navbar-link">لوحة
-                                            التحكم</a></li>
+                                    <li class="navbar-item"><a href="{{ route('dashboard') }}" class="navbar-link">{{ __('sentence.control_panel') }}</a></li>
                                     <li class="navbar-item"><a href="{{ route('orders') }}"
-                                            class="navbar-link">الطلبات</a></li>
+                                            class="navbar-link">{{ __('sentence.register') }}</a></li>
                                     <li class="navbar-item">
                                         <a href="{{ route('logout') }}" class="navbar-link transition"
                                             onclick="event.preventDefault();
                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
-                                            <span>تسجيل الخروج</span>
+                                            <span>{{ __('sentence.sign_out') }}</span>
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             style="display: none;">
