@@ -305,7 +305,7 @@
 
                         <li>
                             <a href="{{ route('cart') }}">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> السلة
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ __('sentence.cart') }}
                                 ( <span class="text-danger font-weight-bold">{{ Cart::getTotalQuantity() }}</span>)
                             </a>
                         </li>
@@ -313,7 +313,7 @@
                 </nav>
             </div>
         </header>
-        {{-- @dd(session()->get('locale')) --}}
+
         @yield('content')
         <footer id="footer" class="footer bg-black">
             <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container">

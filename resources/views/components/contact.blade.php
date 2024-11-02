@@ -49,7 +49,7 @@
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <!-- section title -->
                 <div class="sec-title text-center mb50">
-                    <h2>{{ __('sentence.need_help') }}</h2>
+                    <h2 class="contact_title text-center">{{ __('sentence.need_help') }}</h2>
                     <div class="devider"><img src="{{ asset('home-page/img/skills-icon.webp') }}"
                             alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                         <!-- small image icon between divider -->
