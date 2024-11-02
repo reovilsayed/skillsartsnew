@@ -41,6 +41,49 @@
             -moz-transition: none !important;
         }
     </style>
+
+    @if (App::getLocale() == 'en')
+        <style>
+            .contact_title {
+                direction: ltr;
+                text-align: left;
+            }
+
+            .primary-btn {
+                direction: ltr;
+            }
+
+            .contact_btn {
+                text-align: end;
+            }
+
+            .services-area .service-item .service-icon {
+                left: 0px !important;
+                margin-left: 10px
+            }
+
+            .services-area .service-item {
+                position: relative;
+                padding: 35px 20px 35px 90px;
+            }
+
+            .feature-area ul.features .fa {
+                float: inline-start;
+            }
+
+            .cart_title {
+                text-align: left;
+                display: block
+            }
+
+            .pricing-area .price_item ul {
+                border-right: none;
+                border-left: 1px dashed #ff3131;
+                margin-left: 32px;
+                padding-left: 15px;
+            }
+        </style>
+    @endif
 @stop
 @section('content')
 
@@ -163,17 +206,17 @@
 
             <div class="about-slider bg-light-black shadow">
                 <div class="item mb-4">
-                    <div class="about-item">
+                    <div class="about-item" @if (App::getLocale() == 'en') dir="rtl" @else dir="ltr" @endif>
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <img class="img-fluid" src="images/skillsartsaboutus.webp"
                                     alt="هوية تجارية من تصميم سكيلز آرتس للتصميم">
                             </div>
                             <div class="col-lg-6 col-md-12 pr-5 pr-5  py-4">
-                                <h3 class="mb-3">{{ __('sentence.skills_arts') }}<span>؟</span></h3>
-                                <p>{{ __('sentence.about_page') }}</p> <br>
+                                <h3 class="mb-3 contact_title">{{ __('sentence.skills_arts') }}<span>؟</span></h3>
+                                <p class="contact_title">{{ __('sentence.about_page') }}</p> <br>
 
-                                <ul class="social-links mt-2">
+                                <ul class="social-links mt-2 contact_title">
                                     <li class="mr-2">
                                         <a href="https://www.facebook.com/skillsarts1/" rel="nofollow">
                                             <i class="fa fa-facebook fa-2x"></i>
@@ -202,47 +245,51 @@
 
                                 </ul>
 
-                                <a href="https://skillsarts.com/#contact" class="primary-btn mt-4"
-                                    data-text="تواصل معنا">
-                                    <span>C</span>
-                                    <span>o</span>
-                                    <span>n</span>
-                                    <span>t</span>
-                                    <span>a</span>
-                                    <span>c</span>
-                                    <span>t</span>
-                                    <span> </span>
-                                    <span>U</span>
-                                    <span>s</span>
-                                </a>
+                                <div class="contact_btn">
+                                    <a href="https://skillsarts.com/#contact" class="primary-btn mt-4"
+                                        data-text="{{ __('sentence.contact_us') }}">
+                                        <span>C</span>
+                                        <span>o</span>
+                                        <span>n</span>
+                                        <span>t</span>
+                                        <span>a</span>
+                                        <span>c</span>
+                                        <span>t</span>
+                                        <span> </span>
+                                        <span>U</span>
+                                        <span>s</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="item mb-4">
-                    <div class="about-item">
+                    <div class="about-item" @if (App::getLocale() == 'en') dir="rtl" @else dir="ltr" @endif>
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <img class="img-fluid" src="images/aboutuss.webp"
                                     alt="موقع الكتروني من تصميم سكيلز آرتس لتصميم المواقع">
                             </div>
                             <div class="col-lg-6 col-md-12 pr-5 pl-5  py-4">
-                                <h3 class="mb-3">{{ __('sentence.our_customers') }}<span></span></h3>
-                                <p>{{ __('sentence.about_page_two') }}</p>
+                                <h3 class="mb-3 contact_title">{{ __('sentence.our_customers') }}<span></span></h3>
+                                <p class="contact_title">{{ __('sentence.about_page_two') }}</p>
 
-                                <a href="https://skillsarts.com/#contact" class="primary-btn mt-4"
-                                    data-text="تواصل معنا">
-                                    <span>C</span>
-                                    <span>o</span>
-                                    <span>n</span>
-                                    <span>t</span>
-                                    <span>a</span>
-                                    <span>c</span>
-                                    <span>t</span>
-                                    <span> </span>
-                                    <span>U</span>
-                                    <span>s</span>
-                                </a>
+                                <div class="contact_btn">
+                                    <a href="https://skillsarts.com/#contact" class="primary-btn mt-4"
+                                        data-text="{{ __('sentence.contact_us') }}">
+                                        <span>C</span>
+                                        <span>o</span>
+                                        <span>n</span>
+                                        <span>t</span>
+                                        <span>a</span>
+                                        <span>c</span>
+                                        <span>t</span>
+                                        <span> </span>
+                                        <span>U</span>
+                                        <span>s</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -270,7 +317,7 @@
             <div class="row">
                 <!-- service item -->
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                    <div class="service-item">
+                    <div class="service-item d-flex">
                         <div class="effect transition"></div>
                         <div class="service-icon transition">
                             <i class="fa fa-paint-brush"></i>
@@ -278,10 +325,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/design-commercial-identity-graphic-designs">
-                                <h4>{{ __('sentence.graphic_design') }}</h4>
-                                <p>{{ __('sentence.services_cart_one') }}</p>
-
-
+                                <h4 class="contact_title">{{ __('sentence.graphic_design') }}</h4>
+                                <p class="contact_title">{{ __('sentence.services_cart_one') }}</p>
                             </a>
                         </div>
                     </div>
@@ -299,8 +344,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/company-profile-design">
-                                <h4>{{ __('sentence.profile_design') }}</h4>
-                                <p>{{ __('sentence.services_cart_two') }}</p>
+                                <h4 class="contact_title">{{ __('sentence.profile_design') }}</h4>
+                                <p class="contact_title">{{ __('sentence.services_cart_two') }}</p>
                             </a>
                         </div>
                     </div>
@@ -318,8 +363,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/logo-design">
-                                <h4>{{ __('sentence.logo_design_one') }}</h4>
-                                <p>{{ __('sentence.services_cart_three') }}</p>
+                                <h4 class="contact_title">{{ __('sentence.logo_design_one') }}</h4>
+                                <p class="contact_title">{{ __('sentence.services_cart_three') }}</p>
                             </a>
                         </div>
 
@@ -335,8 +380,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/Content-writing">
-                                <h4>{{ __('sentence.content_writing_one') }}</h4>
-                                <p>{{ __('sentence.services_cart_four') }}</p>
+                                <h4 class="contact_title">{{ __('sentence.content_writing_one') }}</h4>
+                                <p class="contact_title">{{ __('sentence.services_cart_four') }}</p>
                             </a>
                         </div>
 
@@ -352,8 +397,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/Motion-video">
-                                <h4>{{ __('sentence.motion_video_one') }}</h4>
-                                <p>{{ __('sentence.services_cart_five') }}</p>
+                                <h4 class="contact_title">{{ __('sentence.motion_video_one') }}</h4>
+                                <p class="contact_title">{{ __('sentence.services_cart_five') }}</p>
                             </a>
                         </div>
 
@@ -369,8 +414,8 @@
 
                         <div class="service-desc">
                             <a href="https://skillsarts.com/page/web-development">
-                                <h4>{{ __('sentence.websites_one') }}</h4>
-                                <p>{{ __('sentence.services_cart_six') }}</p>
+                                <h4 class="contact_title">{{ __('sentence.websites_one') }}</h4>
+                                <p class="contact_title">{{ __('sentence.services_cart_six') }}</p>
                             </a>
                         </div>
 
@@ -503,7 +548,7 @@
 
             <!-- / section title -->
             <!-- container -->
-            <div class="row" role="tabpanel" style="direction: rtl">
+            <div class="row" role="tabpanel" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtr" @endif>
                 <!-- row -->
                 <div class="col-lg-5 col-md-12 mb-4 mb-lg-0">
                     <!-- tab menu col 5 -->
@@ -513,35 +558,40 @@
                             <!-- feature tab menu #1 -->
                             <a href="#f1" class="shadow" aria-controls="f1" data-toggle="tab">
                                 <span class="fa fa-volume-up"></span>
-                                {{ __('sentence.we_listen') }}<br><small>{{ __('sentence.we_section_one') }}</small>
+                                <span class="cart_title">{{ __('sentence.we_listen') }}</span> <br><small
+                                    class="cart_title">{{ __('sentence.we_section_one') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #2 -->
                             <a href="#f2" class="shadow" aria-controls="f2" role="tab" data-toggle="tab">
                                 <span class="fa fa-search-plus"></span>
-                                {{ __('sentence.we_research') }}<br><small>{{ __('sentence.we_section_two') }}</small>
+                                <span class="cart_title">{{ __('sentence.we_research') }}</span><br><small
+                                    class="cart_title">{{ __('sentence.we_section_two') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #3 -->
                             <a href="#f3" class="shadow" aria-controls="f3" role="tab" data-toggle="tab">
                                 <span class="fa fa-paper-plane"></span>
-                                {{ __('sentence.we') }}<br><small>{{ __('sentence.we_section_three') }}</small>
+                                <span class="cart_title"> {{ __('sentence.we') }}</span><br><small
+                                    class="cart_title">{{ __('sentence.we_section_three') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #4 -->
                             <a href="#f4" class="shadow" aria-controls="f4" role="tab" data-toggle="tab">
                                 <span class="fa fa-wrench"></span>
-                                {{ __('sentence.we_process') }}<br><small>{{ __('sentence.we_section_four') }}</small>
+                                <span class="cart_title">{{ __('sentence.we_process') }}</span><br><small
+                                    class="cart_title">{{ __('sentence.we_section_four') }}</small>
                             </a>
                         </li>
                         <li role="presentation">
                             <!-- feature tab menu #5 -->
                             <a href="#f5" class="shadow" aria-controls="f5" role="tab" data-toggle="tab">
                                 <span class="fa fa-ticket"></span>
-                                {{ __('sentence.we_support') }}<br><small>{{ __('sentence.we_section_five') }}</small>
+                                <span class="cart_title"> {{ __('sentence.we_support') }}</span><br><small
+                                    class="cart_title">{{ __('sentence.we_section_five') }}</small>
                             </a>
                         </li>
                     </ul>
@@ -663,7 +713,7 @@
                         alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtr" @endif>
                 @foreach ($prices as $price)
                     @php
                         $features = explode(',', $price->price_feature);
@@ -671,18 +721,18 @@
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div class="price_item shadow bg-black">
                             <div class="price_head">
-                                <h3>{{$price->translate(app()->getLocale())->price_name }}</h3>
+                                <h3>{{ $price->translate(app()->getLocale())->price_name }}</h3>
 
                                 <span>{{ Shop::price($price->pricing) }}</span>
                             </div>
-                            <ul>
+                            <ul class="contact_title">
                                 @foreach ($features as $feature)
                                     <li>{{ $feature }}</li>
                                 @endforeach
                             </ul>
                             <div class="price-btn py-4 text-center">
                                 <a href="{{ $price->link }}" class="primary-btn transition"
-                                    data-text="المزيد من التفاصيل">
+                                    data-text="{{ __('sentence.More_details') }}">
                                     <span>S</span>
                                     <span>I</span>
                                     <span>G</span>
