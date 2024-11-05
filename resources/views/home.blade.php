@@ -170,8 +170,13 @@
                                         {{ $slider->translate(app()->getLocale())->paragraph }}
                                     </p>
                                     <p class="toggleButton">
-                                        <a href="{{ route('shop') }}"
-                                            class="btn btn-red">{{ __('sentence.shop_now') }}</a>
+                                        @if (App::getLocale() == 'ar')
+                                            <a href="{{ url('ar/shop') }}"
+                                                class="btn btn-red">{{ __('sentence.shop_now') }}</a>
+                                        @else
+                                            <a href="{{ url('en/shop') }}"
+                                                class="btn btn-red">{{ __('sentence.shop_now') }}</a>
+                                        @endif
                                     </p>
                                 </div>
                             @endif
