@@ -54,10 +54,15 @@
                                 <div class="col-md-8 offset-md-4 login_section">
                                     <button type="submit" class="btn btn-danger mt-2">{{ __('sentence.login') }}</button>
                                     <!--   <a href="{{ route('register') }}" class="btn btn-outline-light mt-2"
-                                            class="text-info">
-                                            مستخدم جديد </a> -->
-                                    <a href="{{ route('password.request') }}" class="btn btn-outline-light mt-2"
-                                        class="text-info">{{ __('sentence.recover_password') }}</a>
+                                                class="text-info">
+                                                مستخدم جديد </a> -->
+                                    @if (App::getLocale() == 'ar')
+                                        <a href="{{ url('ar/password/reset') }}" class="btn btn-outline-light mt-2"
+                                            class="text-info">{{ __('sentence.recover_password') }}</a>
+                                    @else
+                                        <a href="{{ url('en/password/reset') }}" class="btn btn-outline-light mt-2"
+                                            class="text-info">{{ __('sentence.recover_password') }}</a>
+                                    @endif
                                 </div>
                             </div>
                         </form>
