@@ -14,7 +14,7 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Voyager\OrdersController;
 use App\Mail\ChargeInvoice;
-use App\Mail\OrderConfirmed;
+use App\Mail\OrderConfirmed;    
 use App\Mail\OrderInvoice;
 use App\Order;
 use App\Repository\Phone;
@@ -69,6 +69,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('resend-otp', [AuthenticationController::class, 'resendOtp'])->name('resendOtp');
     Route::get('clear-session', [AuthenticationController::class, 'clear_session'])->name('clear.session');
 });
+
 
 Route::get('productfilter', [ShopController::class, 'productfilter'])->name('productfilter');
 

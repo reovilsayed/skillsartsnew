@@ -8,7 +8,8 @@
             .back_to_shopping {
                 text-align: left
             }
-            #Shopping_cart{
+
+            #Shopping_cart {
                 text-align: left;
             }
         </style>
@@ -20,12 +21,24 @@
         <div class="container" id="Shopping_cart">
             <h2 class="h1 mb-3">{{ __('sentence.shopping_cart') }}</h2>
             <ul class="breadcrumb pl-3 pr-3">
-                <li class="">
-                    <a href="{{ route('home') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                </li>
-                <li class="active"> <a href="{{ route('shop') }}"
-                        class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
-                <li> <a href="{{ route('cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
+                @if (App::getLocale() == 'ar')
+                    <li class="">
+                        <a href="{{ url('/ar') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('ar/shop') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
+                    <li> <a href="{{ url('ar/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
+                @else
+                    <li class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('en/shop') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
+
+                    <li> <a href="{{ url('en/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
+                @endif
+
+
             </ul>
         </div>
     </div>
@@ -65,7 +78,8 @@
                                     </td>
                                     <td>
                                         <a href="{{ $product->model->path() }}"
-                                            class="text-light">{{ $product->model->translate(app()->getLocale())->name }}</a> <br />
+                                            class="text-light">{{ $product->model->translate(app()->getLocale())->name }}</a>
+                                        <br />
                                         @if ($product->model->variation)
                                             {{ json_encode($product->model->variation) }}
                                         @endif
@@ -99,8 +113,13 @@
                 <div class="row mt-3">
                     <div class="col-md-6 col-lg-6 back_to_shopping">
                         <div class="cart-back">
-                            <a class="btn btn-red" href="{{ route('shop') }}"><i
-                                    class="fa fa-undo-alt"></i><span>{{ __('sentence.back_to_shopping') }}</span></a>
+                            @if (App::getLocale() == 'ar')
+                                <a class="btn btn-red" href="{{ url('ar/shop') }}"><i
+                                        class="fa fa-undo-alt"></i><span>{{ __('sentence.back_to_shopping') }}</span></a>
+                            @else
+                                <a class="btn btn-red" href="{{ url('en/shop') }}"><i
+                                        class="fa fa-undo-alt"></i><span>{{ __('sentence.back_to_shopping') }}</span></a>
+                            @endif
                         </div>
                     </div>
 
@@ -134,8 +153,13 @@
                             </ul>
                         </div>
                         <div class="cart-proceed">
-                            <a class="btn btn-red" href="{{ route('checkout') }}"><i
-                                    class="fa fa-check"></i>&nbsp;<span>{{ __('sentence.complete_payment') }}</span></a>
+                            @if (App::getLocale() == 'ar')
+                                <a class="btn btn-red" href="{{ url('ar/checkout') }}"><i
+                                        class="fa fa-check"></i>&nbsp;<span>{{ __('sentence.complete_payment') }}</span></a>
+                            @else
+                                <a class="btn btn-red" href="{{ url('en/checkout') }}"><i
+                                        class="fa fa-check"></i>&nbsp;<span>{{ __('sentence.complete_payment') }}</span></a>
+                            @endif
                         </div>
                     </div>
                 </div>

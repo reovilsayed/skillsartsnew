@@ -20,15 +20,22 @@
 
     <div class="blog-header text-left">
         <div dir="" class="container " @if (App::getLocale() == 'en') style="text-align: left" @endif>
-            <h2 class="h1 mb-3 " @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ __('sentence.the_store') }}</h2>
+            <h2 class="h1 mb-3 " @if (App::getLocale() == 'en') style="text-align: left" @endif>
+                {{ __('sentence.the_store') }}</h2>
             <ul class="breadcrumb pl-3 pr-3">
-                <li class="">
-                    <a href="{{ route('home') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                </li>
-                <li class="active"> <a href="{{ route('shop') }}"
-                        class="transition pr-3 pl-3">{{ __('sentence.products') }}</a></li>
-
-
+                @if (App::getLocale() == 'ar')
+                    <li class="">
+                        <a href="{{ url('/ar') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('ar/shop') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.products') }}</a></li>
+                @else
+                    <li class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('en/shop') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.products') }}</a></li>
+                @endif
             </ul>
         </div>
     </div>

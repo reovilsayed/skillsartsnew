@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Orders')
 @section('css')
-  <link rel="stylesheet" href="{{asset('css/custom/account.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/custom/account.css') }}">
 
     @if (App::getLocale() == 'en')
         <style>
@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   @include('auth.navigation')
+                    @include('auth.navigation')
                 </div>
             </div>
             <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="row justify-content-center">
@@ -43,15 +43,25 @@
                                                     <td>{{ $order->id }}</td>
                                                     <td>{{ Shop::price($order->total) }}</td>
                                                     <td>
-                                                        <a href="{{ route('invoice', ['order' => $order->id]) }}"
-                                                            class="btn btn-info p-1">{{ __('sentence.Invoice_Preview') }}</a>
+                                                        @if (App::getLocale() == 'ar')
+                                                            <a href="{{ url('ar/invoice', ['order' => $order->id]) }}"
+                                                                class="btn btn-info p-1">{{ __('sentence.Invoice_Preview') }}</a>
+                                                        @else
+                                                            <a href="{{ url('en/invoice', ['order' => $order->id]) }}"
+                                                                class="btn btn-info p-1">{{ __('sentence.Invoice_Preview') }}</a>
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         <a href="#"
                                                             class="btn btn-{{ $order->status == 0 ? 'danger' : 'success' }} p-1">{{ $order->status($order->status) }}</a>
                                                         @if ($order->status == 0)
-                                                            <a href="{{ route('payment', $order) }}"
-                                                                class="btn btn-success p-1">{{ __('sentence.pay_now') }}</a>
+                                                            @if (App::getLocale() == 'ar')
+                                                                <a href="{{ url('ar/payment', $order) }}"
+                                                                    class="btn btn-success p-1">{{ __('sentence.pay_now') }}</a>
+                                                            @else
+                                                                <a href="{{ url('en/payment', $order) }}"
+                                                                    class="btn btn-success p-1">{{ __('sentence.pay_now') }}</a>
+                                                            @endif
                                                         @endif
                                                     </td>
                                                 </tr>

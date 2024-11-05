@@ -12,7 +12,11 @@ class LanguageMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $locale = Session::get('locale', config('app.locale'));
+        $locale = app()->getLocale();
+
+        if (in_array(@$request->segments()[0], config('app.locales'))) {
+            $locale = $request->segments()[0];
+        }
 
         App::setLocale($locale);
 

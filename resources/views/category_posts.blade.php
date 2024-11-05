@@ -3,11 +3,20 @@
     <div class="container">
         <h2 class="h1 mb-3">Blog</h2>
         <ul class="breadcrumb">
-            <li>
-                <a href="{{ route('home') }}" class="transition"> <i class="fa fa-home"></i> </a>
-            </li>
-            <li class="active"><a href="{{ route('blog') }}" class="transition"> Blog </a></li>
-            <li><a href="blog-post.html" class="transition"> Plog Post </a></li>
+            @if (App::getLocale() == 'ar')
+                <li class="">
+                    <a href="{{ url('/ar') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                </li>
+                <li class="active"><a href="{{ url('posts') }}" class="transition"> Blog </a></li>
+                <li><a href="#" class="transition"> Plog Post </a></li>
+            @else
+                <li class="">
+                    <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                </li>
+                <li class="active"><a href="#" class="transition"> Blog </a></li>
+                <li><a href="#" class="transition"> Plog Post </a></li>
+            @endif
+
         </ul>
     </div>
 </div>

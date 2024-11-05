@@ -4,12 +4,12 @@
     <link rel="stylesheet" href="{{ asset('css/custom/account.css') }}">
 
     @if (App::getLocale() == 'en')
-    <style>
-        .control_panel {
-            text-align: left
-        }
-    </style>
-@endif
+        <style>
+            .control_panel {
+                text-align: left
+            }
+        </style>
+    @endif
 @stop
 @section('content')
     <section class="account-part">
@@ -32,7 +32,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group control_panel">
                                                 <label for="first_name">{{ __('sentence.first_name') }}</label>
-                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif value="{{ Auth::user()->name }}" type="text"
+                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                                    value="{{ Auth::user()->name }}" type="text"
                                                     class="form-control @error('name') is-invalid @enderror" id="name"
                                                     placeholder="{{ __('sentence.first_name') }}" name="name">
                                                 @error('first_name')
@@ -45,7 +46,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group control_panel">
                                                 <label for="last_name">{{ __('sentence.last_name') }}</label>
-                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif value="{{ Auth::user()->last_name }}" type="text"
+                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                                    value="{{ Auth::user()->last_name }}" type="text"
                                                     class="form-control @error('last_name') is-invalid @enderror"
                                                     id="last_name" placeholder="{{ __('sentence.last_name') }}"
                                                     name="last_name">
@@ -59,7 +61,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group control_panel">
                                                 <label for="email">{{ __('sentence.email') }}</label>
-                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif value="{{ Auth::user()->email }}" type="text"
+                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                                    value="{{ Auth::user()->email }}" type="text"
                                                     class="form-control bg-transparent" id="email"
                                                     placeholder="{{ __('sentence.email') }}" readonly>
                                             </div>
@@ -67,7 +70,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group control_panel">
                                                 <label for="address">{{ __('sentence.address') }}</label>
-                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif value="{{ Auth::user()->address }}" type="text"
+                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                                    value="{{ Auth::user()->address }}" type="text"
                                                     class="form-control @error('address') is-invalid @enderror"
                                                     id="address" placeholder="{{ __('sentence.address') }}"
                                                     name="address">
@@ -92,7 +96,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group control_panel">
                                                 <label for="phone">{{ __('sentence.number') }}</label>
-                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif value="{{ Auth::user()->phone }}" type="text"
+                                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                                    value="{{ Auth::user()->phone }}" type="text"
                                                     class="form-control @error('phone') is-invalid @enderror" id="phone"
                                                     placeholder="{{ __('sentence.number') }}" name="phone">
                                                 @error('phone')

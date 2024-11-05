@@ -48,7 +48,9 @@
                         <div class="clearfix"> </div>
                         <img src="{{ Voyager::image($post->image) }}" class="img-fluid pb-3" alt="{{ $post->image_alt }}"
                             title="{{ $post->seo_title }}">
-                        <div class="description blogeSection" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif> {!! $post->translate(app()->getLocale())->body !!}</div>
+                        <div class="description blogeSection"
+                            @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif> {!! $post->translate(app()->getLocale())->body !!}
+                        </div>
                         <br> <br>
                     </div>
                 </div>
@@ -61,9 +63,15 @@
                                     <div
                                         class="single-post-list @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif d-flex flex-row align-items-center">
                                         <div class="details blogeSection">
-                                            <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                                <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
-                                            </a>
+                                            @if (App::getLocale() == 'ar')
+                                                <a href="{{ url('ar/post', $post->slug) }}" class="transition">
+                                                    <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
+                                                </a>
+                                            @else
+                                                <a href="{{ url('en/post', $post->slug) }}" class="transition">
+                                                    <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
+                                                </a>
+                                            @endif
                                             <span>{{ $post->created_at->diffForHumans() }}</span>
                                         </div>
                                         <div class="thumb"> <img style="width: 120px"

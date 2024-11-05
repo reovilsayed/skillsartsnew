@@ -41,7 +41,6 @@
     <link rel="stylesheet" href="{{ asset('home-page/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('home-page/css/responsive.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    @livewireStyles
 
     <style>
         .blog-header {
@@ -144,10 +143,10 @@
             #login {
                 text-align: left
             }
+
             #total {
                 text-align: left !important;
             }
-
         </style>
     @endif
     @yield('css')
@@ -197,7 +196,7 @@
         </div>
     </div> -->
     @if (session()->has('cart_alert'))
-        <div  @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="cart-redirect-alert">
+        <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="cart-redirect-alert">
             <div class="card bg-light">
                 <button class="ml-auto border-0 shadow" id="side_cart_hide">x</button>
                 <div class="card-header text-center text-success bg-dark d-flex">
@@ -207,7 +206,8 @@
                     @foreach (Cart::getContent() as $product)
                         <div class="row">
                             <div class="col-2">
-                                <img src=" {{ Voyager::image($product->model->image) }}" alt="" style="width:100px" />
+                                <img src=" {{ Voyager::image($product->model->image) }}" alt=""
+                                    style="width:100px" />
                             </div>
                             <div class="col-9">
                                 <p class="text-dark">{{ $product->model->translate(app()->getLocale())->name }}</p>
@@ -217,12 +217,15 @@
                 </div>
                 <div class="card-footer bg-dark border mt-2">
                     <div class="row mb-2">
-                        <div class="col-md-6 text-left text-light font-weight-bold" id="total">{{ __('sentence.totle') }}</div>
+                        <div class="col-md-6 text-left text-light font-weight-bold" id="total">
+                            {{ __('sentence.totle') }}</div>
                         <div class="col-md-6 text-right text-light font-weight-bold">
                             {{ Shop::price(Cart::getSubTotal()) }}</div>
                     </div>
-                    <a href="{{ route('checkout') }}" class="btn btn-success text-light">{{ __('sentence.checkout') }}</a>
-                    <a href="" class="btn btn-outline-success text-light">{{ __('sentence.continue_shoppings') }}</a>
+                    <a href="{{ route('checkout') }}"
+                        class="btn btn-success text-light">{{ __('sentence.checkout') }}</a>
+                    <a href=""
+                        class="btn btn-outline-success text-light">{{ __('sentence.continue_shoppings') }}</a>
                 </div>
             </div>
         </div>
@@ -231,36 +234,65 @@
         <header id="navigation" class="navbar navbar-expand-lg">
             <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('home') }}">
-                        <h2 id="logo">
-                            @if (setting('site.logo'))
-                                <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
-                            @else
-                                {{ setting('site.title') }}
-                            @endif
-                        </h2>
-                    </a>
+                    @if (App::getLocale() == 'ar')
+                        <a class="navbar-brand" href="{{ url('/ar') }}">
+                            <h2 id="logo">
+                                @if (setting('site.logo'))
+                                    <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
+                                @else
+                                    {{ setting('site.title') }}
+                                @endif
+                            </h2>
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/en') }}">
+                            <h2 id="logo">
+                                @if (setting('site.logo'))
+                                    <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
+                                @else
+                                    {{ setting('site.title') }}
+                                @endif
+                            </h2>
+                        </a>
+                    @endif
                 </div>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <i class="fa fa-bars fa-lg"></i>
                 </button>
                 <nav class="collapse navbar-collapse">
-                    {!! menu('main', 'menus.bootstrap') !!}
+                    @if (app()->getLocale() == 'ar')
+                        {!! menu('arabic', 'menus.bootstrap') !!}
+                    @else
+                        {!! menu('english', 'menus.bootstrap') !!}
+                    @endif
                 </nav>
                 <nav class="collapse navbar-collapse">
                     <ul id="nav" class="nav navbar-nav ml-auto" id="login">
                         @guest
-                            <li>
-                                <a href="{{ route('login') }}">
-                                    {{ __('sentence.login') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('register') }}">
-                                    {{ __('sentence.register') }}
-                                </a>
-                            </li>
+                            @if (App::getLocale() == 'ar')
+                                <li>
+                                    <a href="{{ url('ar/login') }}">
+                                        {{ __('sentence.login') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('ar/register') }}">
+                                        {{ __('sentence.register') }}
+                                    </a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ url('en/login') }}">
+                                        {{ __('sentence.login') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('en/register') }}">
+                                        {{ __('sentence.register') }}
+                                    </a>
+                                </li>
+                            @endif
                         @else
                             <li>
                                 <a href="#" class="navbar-link dropdown-indicator transition">
@@ -268,10 +300,18 @@
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="submenu transition">
-                                    <li class="navbar-item"><a href="{{ route('dashboard') }}"
-                                            class="navbar-link">{{ __('sentence.control_panel') }}</a></li>
-                                    <li class="navbar-item"><a href="{{ route('orders') }}"
-                                            class="navbar-link">{{ __('sentence.register') }}</a></li>
+                                    @if (App::getLocale() == 'ar')
+                                        <li class="navbar-item"><a href="{{ url('ar/dashboard') }}"
+                                                class="navbar-link">{{ __('sentence.control_panel') }}</a></li>
+                                        <li class="navbar-item"><a href="{{ url('ar/orders') }}"
+                                                class="navbar-link">{{ __('sentence.register') }}</a></li>
+                                    @else
+                                        <li class="navbar-item"><a href="{{ url('en/dashboard') }}"
+                                                class="navbar-link">{{ __('sentence.control_panel') }}</a></li>
+                                        <li class="navbar-item"><a href="{{ url('en/orders') }}"
+                                                class="navbar-link">{{ __('sentence.register') }}</a></li>
+                                    @endif
+
                                     <li class="navbar-item">
                                         <a href="{{ route('logout') }}" class="navbar-link transition"
                                             onclick="event.preventDefault();
@@ -300,22 +340,48 @@
                             </ul>
                         </li>
                         <li>
+                            @php
+                                $english = request()->segments();
+                                $arabic = request()->segments();
+                                if (in_array(@$english[0], config('app.locales'))) {
+                                    $english[0] = 'en';
+                                } else {
+                                    array_unshift($english, 'en');
+                                }
+                                if (in_array(@$arabic[0], config('app.locales'))) {
+                                    $arabic[0] = 'ar';
+                                } else {
+                                    array_unshift($arabic, 'ar');
+                                }
+                                $english = implode('/', $english);
+                                $arabic = implode('/', $arabic);
+
+                            @endphp
                             <a href="#" class="navbar-link dropdown-indicator transition">
                                 Languages
                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </a>
                             <ul class="submenu transition">
-                                <li class="navbar-item"><a href="{{ url('lang/en') }}"
+                                <li class="navbar-item"><a href="{{ url($english) }}"
                                         class="navbar-link">ENGLISH</a></li>
-                                <li class="navbar-item"><a href="{{ url('lang/ar') }}"
-                                        class="navbar-link">ARABIC</a></li>
+                                <li class="navbar-item"><a href="{{ url($arabic) }}" class="navbar-link">ARABIC</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('cart') }}">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ __('sentence.cart') }}
-                                ( <span class="text-danger font-weight-bold">{{ Cart::getTotalQuantity() }}</span>)
-                            </a>
+                            @if (App::getLocale() == 'ar')
+                                <a href="{{ url('ar/cart') }}">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ __('sentence.cart') }}
+                                    ( <span
+                                        class="text-danger font-weight-bold">{{ Cart::getTotalQuantity() }}</span>)
+                                </a>
+                            @else
+                                <a href="{{ url('en/cart') }}">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ __('sentence.cart') }}
+                                    ( <span
+                                        class="text-danger font-weight-bold">{{ Cart::getTotalQuantity() }}</span>)
+                                </a>
+                            @endif
                         </li>
                     </ul>
                 </nav>
@@ -347,24 +413,57 @@
                         <div class="footer-single">
                             <h4>{{ __('sentence.useful_links') }}</h4>
                             <ul>
-                                <li><a href="/"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
-                                        {{ __('sentence.home') }}</a>
-                                </li>
-                                <li><a href="/posts"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
-                                        {{ __('sentence.blog') }}</a>
-                                </li>
-                                <li><a href="/portfolio"><i class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
-                                        {{ __('sentence.our_previous_work') }}</a>
-                                </li>
-                                <li><a href="/page/website-map"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i> {{ __('sentence.site_map') }}</a>
-                                </li>
-                                <li><a href="/page/Privacy-policy"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i> {{ __('sentence.privacy_policy') }}</a>
-                                </li>
-                                <li><a href="/page/terms-and-conditions"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i> {{ __('sentence.terms_conditions') }}</a>
-                                </li>
+                                @if (App::getLocale() == 'ar')
+                                    <li><a href="{{ url('/ar') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
+                                            {{ __('sentence.home') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('ar/posts') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
+                                            {{ __('sentence.blog') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('ar/portfolio') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
+                                            {{ __('sentence.our_previous_work') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('ar/page/website-map') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.site_map') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('ar/page/Privacy-policy') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.privacy_policy') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('ar/page/terms-and-conditions') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.terms_conditions') }}</a>
+                                    </li>
+                                @else
+                                    <li><a href="{{ url('/en') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
+                                            {{ __('sentence.home') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('en/posts') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
+                                            {{ __('sentence.blog') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('en/portfolio') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
+                                            {{ __('sentence.our_previous_work') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('en/page/website-map') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.site_map') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('en/page/Privacy-policy') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.privacy_policy') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('en/page/terms-and-conditions') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.terms_conditions') }}</a>
+                                    </li>
+                                @endif
 
                             </ul>
                         </div>
@@ -374,25 +473,57 @@
                         <div class="footer-single">
                             <h4>{{ __('sentence.our_services') }}</h4>
                             <ul>
-                                <li><a href="/page/company-profile-design"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i> {{ __('sentence.company_profile') }}
-                                    </a></li>
-                                <li><a href="/page/logo-design"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i> {{ __('sentence.logo_design') }}
-                                    </a></li>
-                                <li><a href="/page/design-commercial-identity-graphic-designs"><i
-                                            class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i>{{ __('sentence.brand_identity') }}
-                                    </a></li>
-                                <li><a href="/page/web-development"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i> {{ __('sentence.websites') }}
-                                    </a></li>
-                                <li><a href="/page/Motion-video"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i>{{ __('sentence.motion_video') }}
-                                    </a></li>
-                                <li><a href="/page/Content-writing"><i class="fa fa-check-circle-o pr-1"
-                                            aria-hidden="true"></i>{{ __('sentence.content_writing') }}
-                                    </a></li>
+                                @if (App::getLocale() == 'ar')
+                                    <li><a href="{{ url('ar/page/company-profile-design') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.company_profile') }}
+                                        </a></li>
+                                    <li><a href="{{ url('ar/page/logo-design') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.logo_design') }}
+                                        </a></li>
+                                    <li><a href="{{ url('ar/page/design-commercial-identity-graphic-designs') }}"><i
+                                                class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>{{ __('sentence.brand_identity') }}
+                                        </a></li>
+                                    <li><a href="{{ url('ar/page/web-development') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.websites') }}
+                                        </a></li>
+                                    <li><a href="{{ url('ar/page/Motion-video') }}"><i
+                                                class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>{{ __('sentence.motion_video') }}
+                                        </a></li>
+                                    <li><a href="{{ url('ar/page/Content-writing') }}"><i
+                                                class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>{{ __('sentence.content_writing') }}
+                                        </a></li>
+                                @else
+                                    <li><a href="{{ url('en/page/company-profile-design') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.company_profile') }}
+                                        </a></li>
+                                    <li><a href="{{ url('en/page/logo-design') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.logo_design') }}
+                                        </a></li>
+                                    <li><a href="{{ url('en/page/design-commercial-identity-graphic-designs') }}"><i
+                                                class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>{{ __('sentence.brand_identity') }}
+                                        </a></li>
+                                    <li><a href="{{ url('en/page/web-development') }}"><i
+                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                            {{ __('sentence.websites') }}
+                                        </a></li>
+                                    <li><a href="{{ url('en/page/Motion-video') }}"><i
+                                                class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>{{ __('sentence.motion_video') }}
+                                        </a></li>
+                                    <li><a href="{{ url('en/page/Content-writing') }}"><i
+                                                class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>{{ __('sentence.content_writing') }}
+                                        </a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -508,7 +639,6 @@
     @endif
     @yield('javascript')
     @stack('script')
-    @livewireScripts
     @production
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK2HP76" height="0" width="0"

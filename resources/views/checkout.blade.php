@@ -9,6 +9,7 @@
             #confirm_your_data {
                 text-align: left
             }
+
             .confirm_your_data {
                 text-align: left
             }
@@ -38,12 +39,26 @@
         <div dir="" class="container confirm_your_data">
             <h2 class="h1 mb-3 ">{{ __('sentence.confirm_order') }}</h2>
             <ul class="breadcrumb pl-3 pr-3">
-                <li class="active" class="">
-                    <a href="{{ route('home') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                </li>
-                <li> <a href="{{ route('shop') }}" class="transition pr-3 pl-3 ">{{ __('sentence.shopping_cart') }}</a></li>
-                <li> <a href="{{ route('checkout') }}" class="transition pr-3 pl-3">{{ __('sentence.end_of_order') }}</a>
-                </li>
+                @if (App::getLocale() == 'ar')
+                    <li class="active" class="">
+                        <a href="{{ url('/ar') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li> <a href="{{ url('ar/shop') }}" class="transition pr-3 pl-3 ">{{ __('sentence.shopping_cart') }}</a>
+                    </li>
+                    <li> <a href="{{ url('ar/checkout') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.end_of_order') }}</a>
+                    </li>
+                @else
+                    <li class="active" class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li> <a href="{{ url('en/shop') }}" class="transition pr-3 pl-3 ">{{ __('sentence.shopping_cart') }}</a>
+                    </li>
+                    <li> <a href="{{ url('en/checkout') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.end_of_order') }}</a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>
@@ -94,9 +109,11 @@
                             <div class="col-md-6">
                                 <div class="form-group confirm_your_data">
                                     <label class="text-light" for="first_name">{{ __('sentence.first_name') }}</label>
-                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  value="{{ old('first_name', $user->name) }}" type="text"
+                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                        value="{{ old('first_name', $user->name) }}" type="text"
                                         class="form-control  text-light @error('first_name') is-invalid @enderror"
-                                        id="first_name" placeholder="{{ __('sentence.first_name') }}" name="first_name" required>
+                                        id="first_name" placeholder="{{ __('sentence.first_name') }}" name="first_name"
+                                        required>
                                     @error('first_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -107,7 +124,8 @@
                             <div class="col-md-6">
                                 <div class="form-group confirm_your_data">
                                     <label class="text-light" for="last_name">{{ __('sentence.last_name') }}</label>
-                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  value="{{ old('last_name', $user->last_name) }}" type="text"
+                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                        value="{{ old('last_name', $user->last_name) }}" type="text"
                                         class="form-control  text-light @error('last_name') is-invalid @enderror"
                                         id="last_name" placeholder="{{ __('sentence.last_name') }}" name="last_name">
                                     @error('last_name')
@@ -120,9 +138,10 @@
                             <div class="col-md-6">
                                 <div class="form-group confirm_your_data">
                                     <label class="text-light" for="phone">{{ __('sentence.number') }}</label>
-                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  value="{{ old('phone', $user->phone) }}" type="number"
-                                        minlength="6" class="form-control  text-light @error('phone') is-invalid @enderror"
-                                        id="phone" placeholder="{{ __('sentence.number') }}" name="phone" required>
+                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                        value="{{ old('phone', $user->phone) }}" type="number" minlength="6"
+                                        class="form-control  text-light @error('phone') is-invalid @enderror" id="phone"
+                                        placeholder="{{ __('sentence.number') }}" name="phone" required>
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -133,8 +152,8 @@
                             <div class="col-md-6">
                                 <div class="form-group confirm_your_data">
                                     <label class="text-light" for="email">{{ __('sentence.emali') }}</label>
-                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  value="{{ old('email', $user->email) }}" name="email"
-                                        type="email"
+                                    <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                        value="{{ old('email', $user->email) }}" name="email" type="email"
                                         class="form-control text-light  @error('email') is-invalid @enderror"
                                         id="email" placeholder="email" required>
                                     @error('email')
@@ -146,7 +165,8 @@
                             </div>
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="form-group ">
-                                    <button class="btn btn-red " type="submit">{{ __('sentence.confirm_order') }}</button>
+                                    <button class="btn btn-red "
+                                        type="submit">{{ __('sentence.confirm_order') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +182,8 @@
                     </div>
                     <div class="col-md-12">
                         <div class="table-scroll">
-                            <table @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="table-list table-bordered">
+                            <table @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                class="table-list table-bordered">
                                 <thead class="table-dark">
                                     <tr>
                                         <th scope="col">{{ __('sentence.product_image') }}</th>
@@ -183,7 +204,8 @@
                                             </td>
                                             <td>
                                                 <a href="{{ $product->model->path() }}"
-                                                    class="text-light">{{ $product->model->translate(app()->getLocale())->name }}</a> <br />
+                                                    class="text-light">{{ $product->model->translate(app()->getLocale())->name }}</a>
+                                                <br />
                                                 @if ($product->model->variation)
                                                     {{ json_encode($product->model->variation) }}
                                                 @endif
@@ -194,8 +216,9 @@
                                                     <input type="hidden" name="product_id"
                                                         value="{{ $product->id }}" />
                                                     <div class="input-group mb-3">
-                                                        <input style="width:50px;  border: 1px solid #ffffff;" name="quantity" class="form-control"
-                                                            min="1" step="1" type="number"
+                                                        <input style="width:50px;  border: 1px solid #ffffff;"
+                                                            name="quantity" class="form-control" min="1"
+                                                            step="1" type="number"
                                                             value="{{ $product->quantity }}">
                                                         <div class="input-group-append">
                                                             <button style="border-radius: 0" type="submit"
@@ -221,7 +244,8 @@
             @endif
             <div class="row">
                 <div class="col-lg-12">
-                    <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="checkout-charge text-light">
+                    <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                        class="checkout-charge text-light">
                         <ul>
                             @if (session()->has('discount'))
                                 <li><span>الخصم <a href="{{ route('coupon.destroy') }}"> ( Remove

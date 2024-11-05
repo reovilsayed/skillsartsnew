@@ -43,11 +43,13 @@
                     @foreach ($posts as $post)
                         <div class="post-wrap transition shadow bg-black">
                             <div class="media post">
-                                <div class="media-body" @if (App::getLocale() == 'en') style="text-align: left; padding-left: 12px;" @endif>
+                                <div class="media-body"
+                                    @if (App::getLocale() == 'en') style="text-align: left; padding-left: 12px;" @endif>
                                     <span class="small mb-2">{{ $post->created_at->format('M d, Y') }}</span>
 
                                     <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                        <h4 class="media-heading mb-3">{{ $post->translate(app()->getLocale())->title }}</h4>
+                                        <h4 class="media-heading mb-3">{{ $post->translate(app()->getLocale())->title }}
+                                        </h4>
                                     </a>
 
                                     <p> {!! Str::limit(strip_tags($post->translate(app()->getLocale())->body), $limit = 200, $end = '...') !!}</p>
@@ -91,9 +93,16 @@
                                         class="single-post-list d-flex flex-row @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif">
                                         <div class="details"
                                             @if (App::getLocale() == 'en') style="text-align: left" @endif>
-                                            <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                                <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
-                                            </a>
+
+                                            @if (App::getLocale() == 'ar')
+                                                <a href="{{ url('ar/post', $post->slug) }}" class="transition">
+                                                    <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
+                                                </a>
+                                            @else
+                                                <a href="{{ url('en/post', $post->slug) }}" class="transition">
+                                                    <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
+                                                </a>
+                                            @endif
                                             <span>{{ $post->created_at->diffForHumans() }}</span>
                                         </div>
                                         <div class="thumb">
