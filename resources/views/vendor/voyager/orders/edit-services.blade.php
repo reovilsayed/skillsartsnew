@@ -1,7 +1,7 @@
 @extends('voyager::master')
 @section('page_title', 'Edit Services')
 @section('css')
-    @livewireStyles
+    {{-- @livewireStyles --}}
     <style>
         .font-weight-bold {
             font-weight: bold !important;

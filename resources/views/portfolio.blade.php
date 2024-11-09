@@ -33,7 +33,7 @@
                     <figcaption class="overlay transition">
                         <a class="portfolio-lightbox" title="{{ $portfolio->category->name }}"
                             href="{{ Voyager::image($portfolio->image) }}"><i class="fa fa-search fa-lg"></i></a>
-                        <h4>{{ App::getLocale() == 'ar' ? $portfolio->translate('ar')->name : $portfolio->translate('en')->name }}</h4>
+                        <h4>{{ App::getLocale() == 'ar' ? $portfolio->translate('ar')->titlt : $portfolio->translate('en')->title }}</h4>
                         <p>{{ App::getLocale() == 'ar' ? $portfolio->category->translate('ar')->name : $portfolio->category->translate('en')->name }}</p>
                     </figcaption>
                 </figure>

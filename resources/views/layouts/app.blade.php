@@ -240,7 +240,7 @@
                                 @if (setting('site.logo'))
                                     <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
                                 @else
-                                    {{ setting('site.title') }}
+                                    {{ __('sentence.site_title') }}
                                 @endif
                             </h2>
                         </a>
@@ -250,7 +250,7 @@
                                 @if (setting('site.logo'))
                                     <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
                                 @else
-                                    {{ setting('site.title') }}
+                                    {{ __('sentence.site_title') }}
                                 @endif
                             </h2>
                         </a>
@@ -400,7 +400,7 @@
                             @if (setting('site.logo'))
                                 <img src="{{ Voyager::image(setting('site.logo')) }}" alt="SKILLSARTS LOGO">
                             @else
-                                <h4>{{ setting('site.title') }}</h4>
+                                <h4>{{ __('sentence.site_title') }}</h4>
                             @endif
                             <p>المملكة العربية السعودية</p>
                             <img src="{{ asset('images/contact-us.png') }}" alt="">

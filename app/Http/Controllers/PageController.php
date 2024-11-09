@@ -294,6 +294,7 @@ class PageController extends Controller
     {
         $portcats = Portcat::get();
         $portfolios = Portfolio::get();
+        $portfolios->translate(app()->getLocale());
         return view('portfolio', compact('portcats', 'portfolios'));
     }
     public function whatsapp()

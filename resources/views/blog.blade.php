@@ -3,8 +3,8 @@
 @section('meta-description')
 
 @section('social_media')
-    <meta property="og:title" content="{{ setting('site.title') }}" />
-    <meta property="og:description"content="{{ setting('site.description') }}" />
+    <meta property="og:title" content="{{ __('sentence.site_title') }}" />
+    <meta property="og:description"content="{{ __('sentence.site_description') }}" />
     <meta property="og:url" content="{{ route('blog') }}" />
     <meta property="og:image" content="{{ Voyager::image(setting('site.social_image')) }}" />
 @endsection

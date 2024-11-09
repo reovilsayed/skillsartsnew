@@ -38,7 +38,7 @@
 
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    @livewireStyles
+    {{-- @livewireStyles --}}
 
     <style>
         /* .blog-header {
@@ -253,7 +253,7 @@
                                 @if (setting('site.logo'))
                                     <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
                                 @else
-                                    {{ setting('site.title') }}
+                                    {{ __('sentence.site_title') }}
                                 @endif
                             </h2>
                         </a>
@@ -263,7 +263,7 @@
                                 @if (setting('site.logo'))
                                     <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
                                 @else
-                                    {{ setting('site.title') }}
+                                    {{ __('sentence.site_title') }}
                                 @endif
                             </h2>
                         </a>
@@ -356,13 +356,13 @@
 
                         <li>
                             <a href="#" class="navbar-link dropdown-indicator transition">
-                                Languages
+                                {{ __('sentence.languages') }}
                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </a>
                             <ul class="submenu transition">
                                 <li class="navbar-item"><a href="{{ url($english) }}"
-                                        class="navbar-link">ENGLISH</a></li>
-                                <li class="navbar-item"><a href="{{ url($arabic) }}" class="navbar-link">ARABIC</a>
+                                        class="navbar-link">{{ __('sentence.english') }}</a></li>
+                                <li class="navbar-item"><a href="{{ url($arabic) }}" class="navbar-link">{{ __('sentence.arabic') }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -395,9 +395,9 @@
                             @if (setting('site.logo'))
                                 <img src="{{ Voyager::image(setting('site.logo')) }}" alt="SKILLSARTS LOGO">
                             @else
-                                <h4>{{ setting('site.title') }}</h4>
+                                <h4>{{ __('sentence.site_title') }}</h4>
                             @endif
-                            <p>المملكة العربية السعودية</p>
+                            <p>{{ __('sentence.Kingdom') }}</p>
                             <img src="{{ asset('images/contact-us.png') }}" alt="">
 
                         </div>

@@ -2,8 +2,8 @@
 @section('title', setting('site.title'))
 
 @section('social_media')
-    <meta property="og:title" content="{{ setting('site.title') }}" />
-    <meta property="og:description" content="{{ setting('site.description') }}" />
+    <meta property="og:title" content="{{ __('sentence.site_title') }}" />
+    <meta property="og:description" content="{{ __('sentence.site_description') }}" />
     <meta property="og:url" content="{{ route('home') }}" />
     <meta property="og:image" content="{{ Voyager::image(setting('site.social_image')) }}" />
 @endsection
@@ -82,6 +82,22 @@
                 margin-left: 32px;
                 padding-left: 15px;
             }
+
+            .pricing-area .price_item:before {
+                content: "Special offer";
+                color: #ffffff;
+                background: #ff3131;
+                font-weight: bold;
+                position: absolute;
+                right: -27px;
+                top: 29px;
+                font-size: 12px;
+                text-transform: uppercase;
+                padding: 0px 30px;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
         </style>
     @endif
 @stop
@@ -95,7 +111,7 @@
                     @if ($slider->device == 'mobile')
                         <div class="carousel-item {{ $loop->index }} {{ $loop->index == 0 ? 'active' : '' }}">
                             <img class="d-block w-100" src="{{ Storage::url($slider->image) }}"
-                                alt="{{ setting('site.title') }}">
+                                alt="{{ __('sentence.site_title') }}">
                             @if ($slider->heading)
                                 <div class="carousel-caption">
                                     <h5 class="mb-3 display-4 text-red font-weight-bold toggleHeading"
@@ -159,7 +175,7 @@
                     @if ($slider->device == 'desktop')
                         <div class="carousel-item {{ $loop->index }} {{ $loop->index == 0 ? 'active' : '' }}">
                             <img class="d-block w-100" src="{{ Storage::url($slider->image) }}"
-                                alt="{{ setting('site.title') }}">
+                                alt="{{ __('sentence.site_title') }}">
                             @if ($slider->heading)
                                 <div class="carousel-caption">
                                     <h5 class="mb-3 display-4 text-red font-weight-bold on-mobile-font"
@@ -441,7 +457,7 @@
             <div dir="rtl" class="row justify-content-center">
                 <div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
                     <ul class="text-center">
-                        <li><a href="javascript:;" data-filter="all" class="active filter">الكل</a></li>
+                        <li><a href="javascript:;" data-filter="all" class="active filter">{{ __('sentence.everyone') }}</a></li>
                         @foreach ($portcats as $portcat)
                             <li>
                                 <a href="javascript:;" data-filter=".{{ $portcat->key }}"
