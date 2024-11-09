@@ -1,5 +1,5 @@
 @extends('layouts.homeapp')
-@section('title', setting('site.title'))
+@section('title', __('sentence.site_title'))
 
 @section('social_media')
     <meta property="og:title" content="{{ __('sentence.site_title') }}" />

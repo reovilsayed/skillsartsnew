@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta name="description" content="@yield('meta-description', setting('site.description'))">
+    <meta name="description" content="@yield('meta-description', __('sentence.site_description'))">
     <!-- Page Title -->
     <title>@yield('title')</title>
     @yield('social_media')
