@@ -24,9 +24,17 @@
             <h2 class="h1 mb-3 blogeSection">{{ __('sentence.blog') }}
             </h2>
             <ul class="breadcrumb">
-                <li> <a href="{{ route('home') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
-                <li class="active"> <a href="{{ route('blog') }}" class="transition">{{ __('sentence.blog') }}</a></li>
-                <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
+                @if (App::getLocale() == 'ar')
+                    <li> <a href="{{ url('/ar') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
+                    <li class="active"> <a href="{{ url('ar/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
+                    </li>
+                    <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
+                @else
+                    <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
+                    <li class="active"> <a href="{{ url('en/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
+                    </li>
+                    <li> <a href="{{ url('/en') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
+                @endif
             </ul>
         </div>
     </div>
@@ -46,28 +54,50 @@
                                 <div class="media-body"
                                     @if (App::getLocale() == 'en') style="text-align: left; padding-left: 12px;" @endif>
                                     <span class="small mb-2">{{ $post->created_at->format('M d, Y') }}</span>
-
-                                    <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                        <h4 class="media-heading mb-3">{{ $post->translate(app()->getLocale())->title }}
-                                        </h4>
-                                    </a>
+                                    @if (App::getLocale() == 'ar')
+                                        <a href="{{ url('ar/post', $post->slug) }}" class="transition">
+                                            <h4 class="media-heading mb-3">
+                                                {{ $post->translate(app()->getLocale())->title }}
+                                            </h4>
+                                        </a>
+                                    @else
+                                        <a href="{{ url('en/post', $post->slug) }}" class="transition">
+                                            <h4 class="media-heading mb-3">
+                                                {{ $post->translate(app()->getLocale())->title }}
+                                            </h4>
+                                        </a>
+                                    @endif
 
                                     <p> {!! Str::limit(strip_tags($post->translate(app()->getLocale())->body), $limit = 200, $end = '...') !!}</p>
                                 </div>
                                 <div class="media-left">
-                                    <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                        <img style="width: 120px" class="media-object"
-                                            src="{{ Voyager::image($post->image) }}" alt="{{ $post->image_alt }}"
-                                            title="{{ $post->seo_title }}">
-                                    </a>
+                                    @if (App::getLocale() == 'ar')
+                                        <a href="{{ url('ar/post', $post->slug) }}" class="transition">
+                                            <img style="width: 120px" class="media-object"
+                                                src="{{ Voyager::image($post->image) }}" alt="{{ $post->image_alt }}"
+                                                title="{{ $post->seo_title }}">
+                                        </a>
+                                    @else
+                                        <a href="{{ url('en/post', $post->slug) }}" class="transition">
+                                            <img style="width: 120px" class="media-object"
+                                                src="{{ Voyager::image($post->image) }}" alt="{{ $post->image_alt }}"
+                                                title="{{ $post->seo_title }}">
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="post-meta">
                                 <ul>
                                     <li>
-                                        <a href="{{ route('post_details', $post->slug) }}" class="transition">
-                                            <span>{{ __('sentence.read_more') }}</span>
-                                        </a>
+                                        @if (App::getLocale() == 'ar')
+                                            <a href="{{ url('ar/post', $post->slug) }}" class="transition">
+                                                <span>{{ __('sentence.read_more') }}</span>
+                                            </a>
+                                        @else
+                                            <a href="{{ url('en/post', $post->slug) }}" class="transition">
+                                                <span>{{ __('sentence.read_more') }}</span>
+                                            </a>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>
@@ -120,12 +150,21 @@
                             <ul class="cat-list">
                                 @foreach ($categories as $category)
                                     <li @if (App::getLocale() == 'en') dir="rtl" @else dir="ltr" @endif>
-                                        <a href="{{ route('blog', ['category' => $category->slug]) }}"
-                                            class="d-flex justify-content-between transition">
+                                        @if (App::getLocale() == 'ar')
+                                            <a href="{{ url('ar/posts', ['category' => $category->slug]) }}"
+                                                class="d-flex justify-content-between transition">
 
-                                            <small>{{ $category->posts_count }}</small>
-                                            <span>{{ $category->translate(app()->getLocale())->name }}</span>
-                                        </a>
+                                                <small>{{ $category->posts_count }}</small>
+                                                <span>{{ $category->translate(app()->getLocale())->name }}</span>
+                                            </a>
+                                        @else
+                                            <a href="{{ url('en/posts/?'. $category->slug) }}"
+                                                class="d-flex justify-content-between transition">
+
+                                                <small>{{ $category->posts_count }}</small>
+                                                <span>{{ $category->translate(app()->getLocale())->name }}</span>
+                                            </a>
+                                        @endif
                                     </li>
                                 @endforeach
 

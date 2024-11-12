@@ -260,8 +260,8 @@
                     @else
                         <a class="navbar-brand" href="{{ url('/en') }}">
                             <h2 id="logo">
-                                @if (setting('site.logo'))
-                                    <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
+                                @if (setting('site.logo_english'))
+                                    <img src="{{ Voyager::image(setting('site.logo_english')) }}" alt="skillsarts logo">
                                 @else
                                     {{ __('sentence.site_title') }}
                                 @endif
@@ -559,7 +559,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-6">
                         <p class="copyright text-center mt-0">
-                            جميع الحقوق محفوظة لموقع <span>سكيلز آرتس</span> 2022 <a href="https://skillsarts.com/"
+                            {{ __('sentence.All_rights') }}<span>{{ __('sentence.reserved_to') }}</span> 2022 <a href="https://skillsarts.com/"
                                 target="_blank"> Skills Arts</a>©</p>
                     </div>
                     <div class="col-md-6 text-center">

@@ -28,7 +28,7 @@
     <div id="tf-blog" class="blog-page sec-padding">
         <div class="container">
             <div class="sec-title text-center mb50">
-                <h1 class="blogeSection">{{ $page->title }}</h1>
+                <h1 class="blogeSection">{{ $page->translate(app()->getLocale())->title }}</h1>
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.png') }}" alt="skills arts logo icon">
                 </div>
             </div>
@@ -40,9 +40,8 @@
                         <div class="clearfix">
 
                         </div>
-                        <div class="description"
-                            @if (App::getLocale() == 'en') dir="ltr" style="text-align: left" @else dir="rtl" @endif>
-                            {!! $page->body !!}
+                        <div class="description" @if (App::getLocale() == 'en') dir="ltr" style="text-align: left" @else dir="rtl" @endif>
+                            {!! $page->translate(app()->getLocale())->body !!}
                         </div>
                     </div>
                 </div>

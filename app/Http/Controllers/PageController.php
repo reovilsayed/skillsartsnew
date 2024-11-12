@@ -81,6 +81,7 @@ class PageController extends Controller
 
     public function blog()
     {
+      
         $posts = Post::where('status', 'PUBLISHED')->latest()->filter(request(['search', 'category']))->paginate(12);
         $posts->translate(app()->getLocale());
         

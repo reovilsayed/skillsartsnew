@@ -3,13 +3,13 @@
 namespace App;
 
 
-use Illuminate\Database\Eloquent\Model;
+use TCG\Voyager\Models\Page as ModelsPage;
 use TCG\Voyager\Traits\Translatable;
 
-class Post extends Model
+class Post extends  ModelsPage
 {
     use Translatable;
-    protected $translatable = ['title', 'excerpt', 'body'];
+    protected $translatable = ['title', 'seo_title', 'excerpt', 'body', 'meta_description', 'meta_keywords', 'image_alt'];
     public function category()
     {
         return $this->belongsTo('App\Category');

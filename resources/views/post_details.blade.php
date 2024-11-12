@@ -24,11 +24,17 @@
             <h2 class="h2 mb-3 blogeSection">{{ __('sentence.blog') }}
             </h2>
             <ul class="breadcrumb">
-                <li>
-                    <a href="{{ route('home') }}" class="transition"> <i class="fa fa-home"></i> </a>
-                </li>
-                <li class="active"> <a href="{{ route('blog') }}" class="transition"> {{ __('sentence.blog') }}</a></li>
-                <li> <a href="#" class="transition"> {{ __('sentence.article') }}</a></li>
+                @if (App::getLocale() == 'ar')
+                    <li> <a href="{{ url('/ar') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
+                    <li class="active"> <a href="{{ url('ar/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
+                    </li>
+                    <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
+                @else
+                    <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
+                    <li class="active"> <a href="{{ url('en/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
+                    </li>
+                    <li> <a href="{{ url('/en') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
+                @endif
             </ul>
         </div>
     </div>
@@ -86,12 +92,21 @@
                             <ul class="cat-list">
                                 @foreach ($categories as $category)
                                     <li @if (App::getLocale() == 'en') dir="rtl" @else dir="ltr" @endif>
-                                        <a href="{{ route('blog', ['category' => $category->slug]) }}"
-                                            class="d-flex justify-content-between transition">
-                                            <small>{{ $category->posts->count() }}</small>
-                                            <span>{{ $category->translate(app()->getLocale())->name }}</span>
+                                        @if (App::getLocale() == 'ar')
+                                            <a href="{{ url('ar/posts', ['category' => $category->slug]) }}"
+                                                class="d-flex justify-content-between transition">
 
-                                        </a>
+                                                <small>{{ $category->posts_count }}</small>
+                                                <span>{{ $category->translate(app()->getLocale())->name }}</span>
+                                            </a>
+                                        @else
+                                            <a href="{{ url('en/posts/?' . $category->slug) }}"
+                                                class="d-flex justify-content-between transition">
+
+                                                <small>{{ $category->posts_count }}</small>
+                                                <span>{{ $category->translate(app()->getLocale())->name }}</span>
+                                            </a>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>

@@ -425,16 +425,15 @@
 
                     </div>
                 </div>
-                <!-- end service item -->
                 <div class="col-lg-4 col-md-12">
                     <div class="service-item">
                         <div class="effect transition"></div>
                         <div class="service-icon transition">
-                            <i class="fa fa-code"></i>
+                            <i class="fas fa-code"></i>
                         </div>
 
                         <div class="service-desc">
-                            <a href="https://skillsarts.com/page/web-development">
+                            <a href="https://skillsarts.com/page/Motion-video">
                                 <h4 class="contact_title">{{ __('sentence.websites_one') }}</h4>
                                 <p class="contact_title">{{ __('sentence.services_cart_six') }}</p>
                             </a>
@@ -442,6 +441,187 @@
 
                     </div>
                 </div>
+                <!-- end service item -->
+                {{-- <div class="col-lg-4 col-md-12">
+                    <div class="service-item">
+                        <div class="effect transition"></div>
+                        <div class="service-icon transition">
+                            <i class="fas fa-palette"></i>
+                        </div>
+
+                        <div class="service-desc">
+                            <a href="https://www.artisan.com.sa">
+                                <h4 class="contact_title">{{ __('sentence.Design') }}</h4>
+                            </a>
+                            <a href="https://www.artisan.com.sa/logo-design/">
+                                <p class="contact_title">{{ __('sentence.Logo_Design') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/brand-identity/">
+                                <p class="contact_title">{{ __('sentence.Brand_Identity') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/campaign-design/">
+                                <p class="contact_title">{{ __('sentence.Campaign_Design') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/digital-drawings/">
+                                <p class="contact_title">{{ __('sentence.Digital_Drawing') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/social-media-designs/">
+                                <p class="contact_title">{{ __('sentence.Social_Media_Designs') }}</p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="service-item">
+                        <div class="effect transition"></div>
+                        <div class="service-icon transition">
+                            <i class="fas fa-play"></i>
+                        </div>
+
+                        <div class="service-desc">
+                            <a href="https://www.artisan.com.sa">
+                                <h4 class="contact_title">{{ __('sentence.Media') }}</h4>
+                            </a>
+                            <a href="https://www.artisan.com.sa/motion-graphics-video/">
+                                <p class="contact_title">{{ __('sentence.Motion_Graphics_Video') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/documentary-video/">
+                                <p class="contact_title">{{ __('sentence.Documentary_Video') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/drone-videography/">
+                                <p class="contact_title">{{ __('sentence.Drone_Videography') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/photography/">
+                                <p class="contact_title">{{ __('sentence.Photography') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/event-photography/">
+                                <p class="contact_title">{{ __('sentence.Event_Photography') }}</p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="service-item">
+                        <div class="effect transition"></div>
+                        <div class="service-icon transition">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div class="service-desc">
+                            <a href="https://www.artisan.com.sa">
+                                <h4 class="contact_title">{{ __('sentence.Development') }}</h4>
+                            </a>
+                            <a href="https://www.artisan.com.sa/websites-design/">
+                                <p class="contact_title">{{ __('sentence.Websites_Design') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/online-store-development/">
+                                <p class="contact_title">{{ __('sentence.Online_Store') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/mobile-apps-development/">
+                                <p class="contact_title">{{ __('sentence.Mobile_Apps') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/web-apps-development/">
+                                <p class="contact_title">{{ __('sentence.Web_Apps') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/event-photography/">
+                                <p class="contact_title">{{ __('sentence.Artificial_Intelligence') }}</p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="service-item">
+                        <div class="effect transition"></div>
+                        <div class="service-icon transition">
+                            <i class="fas fa-search-location"></i>
+                        </div>
+
+                        <div class="service-desc">
+                            <a href="https://www.artisan.com.sa">
+                                <h4 class="contact_title">{{ __('sentence.Marketing') }}</h4>
+                            </a>
+                            <a href="https://www.artisan.com.sa/digital-marketing-strategy/">
+                                <p class="contact_title">{{ __('sentence.Digital_Marketing_Strategy') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/social-media-management/">
+                                <p class="contact_title">{{ __('sentence.Social_Media_Management') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/search-engine-optimization/">
+                                <p class="contact_title">{{ __('sentence.Search_Engine_Optimization') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/google-ads/">
+                                <p class="contact_title">{{ __('sentence.Google_Ads') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/social-media-ads/">
+                                <p class="contact_title">{{ __('sentence.Social_Media_Ads') }}</p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="service-item">
+                        <div class="effect transition"></div>
+                        <div class="service-icon transition">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+
+                        <div class="service-desc">
+                            <a href="https://www.artisan.com.sa">
+                                <h4 class="contact_title">{{ __('sentence.Advertising') }}</h4>
+                            </a>
+                            <a href="https://www.artisan.com.sa/3d-letters-signages/">
+                                <p class="contact_title">{{ __('sentence.Signages') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/vehicle-stickers/">
+                                <p class="contact_title">{{ __('sentence.Stickers') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/banner-printing-in-riyadh/">
+                                <p class="contact_title">{{ __('sentence.Printing') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/exhibition-booths/">
+                                <p class="contact_title">{{ __('sentence.Exhibition_Booths') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/wp-content/uploads/2024/artisan-giveaways-catalogue.pdf">
+                                <p class="contact_title">{{ __('sentence.Giveaways') }}</p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="service-item">
+                        <div class="effect transition"></div>
+                        <div class="service-icon transition">
+                            <i class="fas fa-cube"></i>
+                        </div>
+
+                        <div class="service-desc">
+                            <a href="https://www.artisan.com.sa">
+                                <h4 class="contact_title">{{ __('sentence.3D_Production') }}</h4>
+                            </a>
+                            <a href="https://www.artisan.com.sa/3d-architectural/">
+                                <p class="contact_title">{{ __('sentence.3D_Architectural') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/3d-product-design-service/">
+                                <p class="contact_title">{{ __('sentence.3D_Product_Design') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/3d-medical-visualization/">
+                                <p class="contact_title">{{ __('sentence.3D_Medical_Visualization') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/3d-character-design/">
+                                <p class="contact_title">{{ __('sentence.3D_Character_Design') }}</p>
+                            </a>
+                            <a href="https://www.artisan.com.sa/virtual-reality-augmented-reality/">
+                                <p class="contact_title">{{ __('sentence.Virtual_Reality_Augmented_Reality') }}</p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -457,7 +637,8 @@
             <div dir="rtl" class="row justify-content-center">
                 <div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
                     <ul class="text-center">
-                        <li><a href="javascript:;" data-filter="all" class="active filter">{{ __('sentence.everyone') }}</a></li>
+                        <li><a href="javascript:;" data-filter="all"
+                                class="active filter">{{ __('sentence.everyone') }}</a></li>
                         @foreach ($portcats as $portcat)
                             <li>
                                 <a href="javascript:;" data-filter=".{{ $portcat->key }}"
@@ -492,9 +673,11 @@
         </div>
         <div class="container">
             <div class="row align-items-center justify-content-center">
-                <a href="{{ route('portfolio') }}" class="btn btn-red mt-5">
-                    {{ __('sentence.more') }}
-                </a>
+                @if (App::getLocale() == 'ar')
+                    <a href="{{ url('ar/portfolio') }}" class="btn btn-red mt-5">{{ __('sentence.more') }}</a>
+                @else
+                    <a href="{{ url('en/portfolio') }}" class="btn btn-red mt-5">{{ __('sentence.more') }}</a>
+                @endif
             </div>
         </div>
     </section>

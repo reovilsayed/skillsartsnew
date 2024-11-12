@@ -248,7 +248,7 @@
                         <a class="navbar-brand" href="{{ url('/en') }}">
                             <h2 id="logo">
                                 @if (setting('site.logo'))
-                                    <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
+                                    <img src="{{ Voyager::image(setting('site.logo_english')) }}" alt="skillsarts logo">
                                 @else
                                     {{ __('sentence.site_title') }}
                                 @endif

@@ -14,7 +14,7 @@
     <div class="container">
 
 
-        <div dir="rtl" class="row mb50">
+        <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="row mb50">
             <!-- contact address -->
 
             <div class="col-lg-3 col-md-3 col-sm-12 text-center">
