@@ -26,6 +26,7 @@ use App\Mail\EmailSubmission;
 use App\Mail\OrderConfirmed;
 use App\Mail\OrderNotification;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
@@ -38,7 +39,7 @@ class PageController extends Controller
 
         $sliders_desktop = Slider::with('translations')->where('device', 'desktop')->get();
         $sliders_desktop->translate(app()->getLocale());
-        
+
         $teams = Team::get();
         $teams->translate(app()->getLocale());
 
@@ -81,10 +82,10 @@ class PageController extends Controller
 
     public function blog()
     {
-      
+
         $posts = Post::where('status', 'PUBLISHED')->latest()->filter(request(['search', 'category']))->paginate(12);
         $posts->translate(app()->getLocale());
-        
+
         $categories = Category::withCount('posts')->get();
         $categories->translate(app()->getLocale());
 
@@ -223,7 +224,7 @@ class PageController extends Controller
     public function search()
     {
         $search = request()->search;
-        
+
         $products = Product::where('name', 'LIKE', "%{$search}%")->where('status', 1)->limit(24)->whereNull('parent_id')->latest()->get();
         $products->translate(app()->getLocale());
 
@@ -239,10 +240,10 @@ class PageController extends Controller
             'name' => ['required', 'max:40'],
             'email' => ['required', 'max:100', 'email'],
             'subject' => ['required', 'max:100'],
-            'message' => ['required', 'max:2000','not_regex:/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/'],
+            'message' => ['required', 'max:2000', 'not_regex:/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/'],
             'phone' => ['required']
-        ],[
-            'message.not_regex'=>'لدواعي الحماية يمنع استخدام الروابط في نص الرسالة'
+        ], [
+            'message.not_regex' => 'لدواعي الحماية يمنع استخدام الروابط في نص الرسالة'
         ]);
         // if ($this->checkUrl($request->message)) {
         //     throw ValidationException::withMessages([
@@ -264,7 +265,12 @@ class PageController extends Controller
         }
 
         Mail::to(setting('site.email'))->send(new EmailSubmission($contact));
-        return back()->with('success', 'تم إرسال الرسالة بنجاح سوف يتم التواصل معكم من قبل فريق الدعم');
+        // return back()->with('success', __('sentence.contactMail'));
+        $successMessage = App::getLocale() == 'ar'
+            ? 'تم إرسال الرسالة بنجاح سوف يتم التواصل معكم من قبل فريق الدعم'
+            : 'The message has been sent successfully. The support team will contact you.';
+
+        return back()->with('success', $successMessage);
     }
     private function checkUrl($message)
     {

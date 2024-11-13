@@ -58,7 +58,7 @@
                 <!-- / section title -->
                 <div class="contact-form" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif >
                     <h3 class="contact_title">{{ __('sentence.ask_and_pamper_yourself') }}</h3>
-                    <form action="{{ route('contact.store') }}" id="" method="POST">
+                    <form action="{{ url(App::getLocale() . '/contact-store') }}" id="" method="POST">
                         @csrf
                         <div class="form-group d-flex justify-content-between">
                             <div class="input-field">

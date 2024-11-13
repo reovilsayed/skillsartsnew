@@ -14,20 +14,28 @@
             width: auto !important;
             height: auto !important;
         }
-
     </style>
 @endsection
 @section('content')
 
     <div class="blog-header text-left">
-        <div  @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container" @if (App::getLocale() == 'en') style="text-align: left" @endif>
+        <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container"
+            @if (App::getLocale() == 'en') style="text-align: left" @endif>
             <h2 class="h1 mb-3 ">{{ __('sentence.the_store') }}</h2>
             <ul class="breadcrumb pl-3 pr-3">
-            <li class="">
-                    <a href="{{ route('home') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                </li>
-            <li class="active"> <a href="{{ route('shop') }}" class="transition pr-3 pl-3"> {{ __('sentence.products') }}</a></li>
-
+                @if (App::getLocale() == 'ar')
+                    <li class="">
+                        <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('ar/shop') }}" class="transition pr-3 pl-3">
+                            {{ __('sentence.products') }}</a></li>
+                @else
+                    <li class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('en/shop') }}" class="transition pr-3 pl-3">
+                            {{ __('sentence.products') }}</a></li>
+                @endif
 
             </ul>
         </div>
@@ -58,7 +66,8 @@
                                 @endif
                                 <form action="{{ route('cart.store') }}" method="post">
                                     @csrf
-                                    <input type="hidden" class="form-control qty" value="1" min="1" name="quantity">
+                                    <input type="hidden" class="form-control qty" value="1" min="1"
+                                        name="quantity">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}" />
                                     <button class="btn btn-red mt-1">
                                         {{ __('sentence.add_to_cart') }}

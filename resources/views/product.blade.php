@@ -3,10 +3,10 @@
 @section('meta-description', $product->meta_description)
 
 @section('social_media')
-<meta property="og:title" content="{{ $product->title}}" />
-<meta property="og:description"content="{{$product->details}}" />
-<meta property="og:url" content="{{route('product',$product->slug)}}" />
-<meta property="og:image" content="{{Voyager::image($product->image)}}" />
+    <meta property="og:title" content="{{ $product->title }}" />
+    <meta property="og:description"content="{{ $product->details }}" />
+    <meta property="og:url" content="{{ route('product', $product->slug) }}" />
+    <meta property="og:image" content="{{ Voyager::image($product->image) }}" />
 @endsection
 @section('css')
     <link href="{{ asset('js/magiczoom/magiczoom.css') }}" rel="stylesheet">
@@ -27,22 +27,32 @@
         .preview-slider img {
             width: auto !important
         }
-
     </style>
 @endsection
 @section('content')
     @php
-    $images = json_decode($product->images);
+        $images = json_decode($product->images);
     @endphp
     <div class="blog-header">
         <div class="container " @if (App::getLocale() == 'en') style="text-align: left" @endif>
             <h2 class="h1 mb-3 " @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ $product->name }}</h2>
             <ul class="breadcrumb pl-3 pr-3">
-                <li class="">
-                    <a href="{{ route('home') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                </li>
-                <li class="active"> <a href="{{ route('shop') }}" class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
-                <li> <a href="{{ $product->path() }}" class="transition pr-3 pl-3">{{ $product->name }} </a></li>
+                @if (App::getLocale() == 'ar')
+                    <li class="">
+                        <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="active"> <a href="{{ url('ar') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
+                    <li> <a href="{{ $product->path() }}" class="transition pr-3 pl-3">{{ $product->name }} </a></li>
+                @else
+                    <li> <a href="{{ $product->path() }}" class="transition pr-3 pl-3">{{ $product->name }} </a></li>
+                    <li class="active"> <a href="{{ url('en/shop') }}"
+                            class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
+
+                    <li class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
@@ -70,14 +80,16 @@
                     @endif
                 </div>
                 <div class="col-md-6 col-lg-6">
-                    <h3 class="" @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ $product->translate(app()->getLocale())->name }}</h3>
+                    <h3 class="" @if (App::getLocale() == 'en') style="text-align: left" @endif>
+                        {{ $product->translate(app()->getLocale())->name }}</h3>
                     <div class="product-price text-dark">
                         @if ($product->saleprice)
                             <h6 @if (App::getLocale() == 'en') style="text-align: left" @endif><del
                                     class="mr-2">{{ Shop::price($product->price) }}</del>{{ Shop::price($product->saleprice) }}
                             </h6>
                         @else
-                            <h6 @if (App::getLocale() == 'en') style="text-align: left" @endif>{{ Shop::price($product->price) }} </h6>
+                            <h6 @if (App::getLocale() == 'en') style="text-align: left" @endif>
+                                {{ Shop::price($product->price) }} </h6>
                         @endif
                     </div>
                     <div class="product-summery py-3">
@@ -89,7 +101,8 @@
                             <input type="hidden" name="product_id" value="{{ $product->id }}" />
                             <div class="row">
                                 <div class="input-group">
-                                    <input type="hidden" class="form-control mr-3" value="1" min="1" name="quantity" />
+                                    <input type="hidden" class="form-control mr-3" value="1" min="1"
+                                        name="quantity" />
                                     <button class="btn btn-red">
                                         <i class="fa fa-shopping-cart"></i>
                                         {{ __('sentence.add_to_cart') }}

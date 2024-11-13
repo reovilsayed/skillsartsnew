@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
                     <ul class="text-center">
-                        <li><a href="javascript:;" data-filter="all" class="active filter">الكل</a></li>
+                        <li><a href="javascript:;" data-filter="all" class="active filter">{{ __('sentence.everyone') }}</a></li>
                         @foreach ($portcats as $portcat)
                             <li>
                                 <a href="javascript:;" data-filter=".{{ $portcat->key }}"

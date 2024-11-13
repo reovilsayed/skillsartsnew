@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta name="description" content="@yield('meta-description',__('sentence.site_description'))">
+    <meta name="description" content="@yield('meta-description', __('sentence.site_description'))">
     <!-- Page Title -->
     <title>@yield('title')</title>
     @yield('social_media')
@@ -235,7 +235,7 @@
             <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container-fluid">
                 <div class="navbar-header">
                     @if (App::getLocale() == 'ar')
-                        <a class="navbar-brand" href="{{ url('/ar') }}">
+                        <a class="navbar-brand" href="{{ url('/') }}">
                             <h2 id="logo">
                                 @if (setting('site.logo'))
                                     <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
@@ -246,9 +246,11 @@
                         </a>
                     @else
                         <a class="navbar-brand" href="{{ url('/en') }}">
-                            <h2 id="logo">
+                            <h2 id="logo" style="height: 51px;">
                                 @if (setting('site.logo'))
-                                    <img src="{{ Voyager::image(setting('site.logo_english')) }}" alt="skillsarts logo">
+                                    <img style="height: 100%; width: 100%;"
+                                        src="{{ Voyager::image(setting('site.logo_english')) }}"
+                                        alt="skillsarts logo">
                                 @else
                                     {{ __('sentence.site_title') }}
                                 @endif
@@ -619,7 +621,7 @@
             $('.cart-redirect-alert').hide()
         })
     </script>
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <script>
             @foreach ($errors->all() as $error)
                 toastr.error('{{ $error }}')
@@ -627,16 +629,64 @@
         </script>
     @endif
     @if (session()->has('success') || session()->has('error'))
+        @if (App::getLocale() == 'ar')
+            <script>
+                Swal.fire({
+                    icon: "{{ session()->has('success') ? 'success' : 'error' }}",
+                    title: "{{ session()->has('success') ? 'شكرا ل' : 'Oops' }}",
+                    text: "{!! session('success') ?? session('error') !!}",
+                    confirmButtonText: 'متابعة',
+                    confirmButtonColor: '#ff3131',
+                })
+            </script>
+        @else
+            <script>
+                Swal.fire({
+                    icon: "{{ session()->has('success') ? 'success' : 'error' }}",
+                    title: "{{ session()->has('success') ? 'Thank you' : 'Oops' }}",
+                    text: "{!! session('success') ?? session('error') !!}",
+                    confirmButtonText: 'Tracking',
+                    confirmButtonColor: '#ff3131',
+                })
+            </script>
+        @endif
+    @endif --}}
+
+    @if ($errors->any())
         <script>
-            Swal.fire({
-                icon: "{{ session()->has('success') ? 'success' : 'error' }}",
-                title: "{{ session()->has('success') ? 'شكرا لك' : 'Oops' }}",
-                text: "{!! session('success') ?? session('error') !!}",
-                confirmButtonText: 'متابعة',
-                confirmButtonColor: '#ff3131',
-            })
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}')
+            @endforeach
         </script>
     @endif
+
+    @if (session()->has('success') || session()->has('error'))
+        @php
+            $isArabic = App::getLocale() == 'ar';
+            $iconType = session()->has('success') ? 'success' : 'error';
+            $title = session()->has('success') ? ($isArabic ? 'شكرا لك' : 'Thank you') : 'Oops';
+            $text = json_encode(session('success') ?? session('error'));
+            $buttonText = $isArabic ? 'متابعة' : 'Tracking';
+        @endphp
+
+        <script>
+            console.log("SweetAlert will display now with the following parameters:");
+            console.log("Icon: {{ $iconType }}");
+            console.log("Title: {{ $title }}");
+            console.log("Text: {{ $text }}");
+
+            Swal.fire({
+                icon: "{{ $iconType }}",
+                title: "{{ $title }}",
+                text: {!! $text !!},
+                confirmButtonText: "{{ $buttonText }}",
+                confirmButtonColor: '#ff3131',
+            }).then(() => {
+                console.log("SweetAlert displayed successfully");
+            });
+        </script>
+    @endif
+
     @yield('javascript')
     @stack('script')
     @production

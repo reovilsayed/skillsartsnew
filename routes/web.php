@@ -13,6 +13,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Voyager\OrdersController;
+use Illuminate\Support\Facades\App;
 use App\Mail\ChargeInvoice;
 use App\Mail\OrderConfirmed;    
 use App\Mail\OrderInvoice;
@@ -50,7 +51,10 @@ Route::get('thankyou', [PageController::class, 'thankyou'])->name('thankyou');
 Route::get('whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp')->middleware('auth');
 Route::get('page/{slug}', [PageController::class, 'page'])->name('page');
 Route::get('contact', [PageController::class, 'contact'])->name('contact');
-Route::post('contact-store', [PageController::class, 'contact_store'])->name('contact.store');
+Route::group(['prefix' => '{locale}'], function () {
+    Route::post('contact-store', [PageController::class, 'contact_store'])->name('contact.store');
+});
+
 
 Route::get('calculator', [CalculatorController::class, 'show'])->name('calculator');
 

@@ -248,7 +248,7 @@
             <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="container-fluid">
                 <div class="navbar-header">
                     @if (App::getLocale() == 'ar')
-                        <a class="navbar-brand" href="{{ url('/ar') }}">
+                        <a class="navbar-brand" href="{{ url('/') }}">
                             <h2 id="logo">
                                 @if (setting('site.logo'))
                                     <img src="{{ Voyager::image(setting('site.logo')) }}" alt="skillsarts logo">
@@ -259,9 +259,10 @@
                         </a>
                     @else
                         <a class="navbar-brand" href="{{ url('/en') }}">
-                            <h2 id="logo">
-                                @if (setting('site.logo_english'))
-                                    <img src="{{ Voyager::image(setting('site.logo_english')) }}" alt="skillsarts logo">
+                            <h2 id="logo" style="height: 51px;">
+                                @if (setting('site.logo'))
+                                    <img style="height: 100%; width: 100%;"
+                                        src="{{ Voyager::image(setting('site.logo_english')) }}" alt="skillsarts logo">
                                 @else
                                     {{ __('sentence.site_title') }}
                                 @endif
@@ -362,7 +363,8 @@
                             <ul class="submenu transition">
                                 <li class="navbar-item"><a href="{{ url($english) }}"
                                         class="navbar-link">{{ __('sentence.english') }}</a></li>
-                                <li class="navbar-item"><a href="{{ url($arabic) }}" class="navbar-link">{{ __('sentence.arabic') }}</a>
+                                <li class="navbar-item"><a href="{{ url($arabic) }}"
+                                        class="navbar-link">{{ __('sentence.arabic') }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -559,8 +561,8 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-6">
                         <p class="copyright text-center mt-0">
-                            {{ __('sentence.All_rights') }}<span>{{ __('sentence.reserved_to') }}</span> 2022 <a href="https://skillsarts.com/"
-                                target="_blank"> Skills Arts</a>©</p>
+                            {{ __('sentence.All_rights') }}<span>{{ __('sentence.reserved_to') }}</span> 2022 <a
+                                href="https://skillsarts.com/" target="_blank"> Skills Arts</a>©</p>
                     </div>
                     <div class="col-md-6 text-center">
                         <img src="{{ asset('images/payment.webp') }}" class="w-50">
@@ -622,15 +624,27 @@
         </script>
     @endif
     @if (session()->has('success') || session()->has('error'))
-        <script>
-            Swal.fire({
-                icon: "{{ session()->has('success') ? 'success' : 'error' }}",
-                title: "{{ session()->has('success') ? 'شكرا لك' : 'Oops' }}",
-                text: "{!! session('success') ?? session('error') !!}",
-                confirmButtonText: 'متابعة',
-                confirmButtonColor: '#ff3131',
-            })
-        </script>
+        @if (App::getLocale() == 'ar')
+            <script>
+                Swal.fire({
+                    icon: "{{ session()->has('success') ? 'success' : 'error' }}",
+                    title: "{{ session()->has('success') ? 'شكرا ل' : 'Oops' }}",
+                    text: "{!! session('success') ?? session('error') !!}",
+                    confirmButtonText: 'متابعة',
+                    confirmButtonColor: '#ff3131',
+                })
+            </script>
+        @else
+            <script>
+                Swal.fire({
+                    icon: "{{ session()->has('success') ? 'success' : 'error' }}",
+                    title: "{{ session()->has('success') ? 'Thank you' : 'Oops' }}",
+                    text: "{!! session('success') ?? session('error') !!}",
+                    confirmButtonText: 'Tracking',
+                    confirmButtonColor: '#ff3131',
+                })
+            </script>
+        @endif
     @endif
     @yield('javascript')
     @stack('script')

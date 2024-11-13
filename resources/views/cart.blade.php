@@ -23,19 +23,19 @@
             <ul class="breadcrumb pl-3 pr-3">
                 @if (App::getLocale() == 'ar')
                     <li class="">
-                        <a href="{{ url('/ar') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                        <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
                     <li class="active"> <a href="{{ url('ar/shop') }}"
                             class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
                     <li> <a href="{{ url('ar/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
                 @else
-                    <li class="">
-                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                    </li>
+                    <li> <a href="{{ url('en/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
                     <li class="active"> <a href="{{ url('en/shop') }}"
                             class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
 
-                    <li> <a href="{{ url('en/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
+                    <li class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
+                    </li>
                 @endif
 
 
