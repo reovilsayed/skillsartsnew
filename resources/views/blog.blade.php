@@ -26,7 +26,7 @@
             <ul class="breadcrumb">
                 @if (App::getLocale() == 'ar')
                     <li> <a href="{{ url('/') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
-                    <li class="active"> <a href="{{ url('ar/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
+                    <li class="active"> <a href="{{ url('/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
                     </li>
                     <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
                 @else

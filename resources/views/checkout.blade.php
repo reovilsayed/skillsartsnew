@@ -43,19 +43,19 @@
                     <li class="active" class="">
                         <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
-                    <li> <a href="{{ url('ar/shop') }}" class="transition pr-3 pl-3 ">{{ __('sentence.shopping_cart') }}</a>
+                    <li> <a href="{{ url('/shop') }}" class="transition pr-3 pl-3 ">{{ __('sentence.shopping_cart') }}</a>
                     </li>
-                    <li> <a href="{{ url('ar/checkout') }}"
+                    <li> <a href="{{ url('/checkout') }}"
                             class="transition pr-3 pl-3">{{ __('sentence.end_of_order') }}</a>
                     </li>
                 @else
-                    <li class="active" class="">
-                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
-                    </li>
                     <li> <a href="{{ url('en/shop') }}" class="transition pr-3 pl-3 ">{{ __('sentence.shopping_cart') }}</a>
                     </li>
                     <li> <a href="{{ url('en/checkout') }}"
                             class="transition pr-3 pl-3">{{ __('sentence.end_of_order') }}</a>
+                    </li>
+                    <li class="active" class="">
+                        <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
                 @endif
 

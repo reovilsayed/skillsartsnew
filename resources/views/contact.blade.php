@@ -14,7 +14,7 @@
                     <li>
                         <a href="{{ url('/') }}" class="transition"> <i class="fa fa-home"></i> </a>
                     </li>
-                    <li class="active"> <a href="{{ url('ar/contact') }}"
+                    <li class="active"> <a href="{{ url('/contact') }}"
                             class="transition">{{ __('sentence.communication') }}</a></li>
                     <li> <a href="#" class="transition"> {{ __('sentence.with_us') }}</a></li>
                 @else

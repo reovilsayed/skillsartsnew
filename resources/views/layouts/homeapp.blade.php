@@ -198,9 +198,9 @@
         }
 
         if (in_array(@$arabic[0], config('app.locales'))) {
-            $arabic[0] = 'ar';
+            $arabic[0] = '';
         } else {
-            array_unshift($arabic, 'ar');
+            array_unshift($arabic, '');
         }
 
         $english = implode('/', $english);
@@ -317,9 +317,9 @@
                                 </a>
                                 <ul class="submenu transition">
                                     @if (App::getLocale() == 'ar')
-                                        <li class="navbar-item"><a href="{{ url('ar/dashboard') }}"
+                                        <li class="navbar-item"><a href="{{ url('/dashboard') }}"
                                                 class="navbar-link">{{ __('sentence.control_panel') }}</a></li>
-                                        <li class="navbar-item"><a href="{{ url('ar/orders') }}"
+                                        <li class="navbar-item"><a href="{{ url('/orders') }}"
                                                 class="navbar-link">{{ __('sentence.register') }}</a></li>
                                     @else
                                         <li class="navbar-item"><a href="{{ url('en/dashboard') }}"
@@ -371,7 +371,7 @@
 
                         <li>
                             @if (App::getLocale() == 'ar')
-                                <a href="{{ url('ar/cart') }}">
+                                <a href="{{ url('/cart') }}">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ __('sentence.cart') }}
                                     ( <span
                                         class="text-danger font-weight-bold">{{ Cart::getTotalQuantity() }}</span>)
@@ -411,27 +411,27 @@
                             <h4>{{ __('sentence.useful_links') }}</h4>
                             <ul>
                                 @if (App::getLocale() == 'ar')
-                                    <li><a href="{{ url('/ar') }}"><i class="fa fa-check-circle-o pr-1"
+                                    <li><a href="{{ url('/') }}"><i class="fa fa-check-circle-o pr-1"
                                                 aria-hidden="true"></i>
                                             {{ __('sentence.home') }}</a>
                                     </li>
-                                    <li><a href="{{ url('ar/posts') }}"><i class="fa fa-check-circle-o pr-1"
+                                    <li><a href="{{ url('/posts') }}"><i class="fa fa-check-circle-o pr-1"
                                                 aria-hidden="true"></i>
                                             {{ __('sentence.blog') }}</a>
                                     </li>
-                                    <li><a href="{{ url('ar/portfolio') }}"><i class="fa fa-check-circle-o pr-1"
+                                    <li><a href="{{ url('/portfolio') }}"><i class="fa fa-check-circle-o pr-1"
                                                 aria-hidden="true"></i>
                                             {{ __('sentence.our_previous_work') }}</a>
                                     </li>
-                                    <li><a href="{{ url('ar/page/website-map') }}"><i
+                                    <li><a href="{{ url('/page/website-map') }}"><i
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.site_map') }}</a>
                                     </li>
-                                    <li><a href="{{ url('ar/page/Privacy-policy') }}"><i
+                                    <li><a href="{{ url('/page/Privacy-policy') }}"><i
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.privacy_policy') }}</a>
                                     </li>
-                                    <li><a href="{{ url('ar/page/terms-and-conditions') }}"><i
+                                    <li><a href="{{ url('/page/terms-and-conditions') }}"><i
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.terms_conditions') }}</a>
                                     </li>
@@ -471,27 +471,27 @@
                             <h4>{{ __('sentence.our_services') }}</h4>
                             <ul>
                                 @if (App::getLocale() == 'ar')
-                                    <li><a href="{{ url('ar/page/company-profile-design') }}"><i
+                                    <li><a href="{{ url('/page/company-profile-design') }}"><i
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.company_profile') }}
                                         </a></li>
-                                    <li><a href="{{ url('ar/page/logo-design') }}"><i
+                                    <li><a href="{{ url('/page/logo-design') }}"><i
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.logo_design') }}
                                         </a></li>
-                                    <li><a href="{{ url('ar/page/design-commercial-identity-graphic-designs') }}"><i
+                                    <li><a href="{{ url('/page/design-commercial-identity-graphic-designs') }}"><i
                                                 class="fa fa-check-circle-o pr-1"
                                                 aria-hidden="true"></i>{{ __('sentence.brand_identity') }}
                                         </a></li>
-                                    <li><a href="{{ url('ar/page/web-development') }}"><i
+                                    <li><a href="{{ url('/page/web-development') }}"><i
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.websites') }}
                                         </a></li>
-                                    <li><a href="{{ url('ar/page/Motion-video') }}"><i
+                                    <li><a href="{{ url('/page/Motion-video') }}"><i
                                                 class="fa fa-check-circle-o pr-1"
                                                 aria-hidden="true"></i>{{ __('sentence.motion_video') }}
                                         </a></li>
-                                    <li><a href="{{ url('ar/page/Content-writing') }}"><i
+                                    <li><a href="{{ url('/page/Content-writing') }}"><i
                                                 class="fa fa-check-circle-o pr-1"
                                                 aria-hidden="true"></i>{{ __('sentence.content_writing') }}
                                         </a></li>

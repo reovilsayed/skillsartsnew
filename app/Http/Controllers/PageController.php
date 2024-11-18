@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailSubmission;
 use App\Mail\OrderConfirmed;
 use App\Mail\OrderNotification;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -51,7 +52,10 @@ class PageController extends Controller
 
         $prices = Price::get();
         $prices->translate(app()->getLocale());
-        return view('home', compact('sliders_mobile', 'sliders_desktop', 'teams', 'portcats', 'portfolios', 'prices'));
+
+        $services = Service::latest()->get();
+        $services->translate(app()->getLocale());
+        return view('home', compact('sliders_mobile', 'sliders_desktop', 'teams', 'portcats', 'portfolios', 'prices', 'services'));
     }
     public function fetch_user(Request $request)
     {

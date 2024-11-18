@@ -26,15 +26,14 @@
             <ul class="breadcrumb">
                 @if (App::getLocale() == 'ar')
                     <li> <a href="{{ url('/') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
-                    <li class="active"> <a href="{{ url('ar/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
+                    <li class="active"> <a href="{{ url('/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
                     </li>
                     <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
                 @else
-                    <li> <a href="{{ url('/en') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
+                    <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
                     <li class="active"> <a href="{{ url('en/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
                     </li>
-
-                    <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
+                    <li> <a href="{{ url('/en') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
                 @endif
             </ul>
         </div>
@@ -50,7 +49,11 @@
                 <div class="col-lg-8 col-md-12 mb-5 mb-lg-0">
                     <div class="post-wrap transition shadow p-5">
                         <span class="small mb-2 d-block blogeSection">{{ $post->created_at->format('M d, Y') }}</span>
-                        <a href="{{ url('/post/' . $post->slug) }}" class="transition"> </a>
+                        @if (App::getLocale() == 'ar')
+                            <a href="{{ url('/post/' . $post->slug) }}" class="transition"> </a>
+                        @else
+                            <a href="{{ url('en/post/' . $post->slug) }}" class="transition"> </a>
+                        @endif
 
                         <div class="clearfix"> </div>
                         <img src="{{ Voyager::image($post->image) }}" class="img-fluid pb-3" alt="{{ $post->image_alt }}"
@@ -71,11 +74,11 @@
                                         class="single-post-list @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif d-flex flex-row align-items-center">
                                         <div class="details blogeSection">
                                             @if (App::getLocale() == 'ar')
-                                                <a href="{{ url('/post', $post->slug) }}" class="transition">
+                                                <a href="{{ url('/post/' . $post->slug) }}" class="transition">
                                                     <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
                                                 </a>
                                             @else
-                                                <a href="{{ url('en/post', $post->slug) }}" class="transition">
+                                                <a href="{{ url('en/post/' . $post->slug) }}" class="transition">
                                                     <h5>{{ $post->translate(app()->getLocale())->title }}</h5>
                                                 </a>
                                             @endif

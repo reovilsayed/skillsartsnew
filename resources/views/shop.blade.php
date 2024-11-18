@@ -27,7 +27,7 @@
                     <li class="">
                         <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
-                    <li class="active"> <a href="{{ url('ar/shop') }}"
+                    <li class="active"> <a href="{{ url('/shop') }}"
                             class="transition pr-3 pl-3">{{ __('sentence.products') }}</a></li>
                     <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
                 @else

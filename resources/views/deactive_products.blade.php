@@ -27,14 +27,14 @@
                     <li class="">
                         <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
-                    <li class="active"> <a href="{{ url('ar/shop') }}" class="transition pr-3 pl-3">
+                    <li class="active"> <a href="{{ url('/shop') }}" class="transition pr-3 pl-3">
                             {{ __('sentence.products') }}</a></li>
                 @else
+                    <li class="active"> <a href="{{ url('en/shop') }}" class="transition pr-3 pl-3">
+                            {{ __('sentence.products') }}</a></li>
                     <li class="">
                         <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
-                    <li class="active"> <a href="{{ url('en/shop') }}" class="transition pr-3 pl-3">
-                            {{ __('sentence.products') }}</a></li>
                 @endif
 
             </ul>

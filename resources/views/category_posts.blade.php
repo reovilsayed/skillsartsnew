@@ -7,14 +7,14 @@
                 <li class="">
                     <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                 </li>
-                <li class="active"><a href="{{ url('posts') }}" class="transition"> Blog </a></li>
+                <li class="active"><a href="{{ url('/posts') }}" class="transition"> Blog </a></li>
                 <li><a href="#" class="transition"> Plog Post </a></li>
             @else
-                <li><a href="#" class="transition"> Plog Post </a></li>
-                <li class="active"><a href="#" class="transition"> Blog </a></li>
                 <li class="">
                     <a href="{{ url('/en') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                 </li>
+                <li class="active"><a href="#" class="transition"> Blog </a></li>
+                <li><a href="#" class="transition"> Plog Post </a></li>
             @endif
 
         </ul>

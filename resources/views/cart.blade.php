@@ -25,9 +25,9 @@
                     <li class="">
                         <a href="{{ url('/') }}" class="transition pr-3"> <i class="fa fa-home"></i> </a>
                     </li>
-                    <li class="active"> <a href="{{ url('ar/shop') }}"
+                    <li class="active"> <a href="{{ url('/shop') }}"
                             class="transition pr-3 pl-3">{{ __('sentence.the_store') }}</a></li>
-                    <li> <a href="{{ url('ar/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
+                    <li> <a href="{{ url('/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
                 @else
                     <li> <a href="{{ url('en/cart') }}" class="transition pr-3 pl-3">{{ __('sentence.basket') }}</a></li>
                     <li class="active"> <a href="{{ url('en/shop') }}"
@@ -49,8 +49,13 @@
                 @if (Cart::getTotalQuantity() > 0)
                 @else
                     <div class="col-md-6">
-                        <a class="btn btn-inline btn-block"
-                            href="{{ route('shop') }}">{{ __('sentence.continue_shopping') }}</a>
+                        @if (App::getLocale() == 'ar')
+                            <a class="btn btn-inline btn-block"
+                                href="{{ url('/shop') }}">{{ __('sentence.continue_shopping') }}</a>
+                        @else
+                            <a class="btn btn-inline btn-block"
+                                href="{{ url('en/shop') }}">{{ __('sentence.continue_shopping') }}</a>
+                        @endif
                     </div>
                 @endif
             </div>
@@ -114,7 +119,7 @@
                     <div class="col-md-6 col-lg-6 back_to_shopping">
                         <div class="cart-back">
                             @if (App::getLocale() == 'ar')
-                                <a class="btn btn-red" href="{{ url('ar/shop') }}"><i
+                                <a class="btn btn-red" href="{{ url('/shop') }}"><i
                                         class="fa fa-undo-alt"></i><span>{{ __('sentence.back_to_shopping') }}</span></a>
                             @else
                                 <a class="btn btn-red" href="{{ url('en/shop') }}"><i
@@ -154,7 +159,7 @@
                         </div>
                         <div class="cart-proceed">
                             @if (App::getLocale() == 'ar')
-                                <a class="btn btn-red" href="{{ url('ar/checkout') }}"><i
+                                <a class="btn btn-red" href="{{ url('/checkout') }}"><i
                                         class="fa fa-check"></i>&nbsp;<span>{{ __('sentence.complete_payment') }}</span></a>
                             @else
                                 <a class="btn btn-red" href="{{ url('en/checkout') }}"><i
