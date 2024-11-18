@@ -40,6 +40,14 @@
             -o-animation-delay: 1.5s;
             -moz-transition: none !important;
         }
+
+        .sec-title .devider:before {
+            right: -8px;
+        }
+
+        .sec-title .devider:after {
+            left: -3px;
+        }
     </style>
 
     @if (App::getLocale() == 'en')
@@ -47,6 +55,11 @@
             .contact_title {
                 direction: ltr;
                 text-align: left;
+            }
+
+            .contact_body p {
+                direction: ltr !important;
+                text-align: left !important;
             }
 
             .primary-btn {
@@ -212,7 +225,7 @@
     </section>
 
 
-    @if (Voyager::setting('permission.about') == 'on')
+    @if (Voyager::setting('permission.about') == 1)
         <section id="about" class="sec-padding about-area bg-light-black">
             <div class="container">
                 <!-- section title -->
@@ -325,7 +338,7 @@
     @endif
 
 
-    @if (Voyager::setting('permission.services') == 'on')
+    @if (Voyager::setting('permission.services') == 1)
         <section id="services" class="sec-padding services-area bg-black">
             <div class="container">
                 <!-- section title -->
@@ -350,102 +363,14 @@
 
                                 <div class="service-desc">
                                     <a href="https://skillsarts.com/page/design-commercial-identity-graphic-designs">
-                                        <h4 class="contact_title">{{ $service->title }}</h4>
-                                        <p class="contact_title">{{ $service->body }}</p>
+                                        <h4 class="contact_title">{{ $service->translate(app()->getLocale())->title }}
+                                        </h4>
+                                        <h5 class="contact_body">{!! $service->translate(app()->getLocale())->body !!}</h5>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-
-                    <!-- end service item -->
-
-                    <!-- service item -->
-                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                        <div class="service-item">
-                            <div class="effect transition"></div>
-                            <div class="service-icon transition">
-                                <i class="fa fa-book"></i>
-                            </div>
-
-                            <div class="service-desc">
-                                <a href="https://skillsarts.com/page/company-profile-design">
-                                    <h4 class="contact_title">{{ __('sentence.profile_design') }}</h4>
-                                    <p class="contact_title">{{ __('sentence.services_cart_two') }}</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end service item -->
-
-                    <!-- service item -->
-
-                    <div class="col-lg-4 col-md-12">
-                        <div class="service-item">
-                            <div class="effect transition"></div>
-                            <div class="service-icon transition">
-                                <i class="fa fa-certificate"></i>
-                            </div>
-
-                            <div class="service-desc">
-                                <a href="https://skillsarts.com/page/logo-design">
-                                    <h4 class="contact_title">{{ __('sentence.logo_design_one') }}</h4>
-                                    <p class="contact_title">{{ __('sentence.services_cart_three') }}</p>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- end service item -->
-                    <div class="col-lg-4 col-md-12">
-                        <div class="service-item">
-                            <div class="effect transition"></div>
-                            <div class="service-icon transition">
-                                <i class="fa fa-pencil-square-o"></i>
-                            </div>
-
-                            <div class="service-desc">
-                                <a href="https://skillsarts.com/page/Content-writing">
-                                    <h4 class="contact_title">{{ __('sentence.content_writing_one') }}</h4>
-                                    <p class="contact_title">{{ __('sentence.services_cart_four') }}</p>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- end service item -->
-                    <div class="col-lg-4 col-md-12">
-                        <div class="service-item">
-                            <div class="effect transition"></div>
-                            <div class="service-icon transition">
-                                <i class="fa fa-video-camera"></i>
-                            </div>
-
-                            <div class="service-desc">
-                                <a href="https://skillsarts.com/page/Motion-video">
-                                    <h4 class="contact_title">{{ __('sentence.motion_video_one') }}</h4>
-                                    <p class="contact_title">{{ __('sentence.services_cart_five') }}</p>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="service-item">
-                            <div class="effect transition"></div>
-                            <div class="service-icon transition">
-                                <i class="fas fa-code"></i>
-                            </div>
-
-                            <div class="service-desc">
-                                <a href="https://skillsarts.com/page/Motion-video">
-                                    <h4 class="contact_title">{{ __('sentence.websites_one') }}</h4>
-                                    <p class="contact_title">{{ __('sentence.services_cart_six') }}</p>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
                     <!-- end service item -->
                     {{-- <div class="col-lg-4 col-md-12">
                     <div class="service-item">
@@ -632,7 +557,7 @@
         </section>
     @endif
 
-    @if (Voyager::setting('permission.works') == 'on')
+    @if (Voyager::setting('permission.works') == 1)
         <section id="works" class="sec-padding works-area clearfix bg-light-black">
             <div class="container">
                 <div class="sec-title text-center mb50">
@@ -690,7 +615,7 @@
         </section>
     @endif
 
-    @if (Voyager::setting('permission.team') == 'on')
+    @if (Voyager::setting('permission.team') == 1)
         <section id="team" class="sec-padding team-area bg-black">
             <div class="container">
                 <!-- section title -->
@@ -749,7 +674,7 @@
         </section>
     @endif
 
-    @if (Voyager::setting('permission.feature') == 'on')
+    @if (Voyager::setting('permission.feature') == 1)
         <section id="feature" class="sec-padding feature-area bg-light-black">
             <div class="container">
                 <!-- section title -->
@@ -862,7 +787,7 @@
 
     <!--=============================== -->
 
-    @if (Voyager::setting('permission.facts') == 'on')
+    @if (Voyager::setting('permission.facts') == 1)
         <section id="facts" class="facts">
             <div class="parallax-overlay">
                 <div class="container">
@@ -922,7 +847,7 @@
     @endif
 
 
-    @if (Voyager::setting('permission.pricing') == 'on')
+    @if (Voyager::setting('permission.pricing') == 1)
         <section id="pricing" class="sec-padding pricing-area bg-light-black">
             <div class="container">
                 <div class="sec-title text-center mb50">
