@@ -41,13 +41,6 @@
             -moz-transition: none !important;
         }
 
-        .sec-title .devider:before {
-            right: -8px;
-        }
-
-        .sec-title .devider:after {
-            left: -3px;
-        }
     </style>
 
     @if (App::getLocale() == 'en')
