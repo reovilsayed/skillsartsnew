@@ -34,7 +34,8 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            foreach (config('app.locales') as $locale) {
+                
+            foreach (['en'] as $locale) {
                 Route::middleware('web')
                     ->prefix($locale)
                     ->group(base_path('routes/web.php'));

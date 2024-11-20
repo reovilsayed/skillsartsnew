@@ -16,7 +16,7 @@
                 text-align: left;
             }
         </style>
-    @endif>
+    @endif
 @stop
 @section('content')
     <div class="blog-header shadow bg-black">
@@ -46,7 +46,7 @@
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.png') }}" alt="Heydarah"></div>
             </div>
 
-            <div class="row justify-content-between">
+            <div class="row justify-content-between" @if (App::getLocale() == 'en') dir="rtl" @else dir="ltr" @endif>
                 <div class="col-lg-8 col-md-12 mb-5 mb-lg-0">
                     @foreach ($posts as $post)
                         <div class="post-wrap transition shadow bg-black">
@@ -121,8 +121,7 @@
                                 @foreach ($posts->take(4) as $post)
                                     <div
                                         class="single-post-list d-flex flex-row @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif">
-                                        <div class="details"
-                                            @if (App::getLocale() == 'en') style="text-align: left" @endif>
+                                        <div class="details" @if (App::getLocale() == 'en') style="text-align: left; margin-left: 10px;" @endif>
 
                                             @if (App::getLocale() == 'ar')
                                                 <a href="{{ url('/post', $post->slug) }}" class="transition">
@@ -158,7 +157,7 @@
                                                 <span>{{ $category->translate(app()->getLocale())->name }}</span>
                                             </a>
                                         @else
-                                            <a href="{{ url('en/posts/?'. $category->slug) }}"
+                                            <a href="{{ url('en/posts/?' . $category->slug) }}"
                                                 class="d-flex justify-content-between transition">
 
                                                 <small>{{ $category->posts_count }}</small>

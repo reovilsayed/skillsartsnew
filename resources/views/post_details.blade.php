@@ -45,10 +45,12 @@
                 <div class="devider"><img src="{{ asset('home-page/img/skills-icon.png') }}" alt="{{ $post->image_alt }}">
                 </div>
             </div>
-            <div class="row justify-content-between">
+            <div class="row justify-content-between" @if (App::getLocale() == 'en') dir="rtl" @else dir="ltr" @endif>
                 <div class="col-lg-8 col-md-12 mb-5 mb-lg-0">
                     <div class="post-wrap transition shadow p-5">
+
                         <span class="small mb-2 d-block blogeSection">{{ $post->created_at->format('M d, Y') }}</span>
+
                         @if (App::getLocale() == 'ar')
                             <a href="{{ url('/post/' . $post->slug) }}" class="transition"> </a>
                         @else
@@ -72,7 +74,7 @@
                                 @foreach ($popular_posts as $post)
                                     <div
                                         class="single-post-list @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif d-flex flex-row align-items-center">
-                                        <div class="details blogeSection">
+                                        <div class="details blogeSection" @if (App::getLocale() == 'en') style="margin-left: 10px;" @endif>
                                             @if (App::getLocale() == 'ar')
                                                 <a href="{{ url('/post/' . $post->slug) }}" class="transition">
                                                     <h5>{{ $post->translate(app()->getLocale())->title }}</h5>

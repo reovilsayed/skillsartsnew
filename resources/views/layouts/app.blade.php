@@ -666,7 +666,7 @@
             $iconType = session()->has('success') ? 'success' : 'error';
             $title = session()->has('success') ? ($isArabic ? 'شكرا لك' : 'Thank you') : 'Oops';
             $text = json_encode(session('success') ?? session('error'));
-            $buttonText = $isArabic ? 'متابعة' : 'Tracking';
+            $buttonText = $isArabic ? 'متابعة' : 'Confirm';
         @endphp
 
         <script>

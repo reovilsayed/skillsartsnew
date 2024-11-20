@@ -640,7 +640,7 @@
                     icon: "{{ session()->has('success') ? 'success' : 'error' }}",
                     title: "{{ session()->has('success') ? 'Thank you' : 'Oops' }}",
                     text: "{!! session('success') ?? session('error') !!}",
-                    confirmButtonText: 'Tracking',
+                    confirmButtonText: 'Confirm',
                     confirmButtonColor: '#ff3131',
                 })
             </script>
