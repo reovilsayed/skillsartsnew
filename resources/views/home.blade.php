@@ -40,14 +40,6 @@
             -o-animation-delay: 1.5s;
             -moz-transition: none !important;
         }
-
-        .sec-title .devider_pricing:before {
-            right: -8px;
-        }
-
-        .sec-title .devider_pricing:after {
-            left: -3px;
-        }
     </style>
 
     @if (App::getLocale() == 'en')
@@ -852,7 +844,7 @@
             <div class="container">
                 <div class="sec-title text-center mb50">
                     <h2>{{ __('sentence.packages') }}</h2>
-                    <div class="devider_pricing">
+                    <div class="devider"  @if (App::getLocale() == 'en') dir="ltr" @else dir="rtr" @endif>
                         <img src="{{ asset('home-page/img/skills-icon.webp') }}"
                             alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                     </div>
