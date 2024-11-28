@@ -15,6 +15,34 @@
             .blogeSection {
                 text-align: left;
             }
+
+            .blog-header .breadcrumb li:not(:last-of-type)::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: -10px;
+                width: 0;
+                transform: translate(50%, -50%) rotate(181deg);
+                height: 0;
+                border-style: solid;
+                border-width: 25px 12px 25px 0px;
+                border-color: transparent #8d9eaf transparent transparent;
+            }
+
+            .blog-header .breadcrumb li:not(:last-of-type)::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: -14px;
+                /* transform: translate(50%); */
+                transform: translate(50%, -49%) rotate(181deg);
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 24px 13px 24px 0;
+                border-color: transparent #333439 transparent transparent;
+                z-index: 1;
+            }
         </style>
     @endif>
 @stop
@@ -74,7 +102,8 @@
                                 @foreach ($popular_posts as $post)
                                     <div
                                         class="single-post-list @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif d-flex flex-row align-items-center">
-                                        <div class="details blogeSection" @if (App::getLocale() == 'en') style="margin-left: 10px;" @endif>
+                                        <div class="details blogeSection"
+                                            @if (App::getLocale() == 'en') style="margin-left: 10px;" @endif>
                                             @if (App::getLocale() == 'ar')
                                                 <a href="{{ url('/post/' . $post->slug) }}" class="transition">
                                                     <h5>{{ $post->translate(app()->getLocale())->title }}</h5>

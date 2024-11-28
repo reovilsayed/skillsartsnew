@@ -15,6 +15,34 @@
             .blogeSection {
                 text-align: left;
             }
+
+            .blog-header .breadcrumb li:not(:last-of-type)::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: -10px;
+                width: 0;
+                transform: translate(50%, -50%) rotate(181deg);
+                height: 0;
+                border-style: solid;
+                border-width: 25px 12px 25px 0px;
+                border-color: transparent #8d9eaf transparent transparent;
+            }
+
+            .blog-header .breadcrumb li:not(:last-of-type)::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: -14px;
+                /* transform: translate(50%); */
+                transform: translate(50%, -49%) rotate(181deg);
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 24px 13px 24px 0;
+                border-color: transparent #333439 transparent transparent;
+                z-index: 1;
+            }
         </style>
     @endif
 @stop
@@ -26,8 +54,7 @@
             <ul class="breadcrumb">
                 @if (App::getLocale() == 'ar')
                     <li> <a href="{{ url('/') }}" class="transition"> <i class="fa fa-home"></i> </a></li>
-                    <li class="active"> <a href="{{ url('/posts') }}" class="transition">{{ __('sentence.blog') }}</a>
-                    </li>
+                    <li class="active"> <a href="{{ url('/posts') }}" class="transition">{{ __('sentence.blog') }}</a></li>
                     <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
                 @else
                     <li> <a href="#" class="transition">{{ __('sentence.article') }}</a></li>
@@ -121,7 +148,8 @@
                                 @foreach ($posts->take(4) as $post)
                                     <div
                                         class="single-post-list d-flex flex-row @if (App::getLocale() == 'en') justify-content-between @else justify-content-end @endif">
-                                        <div class="details" @if (App::getLocale() == 'en') style="text-align: left; margin-left: 10px;" @endif>
+                                        <div class="details"
+                                            @if (App::getLocale() == 'en') style="text-align: left; margin-left: 10px;" @endif>
 
                                             @if (App::getLocale() == 'ar')
                                                 <a href="{{ url('/post', $post->slug) }}" class="transition">
