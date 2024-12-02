@@ -403,7 +403,7 @@ section {
     font-size: 30px;
     color: #ff3131;
     text-align: center;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
     position: absolute;
     top: 55px;
     left: 290px;

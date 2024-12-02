@@ -558,20 +558,28 @@
                             alt="ايقونة شعار سكيلز آرتس">
                     </div>
                 </div>
-                <div dir="rtl" class="row justify-content-center">
+                <div @if (App::getLocale() == 'en') dir="ltr" 
+    @else 
+        dir="rtl" @endif
+                    class="row justify-content-center">
                     <div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
                         <ul class="text-center">
-                            <li><a href="javascript:;" data-filter="all"
-                                    class="active filter">{{ __('sentence.everyone') }}</a></li>
+                            <li>
+                                <a href="javascript:;" data-filter="all" class="active filter">
+                                    {{ __('sentence.everyone') }}
+                                </a>
+                            </li>
                             @foreach ($portcats as $portcat)
                                 <li>
-                                    <a href="javascript:;" data-filter=".{{ $portcat->key }}"
-                                        class="filter">{{ $portcat->translate(app()->getLocale())->name }}</a>
+                                    <a href="javascript:;" data-filter=".{{ $portcat->key }}" class="filter">
+                                        {{ $portcat->translate(app()->getLocale())->name }}
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
+
             </div>
 
             <div class="project-wrapper container-fluid">
@@ -844,7 +852,7 @@
             <div class="container">
                 <div class="sec-title text-center mb50">
                     <h2>{{ __('sentence.packages') }}</h2>
-                    <div class="devider"  @if (App::getLocale() == 'en') dir="ltr" @else dir="rtr" @endif>
+                    <div class="devider" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtr" @endif>
                         <img src="{{ asset('home-page/img/skills-icon.webp') }}"
                             alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                     </div>

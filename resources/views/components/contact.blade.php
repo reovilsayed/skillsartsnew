@@ -1,11 +1,12 @@
 @if (App::getLocale() == 'en')
     <style>
-        .contact_title{
+        .contact_title {
             direction: ltr;
             text-align: left;
         }
-        #contact_checkBox{
-           text-align: left;
+
+        #contact_checkBox {
+            text-align: left;
         }
     </style>
 @endif
@@ -26,17 +27,20 @@
                 </div>
 
                 <ul class="footer-social d-flex justify-content-center">
-                    <li class="mr-2"><a href="https://www.facebook.com/skillsarts1/" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.facebook') }}" rel="nofollow"><i
                                 class="fa fa-facebook fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="https://instagram.com/skillsarts_agency" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.instagram') }}" rel="nofollow"><i
                                 class="fa fa-instagram fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="https://twitter.com/skillsarts1/" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.twitter') }}" rel="nofollow"><i
                                 class="fa fa-twitter fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="https://www.snapchat.com/add/skillsarts/" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.snapchat') }}" rel="nofollow"><i
                                 class="fa fa-snapchat-ghost fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="https://wa.me/966593031810?text=السلام عليكم  سكيلز آرتس" rel="nofollow"
-                            target=" _blank"><i class="fa fa-whatsapp fa-2x"></i></a></li>
-
+                    <li class="mr-2">
+                        <a href="https://wa.me/{{ trim(Voyager::setting('social_link.whatsapp'), '+') }}?text=السلام عليكم سكيلز آرتس"
+                            rel="nofollow" target="_blank">
+                            <i class="fa fa-whatsapp fa-2x"></i>
+                        </a>
+                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-12">
 
@@ -50,23 +54,24 @@
                 <!-- section title -->
                 <div class="sec-title text-center mb50">
                     <h2 class="contact_title text-center">{{ __('sentence.need_help') }}</h2>
-                    <div class="devider"  @if (App::getLocale() == 'ar') dir="ltr"@endif><img src="{{ asset('home-page/img/skills-icon.webp') }}"
+                    <div class="devider" @if (App::getLocale() == 'ar') dir="ltr" @endif><img
+                            src="{{ asset('home-page/img/skills-icon.webp') }}"
                             alt="ايقونة شعار سكيلز آرتس لتصميم بروفايل الشركات">
                         <!-- small image icon between divider -->
                     </div>
                 </div>
                 <!-- / section title -->
-                <div class="contact-form" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif >
+                <div class="contact-form" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif>
                     <h3 class="contact_title">{{ __('sentence.ask_and_pamper_yourself') }}</h3>
                     <form action="{{ url(App::getLocale() . '/contact-store') }}" id="" method="POST">
                         @csrf
                         <div class="form-group d-flex justify-content-between">
                             <div class="input-field">
-                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  type="text" name="name" id="name"
-                                    placeholder="{{ __('sentence.name') }}" class="form-control"
-                                    value="{{ old('name') }}" required>
+                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif type="text"
+                                    name="name" id="name" placeholder="{{ __('sentence.name') }}"
+                                    class="form-control" value="{{ old('name') }}" required>
                             </div>
-                            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  class="input-field">
+                            <div @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif class="input-field">
                                 <input type="email" name="email" id="email"
                                     placeholder="{{ __('sentence.email') }}" class="form-control"
                                     value="{{ old('email') }}" required>
@@ -75,25 +80,26 @@
                         </div>
                         <div class="form-group d-flex justify-content-between">
                             <div class="input-field">
-                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  type="text" name="subject" id="subject"
-                                    placeholder="{{ __('sentence.address') }}" class="form-control"
-                                    value="{{ old('subject') }}" required>
+                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif type="text"
+                                    name="subject" id="subject" placeholder="{{ __('sentence.address') }}"
+                                    class="form-control" value="{{ old('subject') }}" required>
                             </div>
                             <div class="input-field">
-                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  type="phone" name="phone" id="phone"
-                                    placeholder="{{ __('sentence.number') }}" class="form-control"
-                                    value="{{ old('phone') }}" required>
+                                <input @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif type="phone"
+                                    name="phone" id="phone" placeholder="{{ __('sentence.number') }}"
+                                    class="form-control" value="{{ old('phone') }}" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  name="message" id="message" placeholder="{{ __('sentence.message') }}" class="form-control"
-                                required>{{ old('message') }}</textarea>
+                            <textarea @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif name="message" id="message"
+                                placeholder="{{ __('sentence.message') }}" class="form-control" required>{{ old('message') }}</textarea>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12" id="contact_checkBox">
                                 <input class="form-check-input" name="terms" type="checkbox" value=""
                                     id="flexCheckDefault" required>
-                                <label class="form-check-label  text-left" for="flexCheckDefault">{{ __('sentence.agree') }}
+                                <label class="form-check-label  text-left"
+                                    for="flexCheckDefault">{{ __('sentence.agree') }}
                                     <a href="https://skillsarts.com/page/Privacy-policy"
                                         class="text-danger">{{ __('sentence.the_privacy_policy') }}</a>
                                     <a href="https://skillsarts.com/page/terms-and-conditions"
