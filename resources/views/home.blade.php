@@ -40,6 +40,10 @@
             -o-animation-delay: 1.5s;
             -moz-transition: none !important;
         }
+
+        .services-area .service-item .service-icon {
+            border: 0px !important
+        }
     </style>
 
     @if (App::getLocale() == 'en')
