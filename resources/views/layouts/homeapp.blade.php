@@ -542,13 +542,13 @@
                                 </div>
                             </form>
                             <ul class="text-center social-links mt-2">
-                                <li><a href="https://twitter.com/skillsarts1" class="transition bg-black rounded"><i
+                                <li><a href="{{ Voyager::setting('social-link.twitter') }}" class="transition bg-black rounded"><i
                                             class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.facebook.com/skillsarts1" class="transition"><i
+                                <li><a href="{{ Voyager::setting('social-link.facebook') }}" class="transition"><i
                                             class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="https://instagram.com/skillsarts_agency" class="transition"><i
+                                <li><a href="{{ Voyager::setting('social-link.instagram') }}" class="transition"><i
                                             class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.snapchat.com/add/skillsarts" class="transition"><i
+                                <li><a href="{{ Voyager::setting('social-link.snapchat') }}" class="transition"><i
                                             class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
