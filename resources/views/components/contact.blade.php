@@ -27,16 +27,16 @@
                 </div>
 
                 <ul class="footer-social d-flex justify-content-center">
-                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.facebook') }}" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social-link.facebook') }}" rel="nofollow"><i
                                 class="fa fa-facebook fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.instagram') }}" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social-link.instagram') }}" rel="nofollow"><i
                                 class="fa fa-instagram fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.twitter') }}" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social-link.twitter') }}" rel="nofollow"><i
                                 class="fa fa-twitter fa-2x"></i></a></li>
-                    <li class="mr-2"><a href="{{ Voyager::setting('social_link.snapchat') }}" rel="nofollow"><i
+                    <li class="mr-2"><a href="{{ Voyager::setting('social-link.snapchat') }}" rel="nofollow"><i
                                 class="fa fa-snapchat-ghost fa-2x"></i></a></li>
                     <li class="mr-2">
-                        <a href="https://wa.me/{{ trim(Voyager::setting('social_link.whatsapp'), '+') }}?text=السلام عليكم سكيلز آرتس"
+                        <a href="https://wa.me/{{ trim(Voyager::setting('social-link.whatsapp'), '+') }}?text=السلام عليكم سكيلز آرتس"
                             rel="nofollow" target="_blank">
                             <i class="fa fa-whatsapp fa-2x"></i>
                         </a>
