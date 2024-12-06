@@ -423,8 +423,8 @@
                                                 aria-hidden="true"></i>
                                             {{ __('sentence.our_previous_work') }}</a>
                                     </li>
-                                    <li><a href="{{ url('/page/website-map') }}"><i
-                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                    <li><a href="{{ url('/page/website-map') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
                                             {{ __('sentence.site_map') }}</a>
                                     </li>
                                     <li><a href="{{ url('/page/Privacy-policy') }}"><i
@@ -475,8 +475,8 @@
                                                 class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
                                             {{ __('sentence.company_profile') }}
                                         </a></li>
-                                    <li><a href="{{ url('/page/logo-design') }}"><i
-                                                class="fa fa-check-circle-o pr-1" aria-hidden="true"></i>
+                                    <li><a href="{{ url('/page/logo-design') }}"><i class="fa fa-check-circle-o pr-1"
+                                                aria-hidden="true"></i>
                                             {{ __('sentence.logo_design') }}
                                         </a></li>
                                     <li><a href="{{ url('/page/design-commercial-identity-graphic-designs') }}"><i
@@ -542,14 +542,19 @@
                                 </div>
                             </form>
                             <ul class="text-center social-links mt-2">
-                                <li><a href="{{ Voyager::setting('social-link.twitter') }}" class="transition bg-black rounded"><i
-                                            class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ Voyager::setting('social-link.twitter') }}"
+                                        class="transition bg-black rounded"><i class="fa fa-twitter"
+                                            aria-hidden="true"></i></a></li>
                                 <li><a href="{{ Voyager::setting('social-link.facebook') }}" class="transition"><i
                                             class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="{{ Voyager::setting('social-link.instagram') }}" class="transition"><i
                                             class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                 <li><a href="{{ Voyager::setting('social-link.snapchat') }}" class="transition"><i
                                             class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ Voyager::setting('social-link.linkedin') }}" class="transition"><i
+                                            class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ Voyager::setting('social-link.tiktok') }}" class="transition"><i
+                                            class="fa fa-tiktok" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>

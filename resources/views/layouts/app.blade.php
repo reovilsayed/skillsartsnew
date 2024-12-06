@@ -556,6 +556,10 @@
                                             class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                 <li><a href="{{ Voyager::setting('social-link.snapchat') }}" class="transition"><i
                                             class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ Voyager::setting('social-link.linkedin') }}" class="transition"><i
+                                            class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ Voyager::setting('social-link.tiktok') }}" class="transition"><i
+                                            class="fa fa-tiktok" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>
