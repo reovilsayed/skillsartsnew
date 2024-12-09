@@ -45,8 +45,8 @@
             }
 
             .description_bold p strong {
-                font-weight: bolder !important;
-                font-size: large !important;
+                font-weight: 700 !important;
+                font-family: sans-serif !important;
             }
         </style>
     @endif>
