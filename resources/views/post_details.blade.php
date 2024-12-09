@@ -43,6 +43,11 @@
                 border-color: transparent #333439 transparent transparent;
                 z-index: 1;
             }
+
+            .description_bold p strong {
+                font-weight: bolder !important;
+                font-size: large !important;
+            }
         </style>
     @endif>
 @stop
@@ -88,7 +93,7 @@
                         <div class="clearfix"> </div>
                         <img src="{{ Voyager::image($post->image) }}" class="img-fluid pb-3" alt="{{ $post->image_alt }}"
                             title="{{ $post->seo_title }}">
-                        <div class="description blogeSection"
+                        <div class="description blogeSection description_bold"
                             @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif> {!! $post->translate(app()->getLocale())->body !!}
                         </div>
                         <br> <br>
