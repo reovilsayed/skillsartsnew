@@ -13,6 +13,11 @@
         .description img {
             max-width: 100% !important;
         }
+        .description_bold p strong {
+                font-weight: 700 !important;
+                font-family: sans-serif !important;
+                font-size: large;
+            }
     </style>
     @if (App::getLocale() == 'en')
         <style>
@@ -40,7 +45,7 @@
                         <div class="clearfix">
 
                         </div>
-                        <div class="description" @if (App::getLocale() == 'en') dir="ltr" style="text-align: left" @else dir="rtl" @endif>
+                        <div class="description description_bold" @if (App::getLocale() == 'en') dir="ltr" style="text-align: left" @else dir="rtl" @endif>
                             {!! $page->translate(app()->getLocale())->body !!}
                         </div>
                     </div>
