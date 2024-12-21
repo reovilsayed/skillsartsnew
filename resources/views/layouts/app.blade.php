@@ -583,11 +583,11 @@
     </div>
     @if (App::getLocale() == 'ar')
         <a href="https://wa.me/966593031810?text=السلام عليكم سكيلز آرتس" target="_blank" class="whatsapp">
-            <img src="{{ Voyager::setting('whatsapp-icon.whatsapp-ar') }}" alt="whatsapp">
+            <img src="{{ Voyager::setting('whatsapp-icon.whatsapp_ar') }}" alt="whatsapp">
         </a>
     @else
         <a href="https://wa.me/966593031810?text=السلام عليكم سكيلز آرتس" target="_blank" class="whatsapp">
-            <img src="{{ Voyager::setting('whatsapp-icon.whatsapp-en') }}" alt="whatsapp">
+            <img src="{{ Voyager::setting('whatsapp-icon.whatsapp_en') }}" alt="whatsapp">
         </a>
     @endif
     <a href="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
