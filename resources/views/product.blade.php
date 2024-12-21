@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $product->name)
+@section('title', $product->translate(app()->getLocale())->name)
 @section('meta-description', $product->meta_description)
 
 @section('social_media')

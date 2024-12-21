@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $post->title)
+@section('title', $post->translate(app()->getLocale())->title )
 @section('meta-description', $post->meta_description)
 
 @section('social_media')
