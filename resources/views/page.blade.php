@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', $page->translate(app()->getLocale())->title)
-@section('meta-description', $page->meta_description)
+@section('meta-description', $page->translate(app()->getLocale())->meta_description)
 
 @section('social_media')
-    <meta property="og:title" content="{{ $page->title }}" />
-    <meta property="og:description"content="{{ $page->meta_description }}" />
+    <meta property="og:title" content="{{ $page->translate(app()->getLocale())->title }}" />
+    <meta property="og:description"content="{{ $page->translate(app()->getLocale())->meta_description }}" />
     <meta property="og:url" content="{{ route('page', $page->slug) }}" />
     <meta property="og:image" content="{{ Voyager::image(setting('site.social_image')) }}" />
 @endsection

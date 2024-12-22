@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', $post->translate(app()->getLocale())->title )
-@section('meta-description', $post->meta_description)
+@section('meta-description', $post->translate(app()->getLocale())->meta_description)
 
 @section('social_media')
-    <meta property="og:title" content="{{ $post->title }}" />
-    <meta property="og:description"content="{{ $post->meta_description }}" />
+    <meta property="og:title" content="{{ $post->translate(app()->getLocale())->title }}" />
+    <meta property="og:description"content="{{ $post->translate(app()->getLocale())->meta_description }}" />
     <meta property="og:url" content="{{ route('post_details', $post->slug) }}" />
     <meta property="og:image" content="{{ Voyager::image($post->image) }}" />
 @endsection
@@ -53,6 +53,7 @@
     @endif>
 @stop
 @section('content')
+{{-- @dd($post->translate(app()->getLocale())->meta_description); --}}
     <div class="blog-header">
         <div class="container blogeSection">
             <h2 class="h2 mb-3 blogeSection">{{ __('sentence.blog') }}
