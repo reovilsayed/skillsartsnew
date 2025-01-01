@@ -57,7 +57,7 @@
                                                 class="text-info">
                                                 مستخدم جديد </a> -->
                                     @if (App::getLocale() == 'ar')
-                                        <a href="{{ url('ar/password/reset') }}" class="btn btn-outline-light mt-2"
+                                        <a href="{{ url('password/reset') }}" class="btn btn-outline-light mt-2"
                                             class="text-info">{{ __('sentence.recover_password') }}</a>
                                     @else
                                         <a href="{{ url('en/password/reset') }}" class="btn btn-outline-light mt-2"
