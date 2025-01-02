@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Payment')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('css/card.css') }}" /> --}}
     <link rel="stylesheet" href="{{ asset('css/custom/cartlist.css') }}">
     <script src="https://epayment.areeba.com/checkout/version/60/checkout.js" data-error="errorCallback"
         data-cancel="cancelCallback" data-complete="{{ route('thankyou', ['order' => $order]) }}"></script>
