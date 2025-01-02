@@ -23,21 +23,14 @@
                 description: "digital products",
                 id: "{{ $order->payment_id }}",
             },
-            if (isset($response - > session - > id)) {
-                return [
-                    'response' => $response,
-                    'order' => ['id' => request() - > order - > id, 'uniqid' => $id]
-                ];
-            } else {
-                \
-                Log::error("Session ID is missing in Areeba API response", ['response' => $response]);
-                throw new\ Exception("Failed to retrieve session ID from Areeba API.");
+            session: {
+                id: "{{ $session['response']->session->id }}"
             },
             interaction: {
                 operation: 'PURCHASE',
-                displayControl: {
-                    shipping: 'HIDE',
-                    billingAddress: 'HIDE'
+                displayControl:{
+                    shipping:'HIDE',
+                    billingAddress:'HIDE'
                 },
                 merchant: {
                     name: "{{ $order->user->name }}",
