@@ -91,11 +91,11 @@
         /* Extra Large Devices (Desktops, 1200px and above) */
         @media only screen and (min-width: 1200px) {
             #homesliderm .carousel-inner .carousel-item {
-                height: 50vh;
+                height: 90vh;
             }
 
             #homesliderm .carousel-inner .carousel-item img {
-                height: 50vh;
+                height: 90vh;
             }
         }
     </style>
