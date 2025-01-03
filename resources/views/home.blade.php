@@ -44,6 +44,60 @@
         .services-area .service-item .service-icon {
             border: 0px !important
         }
+
+        @media only screen and (max-width: 600px) {
+            #homesliderm .carousel-inner .carousel-item {
+                height: 40vh !important;
+            }
+
+            #homesliderm .carousel-inner .carousel-item img {
+                height: 40vh;
+            }
+        }
+
+        /* Small Devices (Tablets, 601px to 767px) */
+        @media only screen and (min-width: 601px) and (max-width: 767px) {
+            #homesliderm .carousel-inner .carousel-item {
+                height: 35vh;
+            }
+
+            #homesliderm .carousel-inner .carousel-item img {
+                height: 35vh;
+            }
+        }
+
+        /* Medium Devices (Tablets, 768px to 991px) */
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            #homesliderm .carousel-inner .carousel-item {
+                height: 40vh !important;
+            }
+
+            #homesliderm .carousel-inner .carousel-item img {
+                height: 40vh !important;
+            }
+        }
+
+        /* Large Devices (Desktops, 992px to 1199px) */
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+            #homesliderm .carousel-inner .carousel-item {
+                height: 45vh !important;
+            }
+
+            #homesliderm .carousel-inner .carousel-item img {
+                height: 45vh !important;
+            }
+        }
+
+        /* Extra Large Devices (Desktops, 1200px and above) */
+        @media only screen and (min-width: 1200px) {
+            #homesliderm .carousel-inner .carousel-item {
+                height: 50vh;
+            }
+
+            #homesliderm .carousel-inner .carousel-item img {
+                height: 50vh;
+            }
+        }
     </style>
 
     @if (App::getLocale() == 'en')
