@@ -350,7 +350,7 @@
                     <!-- service item -->
                     @foreach ($services as $service)
                         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                            <div class="service-item d-flex" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif>
+                            <div class="service-item d-flex" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  style="box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 <div class="effect transition"></div>
                                 <div class="service-icon transition">
                                     <img style="width: 100%; height:100%" src="{{ Storage::url($service->icon) }}"
