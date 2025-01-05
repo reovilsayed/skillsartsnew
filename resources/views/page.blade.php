@@ -19,7 +19,7 @@
                 font-size: large;
             }
         ul li strong{
-                font-family: large !important;
+                font-family: learges !important;
             }
     </style>
     @if (App::getLocale() == 'en')
