@@ -25,18 +25,27 @@
              h2{
                 font-size: 20px !important
             }
+             h1{
+                 font-size:24px !important
+             }
          }
 
         @media only screen and (min-width: 601px) and (max-width: 767px) {
             h2 {
                 font-size: 20px !important
             }
+            h1{
+                 font-size:24px !important
+             }
         }
 
         @media only screen and (min-width: 768px) and (max-width: 991px) {
             h2 {
                 font-size: 20px !important
             }
+            h1{
+                 font-size:24px !important
+             }
         }
     </style>
     @if (App::getLocale() == 'en')
