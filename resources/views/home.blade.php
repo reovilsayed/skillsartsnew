@@ -418,7 +418,7 @@
 
                                 <div class="service-desc">
                                     <a  href="" role="button">
-                                        <h4 class="contact_title"><a href="{{$service->url}}">{{ $service->translate(app()->getLocale())->title }}</a>
+                                        <h4 class="contact_title"><a style="color:#ff3131" href="{{$service->url}}">{{ $service->translate(app()->getLocale())->title }}</a>
                                         </h4>
                                         <h5 class="contact_body">{!! $service->translate(app()->getLocale())->body !!}</h5>
                                     </a>
