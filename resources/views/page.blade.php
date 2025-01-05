@@ -18,6 +18,9 @@
                 font-family: sans-serif !important;
                 font-size: large;
             }
+        ul li strong{
+                font-family: large !important;
+            }
     </style>
     @if (App::getLocale() == 'en')
         <style>
