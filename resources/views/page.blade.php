@@ -21,6 +21,23 @@
         ul li strong{
                 font-family: learges !important;
             }
+         @media only screen and (max-width: 600px) {
+             h2{
+                font-size: 20px !important
+            }
+         }
+
+        @media only screen and (min-width: 601px) and (max-width: 767px) {
+            h2 {
+                font-size: 20px !important
+            }
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            h2 {
+                font-size: 20px !important
+            }
+        }
     </style>
     @if (App::getLocale() == 'en')
         <style>
