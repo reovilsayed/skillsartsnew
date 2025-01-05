@@ -179,12 +179,17 @@
                                 <div class="carousel-caption">
                                     <h5 class="mb-3 display-4 text-red font-weight-bold toggleHeading"
                                         style="background-color: rgba(255, 255, 255, 0.685);font-size:20px">
-                                        {{ $slider->heading }}
+                                        {{ $slider->translate(app()->getLocale())->heading }}
                                     </h5>
-                                    <p class="toggleCaption mb-3" style="font-size:16px">{{ $slider->paragraph }}</p>
+                                    <p class="toggleCaption mb-3" style="font-size:16px">{{ $slider->translate(app()->getLocale())->paragraph }}</p>
                                     <p class="toggleButton">
-                                        <a href="{{ route('shop') }}"
-                                            class="btn btn-red">{{ __('sentence.shop_now') }}</a>
+                                        @if (App::getLocale() == 'ar')
+                                            <a href="{{ url('/shop') }}"
+                                                class="btn btn-red">{{ __('sentence.shop_now') }}</a>
+                                        @else
+                                            <a href="{{ url('en/shop') }}"
+                                                class="btn btn-red">{{ __('sentence.shop_now') }}</a>
+                                        @endif
                                     </p>
                                 </div>
                             @endif
