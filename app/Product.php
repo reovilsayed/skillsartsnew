@@ -10,7 +10,7 @@ class Product extends Model
 {
   use Resizable;
   use Translatable;
-  protected $translatable = ['name', 'saleprice', 'details', 'description'];
+  protected $translatable = ['name', 'details', 'description'];
 	protected $guarded = [];
 
     public function setPriceAttribute($value){
