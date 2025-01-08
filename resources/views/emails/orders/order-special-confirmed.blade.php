@@ -3,7 +3,6 @@
     <div class="body-section">
         السلام عليكم {{ $order->first_name }} {{ $order->last_name }} <br>
         الطلب الذي تم في {{ $order->created_at->format('M d, Y') }} تم تأكيده<br />
-
         <table class="order-details">
             <thead>
                 <tr role="row">
@@ -35,7 +34,6 @@
                 @endforeach
             </tbody>
         </table>
-
         <table class="order-details">
             <tr>
                 <th>#الرمز</th>
@@ -57,7 +55,6 @@
                 </tr>
             @endforeach
         </table>
-
         <table class="order-details">
             <tr>
                 <td class="font-weight-bold">إجمالي السلة</td>
@@ -84,7 +81,6 @@
                 <td>{{ Shop::price($order->total) }}</td>
             </tr>
         </table>
-
         <h2 class="heading">بيانات العميل</h2>
         <div class="border">
             {{ $order->first_name }} {{ $order->last_name }} <br />
@@ -98,7 +94,6 @@
         @component('mail::button', ['url' => $url, 'color' => 'green'])
             عرض الطلب
         @endcomponent
-
         تحتاج لمساعدة؟ لا تتردد في التواصل معنا بالرد على هذه الرسالة.
         مع تحيات فريق سكيلز آرتس<br>
         https://skillsarts.com<br>
