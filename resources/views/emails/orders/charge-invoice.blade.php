@@ -25,7 +25,6 @@
   </tr>
 @endforeach
 </table> <br />
-
  <table class="order-details">
   <tr>
     <td class="font-weight-bold">المجموع</td>
@@ -46,7 +45,6 @@
     <td>{{Shop::price($order->total) }}</td>
   </tr>
 </table>
-
 <h2 class="heading">العنوان</h2>
 <div class="border">
    {{ $order->first_name }} {{ $order->last_name }} <br />
@@ -60,12 +58,8 @@
 @component('mail::button', ['url' => $url, 'color' => 'green'])
 Show Details
 @endcomponent
-
 شكراً مرة أخرى لإستخدامكم موقع سكيلز آرتس
-
 Regards,<br>
 {{ config('app.name') }}
 </div>
-
-
 @endcomponent
