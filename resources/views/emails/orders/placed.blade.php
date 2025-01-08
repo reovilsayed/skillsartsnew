@@ -18,13 +18,11 @@
   </tr>
 @endforeach
 </table> <br />
-
  <table class="order-details">
   <tr>
     <td class="font-weight-bold">المجموع</td>
     <td>{{Shop::price($order->subtotal) }}</td>
   </tr>
-
   <tr>
     <td class="font-weight-bold">الضريبة</td>
     <td>{{Shop::price($order->tax) }}</td>
@@ -35,7 +33,6 @@
     <td>{{Shop::price($order->shipping_cost) }}</td>
   </tr>
 @endif
-
 @if($order->discount > 0)
   <tr>
     <td class="font-weight-bold">الخصم</td>
@@ -47,7 +44,6 @@
     <td>{{Shop::price($order->total) }}</td>
   </tr>
 </table>
-
 <h2 class="heading">بيانات العميل</h2>
 <div class="border">
    {{ $order->first_name }} {{ $order->last_name }} <br />
@@ -61,12 +57,9 @@
 @component('mail::button', ['url' => $url, 'color' => 'green'])
   ادفع الآن
 @endcomponent
-
 تحتاج لمساعدة؟ لا تتردد في التواصل معنا بالرد على هذه الرسالة.<br>
         مع تحيات فريق سكيلز آرتس<br>
 		https://skillsarts.com<br>
 {{ config('app.name') }}
 </div>
-
-
 @endcomponent
