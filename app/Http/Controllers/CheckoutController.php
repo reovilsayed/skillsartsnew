@@ -24,7 +24,8 @@ class CheckoutController extends Controller
     public function payment(Order $order)
     {
 
-        if ($order->type == 0 && $order->status == 1) return redirect()->route('invoice', $order);
+        if ($order->type == 0 && $order->status == 1)
+            return redirect()->route('invoice', $order);
 
         $session = (new Areeba)->purchase();
         if ($order->status == 0) {
@@ -37,9 +38,15 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         if (Cart::isEmpty()) {
-            return redirect('/shop');
+            if ($request->locale == 'ar') {
+                return redirect('/shop');
+            } else {
+                return redirect('en/shop');
+            }
         }
-        session()->put('custom_discount',$request->custom_discount);
+        $locale = $request->locale;
+
+        session()->put('custom_discount', $request->custom_discount);
         $request->validate([
             'first_name' => ['required', 'max:40'],
             'last_name' => ['nullable', 'max:40'],
@@ -48,9 +55,9 @@ class CheckoutController extends Controller
             'phone' => ['required', 'max:15'],
             'company_name' => ['nullable', 'max:15'],
         ]);
-        if($request->user_id){
+        if ($request->user_id) {
             $user_id = $request->user_id;
-        }else{
+        } else {
             $user_id = auth()->user()->id;
         }
         $order = Order::create([
@@ -61,6 +68,7 @@ class CheckoutController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'company_name' => $request->company_name,
+            'locale' => $locale,
             'subtotal' => Shop::round_num(Cart::getSubTotal()),
             'discount' => Shop::round_num(Shop::discount()),
             'discount_code' => Shop::discount_code(),
@@ -71,7 +79,7 @@ class CheckoutController extends Controller
         ]);
 
         foreach (Cart::getContent() as $item) {
-            $variations =  json_encode($item->model->variation);
+            $variations = json_encode($item->model->variation);
             OrderProduct::create([
                 'order_id' => $order->id,
                 'product_id' => $item->model->id,
@@ -84,19 +92,40 @@ class CheckoutController extends Controller
         Cart::clear();
         session()->forget('discount');
         session()->forget('discount_code');
+        // dd($request->locale);
+        if ($locale == 'ar') {
 
-        $mail_data = [
-            'subject' => "طلب من موقع مهارات الفن# $order->id",
-            'title' => 'عرض سعر من موقع مهارات الفن',
-            'opening_message' => "تم استلام طلبك وهذا عرض سعر يرجى إتمام السداد لتأكيد موافقتك على الطلب",
-            'button' => [
-                'url' => route('payment', $order),
-                'text' => 'سدد الآن'
-            ],
-            'footer' => 'شكراَ لثقتكم بنا ونسعد بخدمتكم للتواصل بنا على البريد الإلكتروني : info@skillsarts.com',
-        ];
+            $mail_data = [
+                'subject' => "طلب من موقع مهارات الفن# $order->id",
+                'title' => 'عرض سعر من موقع مهارات الفن',
+                'opening_message' => "تم استلام طلبك وهذا عرض سعر يرجى إتمام السداد لتأكيد موافقتك على الطلب",
+                'button' => [
+                    'url' => route('payment', $order),
+                    'text' => 'سدد الآن'
+                ],
+                'footer' => 'شكراَ لثقتكم بنا ونسعد بخدمتكم للتواصل بنا على البريد الإلكتروني : info@skillsarts.com',
+            ];
+        } else {
 
-        Mail::send(new OrderNotification($order, $mail_data));
-        return redirect(route('payment', $order));
+            $mail_data = [
+                'subject' => "Request from the Art Skills website# $order->id",
+                'title' => 'Quote from the Art Skills website',
+                'opening_message' => "Your order has been received and this is a quote. Please complete the payment to confirm your acceptance of the order",
+                'button' => [
+                    'url' => route('payment', $order),
+                    'text' => 'Pay now'
+                ],
+                'footer' => 'Thank you for trusting us. We are happy to serve you. Contact us via email : info@skillsarts.com',
+            ];
+        }
+
+
+        Mail::send(new OrderNotification($order, $mail_data, $locale));
+        if ($locale == 'ar') {
+            return redirect(url('/payment', [$order]));
+        } else {
+            return redirect(url('/en/payment', [$order]));
+        }
+
     }
 }

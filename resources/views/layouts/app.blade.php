@@ -222,7 +222,7 @@
                         <div class="col-md-6 text-right text-light font-weight-bold">
                             {{ Shop::price(Cart::getSubTotal()) }}</div>
                     </div>
-                    <a href="{{ route('checkout') }}"
+                    <a href="@if (App::getLocale() == 'ar') {{ url('/checkout') }} @else{{ url('en/checkout') }} @endif"
                         class="btn btn-success text-light">{{ __('sentence.checkout') }}</a>
                     <a href=""
                         class="btn btn-outline-success text-light">{{ __('sentence.continue_shoppings') }}</a>
