@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CalculatorController;
+use App\Mail\OrderNotificationPrint;
+use App\Mail\OrderPlaced;
 use App\Mail\SpecialOrderConfirmed;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -116,7 +118,7 @@ Route::post('calculator-store', [CalculatorController::class, 'store'])->name('c
 
 // Route::get('emailInvoice', function () {
 //     $order = Order::find(300);
-//    return new ChargeInvoice($order);
+//    return new OrderInvoice($order);
 // });
 
 Route::group(['middleware' => 'admin.user'], function () {
