@@ -45,6 +45,11 @@
             border: 0px !important
         }
 
+        .desktopSlider {
+            font-size: 2.5rem !important;
+        }
+
+
         @media only screen and (max-width: 600px) {
             #homesliderm .carousel-inner .carousel-item {
                 height: 40vh !important;
@@ -181,7 +186,8 @@
                                         style="background-color: rgba(255, 255, 255, 0.685);font-size:20px">
                                         {{ $slider->translate(app()->getLocale())->heading }}
                                     </h5>
-                                    <p class="toggleCaption mb-3" style="font-size:16px">{{ $slider->translate(app()->getLocale())->paragraph }}</p>
+                                    <p class="toggleCaption mb-3" style="font-size:16px">
+                                        {{ $slider->translate(app()->getLocale())->paragraph }}</p>
                                     <p class="toggleButton">
                                         @if (App::getLocale() == 'ar')
                                             <a href="{{ url('/shop') }}"
@@ -246,11 +252,11 @@
                                 alt="{{ __('sentence.site_title') }}">
                             @if ($slider->heading)
                                 <div class="carousel-caption">
-                                    <h5 class="mb-3 display-4 text-red font-weight-bold on-mobile-font"
+                                    <h5 class="mb-3 display-4 desktopSlider text-red font-weight-bold on-mobile-font"
                                         style="background-color: rgba(255, 255, 255, 0.678);opacity: .6;">
                                         {{ $slider->translate(app()->getLocale())->heading }}
                                     </h5>
-                                    <p class="toggleCaption mb-3 on-mobile-font-sec">
+                                    <p class="toggleCaption mb-3 on-mobile-font-sec" style="font-size: 22px">
                                         {{ $slider->translate(app()->getLocale())->paragraph }}
                                     </p>
                                     <p class="toggleButton">
@@ -409,7 +415,9 @@
                     <!-- service item -->
                     @foreach ($services as $service)
                         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                            <div class="service-item d-flex" @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif  style="box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            <div class="service-item d-flex"
+                                @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif
+                                style="box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 <div class="effect transition"></div>
                                 <div class="service-icon transition">
                                     <img style="width: 100%; height:100%" src="{{ Storage::url($service->icon) }}"
@@ -417,8 +425,9 @@
                                 </div>
 
                                 <div class="service-desc">
-                                    <a  href="" role="button">
-                                        <h4 class="contact_title"><a style="color:#ff3131" href="{{$service->url}}">{{ $service->translate(app()->getLocale())->title }}</a>
+                                    <a href="" role="button">
+                                        <h4 class="contact_title" style="color:#ff3131">
+                                            {{ $service->translate(app()->getLocale())->title }}
                                         </h4>
                                         <h5 class="contact_body">{!! $service->translate(app()->getLocale())->body !!}</h5>
                                     </a>
@@ -621,8 +630,8 @@
                             alt="ايقونة شعار سكيلز آرتس">
                     </div>
                 </div>
-                <div @if (App::getLocale() == 'en') dir="ltr" 
-    @else 
+                <div @if (App::getLocale() == 'en') dir="ltr"
+    @else
         dir="rtl" @endif
                     class="row justify-content-center">
                     <div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
