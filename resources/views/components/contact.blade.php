@@ -11,6 +11,16 @@
     </style>
 @endif
 
+<script>
+    recaptchaCallback = function(value) {
+        console.log('value');
+        console.log(value);
+        if (value.length > 0) {
+            document.getElementById('form-submit').removeAttribute('disabled');
+        }
+    }
+</script>
+
 <div id="contact" class="contact-area bg-light-black pb-5">
     <div class="container">
 
@@ -94,6 +104,9 @@
                             <textarea @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif name="message" id="message"
                                 placeholder="{{ __('sentence.message') }}" class="form-control" required>{{ old('message') }}</textarea>
                         </div>
+                        <div class="g-recaptcha" data-sitekey="6LfTjLQqAAAAABxjVLtrGeVVh1WpWPLiG4-MWU2K"
+                            data-callback="recaptchaCallback"></div>
+
                         <div class="form-group">
                             <div class="col-md-12" id="contact_checkBox">
                                 <input class="form-check-input" name="terms" type="checkbox" value=""
@@ -111,7 +124,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group mb-0">
-                                    <button type="submit" class="btn btn-red" id="form-submit">
+                                    <button type="submit" class="btn btn-red" id="form-submit" disabled>
                                         {{ __('sentence.send_your_inquiry') }}
                                     </button>
                                     <div class="clear"></div>
