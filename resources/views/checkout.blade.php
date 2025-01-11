@@ -125,6 +125,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" name="locale" value="{{App::getLocale()}}">
                                 <div class="col-md-6">
                                     <div class="form-group confirm_your_data">
                                         <label class="text-light" for="discount">Discount</label>
@@ -133,6 +134,7 @@
                                     </div>
                                 </div>
                             @endif
+
                             <div class="col-md-6">
                                 <div class="form-group confirm_your_data">
                                     <label class="text-light" for="first_name">{{ __('sentence.first_name') }}</label>
@@ -176,6 +178,7 @@
                                     @enderror
                                 </div>
                             </div>
+                            {{-- @dd(App::getLocale()) --}}
                             <div class="col-md-6">
                                 <div class="form-group confirm_your_data">
                                     <label class="text-light" for="email">{{ __('sentence.emali') }}</label>

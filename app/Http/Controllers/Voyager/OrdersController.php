@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -44,14 +45,19 @@ class OrdersController extends Controller
     public function edit_services(Order $order)
     {
         $services = json_decode($order->services);
-        $services =  (array) $services;
+        $services = (array) $services;
         return view('vendor.voyager.orders.edit-services', compact('order', 'services'));
     }
     public function sendEmailInvoice(Order $order)
     {
+
+        $locale = $order->locale;
+
         $mail_data = [
-            'subject' => "Invoice for order # # $order->id",
-            'title' => " >السلام عليكم هذه فاتورة لطلبكم من موقع مهارات الفن #$order->id",
+            'subject' => "Invoice for order # $order->id",
+            'title' => $locale == 'ar'
+                ? "السلام عليكم هذه فاتورة لطلبكم من موقع مهارات الفن #$order->id"
+                : "Peace be upon you, this is an invoice for your order from the Art Skills website #$order->id",
             'opening_message' => "",
             'button' => [
                 'url' => route('orders'),
@@ -60,9 +66,10 @@ class OrdersController extends Controller
             'footer' => 'thank you',
         ];
 
-        Mail::send(new OrderNotification($order, $mail_data));
+
+        Mail::send(new OrderNotification($order, $mail_data, $locale));
         return back()->with([
-            'message'    => 'Invoice sent successfully',
+            'message' => 'Invoice sent successfully',
             'alert-type' => 'success',
         ]);
     }
@@ -71,7 +78,7 @@ class OrdersController extends Controller
         $charge_total = $order->charges->sum('amount') + $request->amount;
         if ($charge_total > $order->total) {
             return back()->with([
-                'message'    => 'Charge amount can not be greater than order total',
+                'message' => 'Charge amount can not be greater than order total',
                 'alert-type' => 'error',
             ]);
         }
@@ -80,7 +87,7 @@ class OrdersController extends Controller
             'percentage' => $request->percentage,
         ]);
         return back()->with([
-            'message'    => 'New charge created successfully',
+            'message' => 'New charge created successfully',
             'alert-type' => 'success',
         ]);
     }
@@ -88,7 +95,7 @@ class OrdersController extends Controller
     {
         $charge->delete();
         return back()->with([
-            'message'    => 'Charge deleted successfully',
+            'message' => 'Charge deleted successfully',
             'alert-type' => 'success',
         ]);
     }
@@ -111,7 +118,7 @@ class OrdersController extends Controller
 
         Mail::send(new OrderNotification($order, $mail_invoice_data));
         return back()->with([
-            'message'    => 'Payment Request sent to the customer',
+            'message' => 'Payment Request sent to the customer',
             'alert-type' => 'success',
         ]);
     }
@@ -226,10 +233,10 @@ class OrdersController extends Controller
                         $dataType->name . '.*',
                         'joined.' . $row->details->label . ' as ' . $orderBy,
                     ])->leftJoin(
-                        $row->details->table . ' as joined',
-                        $dataType->name . '.' . $row->details->column,
-                        'joined.' . $row->details->key
-                    );
+                            $row->details->table . ' as joined',
+                            $dataType->name . '.' . $row->details->column,
+                            'joined.' . $row->details->key
+                        );
                 }
 
                 $dataTypeContent = call_user_func([
@@ -481,7 +488,7 @@ class OrdersController extends Controller
         }
 
         return $redirect->with([
-            'message'    => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
+            'message' => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
         ]);
     }
@@ -564,7 +571,7 @@ class OrdersController extends Controller
             }
 
             return $redirect->with([
-                'message'    => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
+                'message' => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
                 'alert-type' => 'success',
             ]);
         } else {
@@ -616,11 +623,11 @@ class OrdersController extends Controller
         $res = $data->destroy($ids);
         $data = $res
             ? [
-                'message'    => __('voyager::generic.successfully_deleted') . " {$displayName}",
+                'message' => __('voyager::generic.successfully_deleted') . " {$displayName}",
                 'alert-type' => 'success',
             ]
             : [
-                'message'    => __('voyager::generic.error_deleting') . " {$displayName}",
+                'message' => __('voyager::generic.error_deleting') . " {$displayName}",
                 'alert-type' => 'error',
             ];
 
@@ -652,11 +659,11 @@ class OrdersController extends Controller
         $res = $data->restore($id);
         $data = $res
             ? [
-                'message'    => __('voyager::generic.successfully_restored') . " {$displayName}",
+                'message' => __('voyager::generic.successfully_restored') . " {$displayName}",
                 'alert-type' => 'success',
             ]
             : [
-                'message'    => __('voyager::generic.error_restoring') . " {$displayName}",
+                'message' => __('voyager::generic.error_restoring') . " {$displayName}",
                 'alert-type' => 'error',
             ];
 
@@ -771,7 +778,7 @@ class OrdersController extends Controller
 
             return response()->json([
                 'data' => [
-                    'status'  => 200,
+                    'status' => 200,
                     'message' => __('voyager::media.file_removed'),
                 ],
             ]);
@@ -789,7 +796,7 @@ class OrdersController extends Controller
 
             return response()->json([
                 'data' => [
-                    'status'  => $code,
+                    'status' => $code,
                     'message' => $message,
                 ],
             ], $code);
@@ -907,7 +914,7 @@ class OrdersController extends Controller
             return redirect()
                 ->route("voyager.{$dataType->slug}.index")
                 ->with([
-                    'message'    => __('voyager::bread.ordering_not_set'),
+                    'message' => __('voyager::bread.ordering_not_set'),
                     'alert-type' => 'error',
                 ]);
         }
@@ -1031,7 +1038,7 @@ class OrdersController extends Controller
 
                 if (!$row->required && !$search && $page == 1) {
                     $results[] = [
-                        'id'   => '',
+                        'id' => '',
                         'text' => __('voyager::generic.none'),
                     ];
                 }
@@ -1047,13 +1054,13 @@ class OrdersController extends Controller
 
                 foreach ($relationshipOptions as $relationshipOption) {
                     $results[] = [
-                        'id'   => $relationshipOption->{$options->key},
+                        'id' => $relationshipOption->{$options->key},
                         'text' => $relationshipOption->{$options->label},
                     ];
                 }
 
                 return response()->json([
-                    'results'    => $results,
+                    'results' => $results,
                     'pagination' => [
                         'more' => ($total_count > ($skip + $on_page)),
                     ],

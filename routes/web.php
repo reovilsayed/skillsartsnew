@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CalculatorController;
+use App\Mail\OrderNotificationPrint;
+use App\Mail\OrderPlaced;
+use App\Mail\SpecialOrderConfirmed;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShippingController;
@@ -15,7 +18,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Voyager\OrdersController;
 use Illuminate\Support\Facades\App;
 use App\Mail\ChargeInvoice;
-use App\Mail\OrderConfirmed;    
+use App\Mail\OrderConfirmed;
 use App\Mail\OrderInvoice;
 use App\Order;
 use App\Repository\Phone;
@@ -113,8 +116,8 @@ Route::get('shipping', [ShippingController::class, 'shipping'])->name('shipping'
 Route::get('payment/{order}', [CheckoutController::class, 'payment'])->name('payment')->middleware('auth');
 Route::post('calculator-store', [CalculatorController::class, 'store'])->name('calculator.store');
 
-// Route::get('email', function () {
-//     $order = Order::find(141);
+// Route::get('emailInvoice', function () {
+//     $order = Order::find(300);
 //    return new OrderInvoice($order);
 // });
 

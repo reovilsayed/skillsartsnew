@@ -14,15 +14,17 @@ class OrderNotification extends Mailable
 
     public $data;
     public $order;
+    public $locale;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Order $order, $data)
+    public function __construct(Order $order, $data, $locale)
     {
         $this->data = (object) $data;
         $this->order = $order;
+        $this->locale = $locale;
     }
 
     /**
