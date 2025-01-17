@@ -11,7 +11,7 @@
     </style>
 @endif
 
-{{-- <script>
+<script>
     recaptchaCallback = function(value) {
         console.log('value');
         console.log(value);
@@ -19,7 +19,7 @@
             document.getElementById('form-submit').removeAttribute('disabled');
         }
     }
-</script> --}}
+</script>
 
 <div id="contact" class="contact-area bg-light-black pb-5">
     <div class="container">
