@@ -2,7 +2,7 @@
 @section('title', 'Contact')
 @section('meta-description')
 @section('css')
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     @if (App::getLocale() == 'en')
         <style>
@@ -62,15 +62,4 @@
     </div>
     <x-contact />
 @endsection
-@section('javascript')
-    <script>
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.enterprise.ready(async () => {
-                const token = await grecaptcha.enterprise.execute('6LfYZ7QqAAAAAPLiPq4Au4sxQafy55fr80ZhNqYq', {
-                    action: 'LOGIN'
-                });
-            });
-        }
-    </script>
-@endsection
+

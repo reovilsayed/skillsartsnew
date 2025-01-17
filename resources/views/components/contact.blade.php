@@ -12,10 +12,9 @@
 @endif
 
 <script>
-    recaptchaCallback = function(value) {
-        console.log('value');
-        console.log(value);
-        if (value.length > 0) {
+    function recaptchaCallback(value) {
+        console.log(value); // Verify the token
+        if (value) {
             document.getElementById('form-submit').removeAttribute('disabled');
         }
     }
@@ -104,8 +103,7 @@
                             <textarea @if (App::getLocale() == 'en') dir="ltr" @else dir="rtl" @endif name="message" id="message"
                                 placeholder="{{ __('sentence.message') }}" class="form-control" required>{{ old('message') }}</textarea>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LfTjLQqAAAAABxjVLtrGeVVh1WpWPLiG4-MWU2K"
-                            data-callback="recaptchaCallback"></div>
+                        <div class="g-recaptcha" data-sitekey="6Ldg6rkqAAAAAOrPG-bm_Nu6NbxnHz7mEwOuxhrw" data-callback="recaptchaCallback"></div>
 
                         <div class="form-group">
                             <div class="col-md-12" id="contact_checkBox">
