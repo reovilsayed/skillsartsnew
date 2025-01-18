@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('title', 'Login')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    recaptchaCallback = function(value) {
+        console.log('value');
+        console.log(value);
+        if (value.length > 0) {
+            document.getElementById('form-submit').removeAttribute('disabled');
+        }
+    }
+</script>
 @section('css')
     @if (App::getLocale() == 'en')
         <style>
@@ -49,10 +59,11 @@
                                     @enderror
                                 </div>
                             </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4 login_section">
-                                    <button type="submit" class="btn btn-danger mt-2">{{ __('sentence.login') }}</button>
+                                    <div class="g-recaptcha" data-sitekey="6LfTjLQqAAAAABxjVLtrGeVVh1WpWPLiG4-MWU2K"
+                                    data-callback="recaptchaCallback"></div>
+                                    <button type="submit" class="btn btn-danger mt-2" id="form-submit" disabled>{{ __('sentence.login') }}</button>
                                     <!--   <a href="{{ route('register') }}" class="btn btn-outline-light mt-2"
                                                 class="text-info">
                                                 مستخدم جديد </a> -->

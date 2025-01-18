@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('title', 'Register')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    recaptchaCallback = function(value) {
+        console.log('value');
+        console.log(value);
+        if (value.length > 0) {
+            document.getElementById('form-submit').removeAttribute('disabled');
+        }
+    }
+</script>
+
 @section('css')
     @if (App::getLocale() == 'en')
         <style>
@@ -126,7 +137,9 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right"></label>
                                 <div class="col-md-8">
-                                    <div class="form-check">
+                                    <div class="g-recaptcha" data-sitekey="6LfTjLQqAAAAABxjVLtrGeVVh1WpWPLiG4-MWU2K"
+                                    data-callback="recaptchaCallback"></div>
+                                    <div class="form-check mt-2">
                                         <input class="form-check-input"
                                             oninvalid="this.setCustomValidity('يجب الموافقة لتتمكن من التسجيل')"
                                             onchange="this.setCustomValidity('')" type="checkbox" name="terms_condition"
@@ -142,7 +155,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-danger mt-2">
+                                    <button type="submit" class="btn btn-danger mt-2" id="form-submit" disabled>
                                         {{ __('sentence.save_data') }}
                                     </button>
                                     <a href="{{ route('login') }}" class="btn btn-outline-light mt-2">
